@@ -1,0 +1,8 @@
+header .item {
+    height: 40px;
+}
+
+header a.item {
+    display: inline-flex;
+    align-items: center;
+}
