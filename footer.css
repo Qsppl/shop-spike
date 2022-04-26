@@ -1,0 +1,31 @@
+footer > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer p {
+    margin-bottom: unset;
+}
+
+.footer-links-container {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .footer-links-container {
+        justify-content: flex-start;
+    }
+    .footer-links-container > * {
+        flex-basis: 50%;
+    }
+}
+
+@media (max-width: 540px) {
+    footer .logo {
+        display: none;
+    }
+}
