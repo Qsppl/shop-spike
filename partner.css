@@ -1,0 +1,19 @@
+.logotypes-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.logo-container {
+    height: 80px;
+    max-width: 300px;
+
+    /* flow */
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
+}
