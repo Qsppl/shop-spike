@@ -5,12 +5,12 @@
 .action-card {
     border-radius: 1%;
     overflow: hidden;
-    margin-bottom: 4rem;
+    margin-bottom: 7rem;
     position: relative;
 }
 
 .action-grid .row {
-    margin-bottom: -4rem;
+    margin-bottom: -7rem;
 }
 
 .action-card .label {
