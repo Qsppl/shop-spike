@@ -1,9 +1,9 @@
-.map-section .map {
+.store-addresses .map {
     height: 100%;
-    position: absolute;
+    /* position: absolute; */
 }
 
-.map-section {
+.store-addresses {
     position: relative;
     height: 60vh;
     max-height: 600px;
