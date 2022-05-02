@@ -1,6 +1,5 @@
 .store-addresses .map {
     height: 100%;
-    /* position: absolute; */
 }
 
 .store-addresses {
@@ -8,4 +7,15 @@
     height: 60vh;
     max-height: 600px;
     min-height: 400px;
+}
+
+.store-addresses .map-wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.store-addresses menu {
+    z-index: 1;
 }

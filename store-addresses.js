@@ -12,6 +12,7 @@ function init() {
         center: [55.76, 37.64],
         // Уровень масштабирования. Допустимые значения:
         // от 0 (весь мир) до 19.
-        zoom: 7
+        zoom: 7,
+        controls: ['fullscreenControl', 'geolocationControl', 'searchControl', 'zoomControl']
     });
 }
