@@ -7,15 +7,87 @@
     height: 60vh;
     max-height: 600px;
     min-height: 400px;
+
+    overflow: hidden;
 }
 
 .store-addresses .map-wrapper {
     position: absolute;
     height: 100%;
     width: 100%;
-    z-index: -1;
+}
+
+.store-addresses .container {
+    height: 100%;
+}
+
+.store-addresses .menu-container {
+    margin-left: auto;
+    margin-right: 2rem;
+
+    height: 100%;
 }
 
 .store-addresses menu {
-    z-index: 1;
+    position: relative;
+    margin: unset;
+
+    height: 100%;
+
+    overflow: auto;
+    padding-top: 2em;
+    padding-right: 1em;
+    padding-bottom: 2em;
+    padding-left: 1em;
+}
+
+.store-addresses .menu-item {
+    padding: 0.5em;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.store-addresses .menu-item>* {
+    flex: 1 1 auto;
+}
+
+.store-addresses .menu-item>*:not(:first-child) {
+    margin-left: .5em;
+}
+
+.store-addresses .menu-item>*:not(:last-child) {
+    margin-right: .5em;
+}
+
+.store-addresses .menu-item .button {
+    flex: 0 0 48px;
+    height: 48px;
+    padding: 0;
+
+    transition-property: border-color;
+    transition-timing-function: ease;
+    transition-duration: .2s;
+}
+
+.store-addresses .menu-item .button:not(:first-child) {
+    border-left: 1px solid #ebebeb;
+}
+
+.store-addresses .menu-item .button:not(:last-child) {
+    border-right: 1px solid #ebebeb;
+}
+
+.store-addresses .menu-item .button:hover,
+.store-addresses .menu-item .button.active {
+    border-color: transparent;
+}
+
+.store-addresses .menu-item .content {
+    display: flex;
+    flex-direction: column;
+}
+
+.store-addresses .menu-item .adress {
+    font-weight: 500;
 }
