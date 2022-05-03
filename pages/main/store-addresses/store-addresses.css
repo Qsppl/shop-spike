@@ -1,41 +1,19 @@
-.store-addresses .map {
-    height: 100%;
-}
-
 .store-addresses {
     position: relative;
-    height: 80vh;
-    max-height: 800px;
-    min-height: 400px;
-
-    overflow: hidden;
 }
 
 .store-addresses .map-wrapper {
-    position: absolute;
-    height: 100%;
     width: 100%;
+    height: 60vh;
 }
 
-.store-addresses .container {
-    height: 100%;
-}
-
-.store-addresses .row {
-    height: 100%;
-}
-
-.store-addresses .menu-container {
-    margin-left: auto;
-    width: var(--menu-width);
+.store-addresses .map {
     height: 100%;
 }
 
 .store-addresses menu {
     position: relative;
     margin: unset;
-
-    height: 100%;
 
     overflow: auto;
     padding-top: 2em;
@@ -45,10 +23,14 @@
 }
 
 .store-addresses .menu-item {
+    margin-bottom: 1em;
+
+    max-width: 375px;
     padding: 0.5em;
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .store-addresses .menu-item>* {
@@ -95,18 +77,68 @@
     font-weight: 500;
 }
 
+@media (min-width: 768px) and (max-width: 1199px) {
+    .store-addresses menu {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .store-addresses .menu-item {
+        flex: 0 0 49%;
+        margin-bottom: 2%;
+    }
+}
+
 @media (min-width: 1200px) {
     .store-addresses {
         --container-width: 1140px;
         --container-client-width: calc(var(--container-width) - var(--bs-gutter-x, .75rem) - var(--bs-gutter-x, .75rem));
         --window-width: calc(100vw - 15px);
         --container-margin: calc((var(--window-width) - var(--container-width)) / 2);
-        --menu-width: calc(var(--container-client-width) * 0.33333333333333333);
+        --menu-width: 410px;
+    }
+
+    .store-addresses .map-wrapper {
+        position: absolute;
+        height: 100%;
     }
 
     .store-addresses .map [class*="copyrights-pane"],
     .store-addresses .map [class*="__toolbar_right"] {
+        margin-right: 680px;
         margin-right: calc(var(--container-margin) + var(--menu-width));
+    }
+
+    .store-addresses {
+        height: 80vh;
+        max-height: 800px;
+        min-height: 400px;
+
+        overflow: hidden;
+    }
+
+    .store-addresses .container {
+        height: 100%;
+    }
+
+    .store-addresses .row {
+        height: 100%;
+    }
+
+    .store-addresses .menu-container {
+        margin-left: auto;
+        margin-right: 200px;
+        margin-right: var(--container-margin);
+        width: 410px;
+        width: var(--menu-width);
+        height: 100%;
+    }
+
+    .store-addresses menu {
+        height: 100%;
     }
 }
 
