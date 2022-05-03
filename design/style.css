@@ -7,11 +7,13 @@
 html {
     font-size: 12px;
 }
+
 @media (min-width: 768px) {
     html {
         font-size: 14px;
     }
 }
+
 /* scale REM font-size on desctop */
 @media (min-width: 1200px) {
     html {
@@ -22,6 +24,7 @@ html {
 }
 
 @media (min-width: 1200px) and (max-width: 1399px) {
+
     /* and not scaling font-size < 12px */
     body {
         font-size: 12px;
@@ -38,6 +41,7 @@ html {
 }
 
 @media (min-width: 1800px) {
+
     /* Stop scale REM font-size on desctop */
     html {
         font-size: 16px;
@@ -117,7 +121,8 @@ section {
 
 /* Elements Design */
 
-button, .button {
+button,
+.button {
     border: unset;
     background-color: unset;
 
@@ -126,7 +131,10 @@ button, .button {
     transition-duration: .2s;
 }
 
-button:hover, button.active, .button:hover, .button.active {
+button:hover,
+button.active,
+.button:hover,
+.button.active {
     background-color: #0000000a;
 }
 
@@ -140,4 +148,27 @@ button:hover, button.active, .button:hover, .button.active {
     object-fit: contain;
     max-width: 100%;
     max-height: 100%;
+}
+
+/* End Elements Design */
+
+
+/* Scroll Design */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f7efef;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7474742b;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #7474742b #f7efef;
 }
