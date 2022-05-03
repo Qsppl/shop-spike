@@ -4,8 +4,8 @@
 
 .store-addresses {
     position: relative;
-    height: 60vh;
-    max-height: 600px;
+    height: 80vh;
+    max-height: 800px;
     min-height: 400px;
 
     overflow: hidden;
@@ -23,7 +23,6 @@
 
 .store-addresses .menu-container {
     margin-left: auto;
-    margin-right: 2rem;
 
     height: 100%;
 }
@@ -31,6 +30,7 @@
 .store-addresses menu {
     position: relative;
     margin: unset;
+    margin-right: var(--container-margin);
 
     height: 100%;
 
@@ -90,4 +90,18 @@
 
 .store-addresses .menu-item .adress {
     font-weight: 500;
+}
+
+@media (min-width: 1200px) {
+    .store-addresses {
+        --container-width: 1140px;
+        --window-w: calc(100vw - 15px);
+        --container-margin: calc(var(--window-w) - var(--container-width) / 2)
+    }
+}
+
+@media (min-width: 1400px) {
+    .store-addresses {
+        --container-width: 1320px;
+    }
 }
