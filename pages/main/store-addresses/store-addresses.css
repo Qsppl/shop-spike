@@ -98,7 +98,7 @@
 @media (min-width: 1200px) {
     .store-addresses {
         --container-width: 1140px;
-        --container-client-width: calc(var(--container-width) - var(--bs-gutter-x,.75rem) - var(--bs-gutter-x,.75rem));
+        --container-client-width: calc(var(--container-width) - var(--bs-gutter-x, .75rem) - var(--bs-gutter-x, .75rem));
         --window-width: calc(100vw - 15px);
         --container-margin: calc((var(--window-width) - var(--container-width)) / 2);
         --menu-width: calc(var(--container-client-width) * 0.33333333333333333);
