@@ -1,39 +1,31 @@
-#novosti .container {
-    /* display: flex;
-    justify-content: center; */
-}
+
 #novosti {
     margin-top: 10px;
 }
 
 #novosti .article {
+    height: 20em;
     display: flex;
     flex-direction: row;
-
-}
-#novosti .article img {
-    height: 13em;
 }
 
-#novosti .article-content {
-    overflow: hidden;
-    text-overflow: ellipsis;
+#novosti .line-clamp {
     display: -webkit-box;
-    -webkit-line-clamp: 16;
-    line-clamp: 16;
+    -webkit-line-clamp: 4;
+     line-clamp: 4;
     -webkit-box-orient: vertical;
-    width: 70%;
+    overflow: hidden;
+    width: 100%;
     }
 #novosti .article img {
-        margin-bottom: 2rem;
         object-fit: cover;
         object-position: center;
-        width: 100%;
-        max-height: 11.25em;
+        height: 100%;
+        width: 300px;
     }
-#novosti img~.article-content {
-        -webkit-line-clamp: 10;
-        line-clamp: 10;
+#novosti .article img {
+        -webkit-line-clamp: 5;
+        line-clamp: 5;
     }
     
 @media (min-width: 768px) {
