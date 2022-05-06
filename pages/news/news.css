@@ -1,0 +1,27 @@
+.row {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+
+.box img {
+    float: left;
+    object-fit: cover;
+    width: 25%;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 2em;
+}
+
+
+.content .text {
+    margin-top: 2em;
+    overflow: hidden;
+}
