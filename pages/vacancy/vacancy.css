@@ -1,0 +1,30 @@
+.article-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+menu {
+  display: flex;
+  list-style: none;
+  width: 11%;
+}
+
+#vacancy a {
+  flex-grow: 1;
+}
+
+#vacancy button {
+  width: 100%;
+  background-color: gray;
+}
+
+#vacancy .flat-shadow {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  max-width: 90%;
+  margin-top: 2em;
+  margin-right: auto;
+  margin-left: auto;
+}
