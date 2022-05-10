@@ -11,17 +11,6 @@
 }
 
 
-.box img {
-    float: left;
-    object-fit: cover;
-    width: 100%;
-    max-height: 400px;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 2em;
-}
-
-
 .content .text {
     margin-top: 2em;
     overflow: hidden;
@@ -33,20 +22,18 @@
     min-width: 150px;
 }
 
-.oblojka h1 {
-    margin-top: 1%;
-    padding: 0.20000000000000018em;
-    width: 100%;
-    height: 8%;
-    position: absolute;
-    background-color: white;
-    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
-}
 
-.oblojka img {
-    width: 100%;
-    height: 800px;
+.box img {
+    margin-right: 15px;
+    margin-left: 15px;
+    width: calc(25%-30px);
+    max-height: 300px;
     margin-bottom: 2rem;
     object-fit: cover;
     object-position: center;
+}
+
+.col-12 {
+    max-height: 35vh;
+    object-fit: cover;
 }
