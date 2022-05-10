@@ -1,16 +1,15 @@
 .cover {
-    width: 350px
+    width: 100%;
+    object-fit: contain;
 }
 
-.col-12 {
-    width: 350px;
+.grid-item {
     height: 450px;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
 .action-card {
-    width: 350px;
     height: 450px;
 }
 
@@ -22,8 +21,4 @@
 .summary {
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.row {
-    justify-content: space-between;
 }
