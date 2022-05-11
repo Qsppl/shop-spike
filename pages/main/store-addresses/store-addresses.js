@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 var adresses = {
     "spike1": {
@@ -117,11 +117,19 @@ function init() {
 
     map.behaviors.disable('scrollZoom');
 
-    map.geoObjects.add(new ymaps.Placemark([55.694843, 37.435023], {
-        balloonContent: 'цвет <strong>носика Гены</strong>',
-        iconCaption: 'Очень длиннный, но невероятно интересный текст'
-    }));
+for (let a in adresses) {
+    console.log(adresses[a]["name"])
+    console.log(adresses[a]["adress"])
+    console.log(adresses[a]["phoneNumber"])
+    console.log(adresses[a]["yCoords"])
+
+    map.geoObjects.add(new ymaps.Placemark(adresses[a]["yCoords"], {
+                balloonContent:(adresses[a]["adress"]["phoneNumber"]),
+                iconCaption:(adresses[a]["name"] )
+            }));
+        }
 }
+
 
 let myMenu1 = document.querySelector('menu')
 for (let button of myMenu1.querySelectorAll('.see-on-map')) {
