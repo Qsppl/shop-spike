@@ -1,6 +1,6 @@
- 'use strict';
+'use strict';
 
-var adresses = {
+const adresses = {
     "spike1": {
         "name": "Колос – 1",
         "adress": "Проспект&nbsp;Мира, д. 41",
@@ -87,13 +87,41 @@ var adresses = {
     }
 };
 
-// Функция ymaps.ready() будет вызвана, когда
-// загрузятся все компоненты API, а также когда будет готово DOM-дерево.
-ymaps.ready(init);
-function init() {
-    const mapCenter = [58.553404622358826, 50.042369949879394]
+class MapSectionMenu {
+
+}
+
+class myClicableButton {
+    constructor() {
+        this.addEventListener('click', this.handleClick)
+    }
+
+    handleClick = function (e) {
+        let placemark = map.getPlacemark(this.dataset.target)
+
+        map.selectPlacemark(placemark)
+        menu.selectButton(this);
+    }
+}
+
+class myClicablePlacemark extends Placemark {
+    constructor() {
+        super();
+
+        this.addEventListener('click', this.handleClick)
+    }
+    handleClick = function (event) {
+        let button = menu.getButton(this.objectId)
+
+        map.selectPlacemark(this)
+        menu.selectButton(button)
+    }
+}
+
+function createMap() {
     // Создание карты.
-    var map = new ymaps.Map("map", {
+    const mapCenter = [58.553404622358826, 50.042369949879394];
+    const map = new ymaps.Map("map", {
         // Координаты центра карты.
         // Порядок по умолчанию: «широта, долгота».
         // Чтобы не определять координаты центра карты вручную,
@@ -104,7 +132,6 @@ function init() {
         zoom: 14,
         controls: ['fullscreenControl', 'geolocationControl', 'searchControl', 'zoomControl']
     });
-
     if (getVW() >= 1200) {
         let pixelCenter = map.getGlobalPixelCenter(mapCenter);
         pixelCenter = [
@@ -114,40 +141,26 @@ function init() {
         let geoCenter = map.options.get('projection').fromGlobalPixels(pixelCenter, map.getZoom());
         map.setCenter(geoCenter)
     }
-
     map.behaviors.disable('scrollZoom');
 
-for (let a in adresses) {
-    console.log(adresses[a]["name"])
-    console.log(adresses[a]["adress"])
-    console.log(adresses[a]["phoneNumber"])
-    console.log(adresses[a]["yCoords"])
-
-    map.geoObjects.add(new ymaps.Placemark(adresses[a]["yCoords"], {
-                balloonContent:(adresses[a]["adress"]["phoneNumber"]),
-                iconCaption:(adresses[a]["name"] )
-            }));
-        }
+    generateMapSectionControls(map, menu, adresses)
 }
 
+function generateMapSectionControls(map, menu, adresses) {
+    for (let a in adresses) {
+        let placemark = new myClicablePlacemark(adresses[a]["yCoords"], {
+            balloonContent: (adresses[a]["adress"]["phoneNumber"]),
+            iconCaption: (adresses[a]["name"])
+        });
 
-let myMenu1 = document.querySelector('menu')
-for (let button of myMenu1.querySelectorAll('.see-on-map')) {
-    console.log(button);
-    button.addEventListener('click', e => {
-        console.log(e.currentTarget.dataset.target);
-        if (!e.currentTarget.dataset) return null;
-        if (!e.currentTarget.dataset.target) return null;
-        let mapIdintefer = e.currentTarget.dataset.target;
+        let button = new myClicableButton();
 
-        if (map.select(mapIdintefer)) {
-            console.log("querySelectorAll('menu-item')", myMenu1.querySelectorAll('.menu-item'));
-            for (let menuElement of myMenu1.querySelectorAll('.menu-item')) {
-                console.log(menuElement);
-                menuElement.classList.remove('selected')
-            }
-
-            e.currentTarget.parentElement.classList.add('selected')
-        }
-    })
+        map.geoObjects.add(placemark);
+        menu.add(button);
+    }
 }
+
+const menu = new MapSectionMenu();
+// Функция ymaps.ready() будет вызвана, когда
+// загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+ymaps.ready(createMap);
