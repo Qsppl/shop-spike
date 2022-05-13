@@ -147,10 +147,10 @@ function createMap() {
 }
 
 function generateMapSectionControls(map, menu, adresses) {
-    for (let a in adresses) {
-        let placemark = new myClicablePlacemark(adresses[a]["yCoords"], {
-            balloonContent: (adresses[a]["adress"]["phoneNumber"]),
-            iconCaption: (adresses[a]["name"])
+    for (let adressesKey in adresses) {
+        let placemark = new myClicablePlacemark(adresses[adressesKey]["yCoords"], {
+            balloonContent: (adresses[adressesKey]["adress"] [adressesKey]["phoneNumber"]),
+            iconCaption: (adresses[adressesKey]["name"])
         });
 
         let button = new myClicableButton();
