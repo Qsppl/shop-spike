@@ -192,18 +192,15 @@ class MapController {
         this.map.behaviors.disable('scrollZoom');
     }
 
-    setCenter(coords, callback = undefined) {
-        console.log('setCenter', coords);
-        console.log('this.map.getGlobalPixelCenter(coords);', this.map.getGlobalPixelCenter(coords));
+    setCenter(coords) {
         if (typeof coords[0] !== 'number' || typeof coords[1] !== 'number') throw new TypeError(`${coords} invalid coords format!`);
         if (getVW() >= 1200) {
             let pixelCenter = this.map.options.get('projection').toGlobalPixels(coords, this.map.getZoom());
             pixelCenter = [pixelCenter[0] + getVW() * 0.2, pixelCenter[1]];
             let geoCenter = this.map.options.get('projection').fromGlobalPixels(pixelCenter, this.map.getZoom());
-            console.log('callback is ', callback);
-            return this.map.panTo(geoCenter)
+            return this.map.panTo(geoCenter, {flying: false});
         }
-        return this.map.panTo(coords);
+        return this.map.panTo(coords, {flying: false});
     }
 
     addPlacemark(placemark) {
@@ -248,7 +245,7 @@ function mapSectionInit() {
 
         const placemarkCoords = shopInfo.coords;
         const placemarkConfig = {
-            balloonContent: `<h4>${shopInfo.adress}</h4><p>${shopInfo.phoneNumber}</p>`,
+            balloonContent: `<h5>${shopInfo.adress}</h5>`,
             iconCaption: shopInfo.name
         };
         let placemark = new ymaps.Placemark(placemarkCoords, placemarkConfig);
