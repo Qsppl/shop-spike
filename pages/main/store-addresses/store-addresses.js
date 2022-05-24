@@ -141,9 +141,7 @@ class MapMenuSingleView extends MapMenu {
         this.currentShowSwitcher = undefined;
     }
     addPlacemarkSwitcher(placemarkSwitcher) {
-        console.log('add placemark switcher');
         if (!super.addPlacemarkSwitcher(placemarkSwitcher)) return false;
-        console.log('and try hide switcher');
         if (this.currentShowSwitcher === undefined) this.showSwitcher(placemarkSwitcher);
         else this.hideSwither(placemarkSwitcher);
         return true;
@@ -187,6 +185,7 @@ class PlacemarkSwitcher {
     setPlacemark(placemark) {
         if (!(placemark instanceof ymaps.Placemark)) throw new TypeError(`${placemark} is not a Placemark!`);
         this.placemark = placemark;
+        this.placemark.events.add('balloonopen', this.handleClick)
         this.element.dataset.state = "disabled";
     }
 
@@ -202,6 +201,7 @@ class PlacemarkSwitcher {
 
     handleClick = function (e) {
         if (this.element.dataset.state == "locked") return false;
+        if (this.isEnabled()) return true;
         for (let callback of this.switchControls) if (!callback()) return false;
         this.enable();
         return true;
@@ -216,6 +216,10 @@ class PlacemarkSwitcher {
         }
         this.element.dataset.state = "locked";
         return false;
+    }
+
+    isEnabled() {
+        return this.element.dataset.state == "enabled";
     }
 
     disable() {
