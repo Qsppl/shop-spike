@@ -91,12 +91,13 @@ const shopList = {
  * Контроллер элементов меню с магазинами яндекс-карты
  */
 class MapMenu {
-    element = undefined;
-    buttons = new Map();
     /**
      * @param {Element} element 
      */
     constructor(element) {
+        this.element = undefined;
+        this.buttons = new Map();
+
         if (!(element instanceof Element)) throw new TypeError(`${element} is not a Element!`);
         this.element = element;
         this.disableButtons = this.disableButtons.bind(this);
@@ -108,9 +109,14 @@ class MapMenu {
      */
     addPlacemarkSwitcher(placemarkSwitcher) {
         if (!(placemarkSwitcher instanceof PlacemarkSwitcher)) throw new TypeError(`${element} is not a PlacemarkSwitcher!`);
-        if (this.buttons.has(placemarkSwitcher.element)) return;
+        if (this.buttons.has(placemarkSwitcher.element)) return false;
         this.buttons.set(placemarkSwitcher.element, placemarkSwitcher);
         placemarkSwitcher.addSwitchControl(this.disableButtons);
+        return true;
+    }
+
+    getAllSwitchers() {
+        return [...this.buttons.values()];
     }
 
     /**
@@ -124,20 +130,56 @@ class MapMenu {
     }
 
     disableButtons() {
-        for (let pair of this.buttons) pair[1].disable();
+        for (let switcher of [...this.buttons.values()]) switcher.disable();
+        return true;
+    }
+}
+
+class MapMenuSingleView extends MapMenu {
+    constructor(element) {
+        super(element);
+        this.currentShowSwitcher = undefined;
+    }
+    addPlacemarkSwitcher(placemarkSwitcher) {
+        console.log('add placemark switcher');
+        if (!super.addPlacemarkSwitcher(placemarkSwitcher)) return false;
+        console.log('and try hide switcher');
+        if (this.currentShowSwitcher === undefined) this.showSwitcher(placemarkSwitcher);
+        else this.hideSwither(placemarkSwitcher);
+        return true;
+    }
+    showSwitcher(placemarkSwitcher) {
+        if (placemarkSwitcher.show()) {
+            this.currentShowSwitcher = placemarkSwitcher;
+            for (let switcher of this.getAllSwitchers()) this.hideSwither(switcher);
+            return true;
+        }
+        return false;
+    }
+    hideSwither(placemarkSwitcher) {
+        if (this.currentShowSwitcher === placemarkSwitcher) return false;
+        placemarkSwitcher.hide();
         return true;
     }
 }
 
 class PlacemarkSwitcher {
     element = undefined;
+    containerElement = undefined;
     placemark = undefined;
     mapController = undefined;
     switchControls = new Set();
     constructor(element) {
         if (!(element instanceof Element)) throw new TypeError(`${element} is not a Element!`);
         this.element = element;
+        for (parent of getSetOfParents(element)) {
+            if (parent.dataset.role === "button-container") {
+                this.containerElement = parent;
+                break;
+            }
+        }
         this.element.dataset.state = "locked";
+        this.show();
         this.handleClick = this.handleClick.bind(this);
         this.element.addEventListener('click', this.handleClick);
     }
@@ -167,8 +209,9 @@ class PlacemarkSwitcher {
 
     enable() {
         if (this.element.dataset.state == "locked") return false;
-        if (this.mapController.selectPlacemark(this.placemark)) {
+        if (this.mapController.selectPlacemark(this.placemark) && this.show()) {
             this.element.dataset.state = "enabled";
+
             return true;
         }
         this.element.dataset.state = "locked";
@@ -178,7 +221,26 @@ class PlacemarkSwitcher {
     disable() {
         if (this.element.dataset.state == "locked") return false;
         this.element.dataset.state = "disabled";
+        this.hide();
         return true;
+    }
+
+    show() {
+        if (this.containerElement) {
+            this.containerElement.dataset.isView = 'true';
+            return true;
+        }
+        this.element.dataset.state = "locked";
+        return false;
+    }
+
+    hide() {
+        if (this.containerElement) {
+            this.containerElement.dataset.isView = 'false';
+            return true;
+        }
+        this.element.dataset.state = "locked";
+        return false;
     }
 }
 
@@ -198,9 +260,9 @@ class MapController {
             let pixelCenter = this.map.options.get('projection').toGlobalPixels(coords, this.map.getZoom());
             pixelCenter = [pixelCenter[0] + getVW() * 0.2, pixelCenter[1]];
             let geoCenter = this.map.options.get('projection').fromGlobalPixels(pixelCenter, this.map.getZoom());
-            return this.map.panTo(geoCenter, {flying: false});
+            return this.map.panTo(geoCenter, { flying: false });
         }
-        return this.map.panTo(coords, {flying: false});
+        return this.map.panTo(coords, { flying: false });
     }
 
     addPlacemark(placemark) {
@@ -223,7 +285,7 @@ class MapController {
 }
 
 function mapSectionInit() {
-    let mapMenu = new MapMenu(document.querySelector('[data-role="map-menu"]'));
+    let mapMenu = new MapMenuSingleView(document.querySelector('[data-role="map-menu"]'));
 
     for (let button of mapMenu.element.querySelectorAll('[data-role="button"]')) {
         mapMenu.addPlacemarkSwitcher(new PlacemarkSwitcher(button));
@@ -257,6 +319,9 @@ function mapSectionInit() {
 
         mapController.addPlacemark(placemark);
     }
+
+    // включаем первую попавшуюса кнопку для того чтобы на мобилке была выбрана хотя-бы одна кнопка со старта
+    for (let switcher of mapMenu.getAllSwitchers()) if (switcher.enable()) break;
 }
 
 ymaps.ready(mapSectionInit);

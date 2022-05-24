@@ -17,3 +17,12 @@ function getVH() {
     let body = document.querySelector('body');
     return window.innerHeight || docElem.clientHeight || body.clientHeight;
 }
+
+function getSetOfParents(element) {
+    let set = new Set();
+    while (element.parentNode) {
+        element = element.parentNode;
+        set.add(element);
+    }
+    return set;
+}
