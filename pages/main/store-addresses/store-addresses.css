@@ -4,6 +4,9 @@
 
 .store-addresses .map-wrapper {
     width: 100%;
+    height: 80vh;
+    max-height: 800px;
+    min-height: 400px;
 }
 
 .store-addresses .map {
@@ -112,12 +115,6 @@
         --menu-width: 375px;
     }
 
-    .store-addresses .map-wrapper {
-        position: absolute;
-        height: 100%;
-        z-index: -1;
-    }
-
     .store-addresses .map [class*="copyrights-pane"],
     .store-addresses .map [class*="__toolbar_right"] {
         margin-right: 680px;
@@ -125,11 +122,20 @@
     }
 
     .store-addresses .menu-wrapper {
-        margin-left: auto;
-        margin-right: 200px;
-        margin-right: var(--container-margin);
         width: 375px;
         width: var(--menu-width);
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 200px;
+        right: var(--container-margin);
+    }
+
+    .store-addresses .menu-wrapper,
+    .store-addresses .menu-wrapper .flat-shadow,
+    .store-addresses .menu-wrapper .menu-container {
+        height: 100%;
     }
 
     .store-addresses menu {
