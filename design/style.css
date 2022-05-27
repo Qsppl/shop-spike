@@ -14,40 +14,6 @@ html {
     }
 }
 
-/* scale REM font-size on desctop */
-@media (min-width: 1200px) {
-    html {
-        font-size: 12px;
-        /* if CSS-calc are supported */
-        font-size: calc(calc(100vw / 1920) * 16);
-    }
-}
-
-@media (min-width: 1200px) and (max-width: 1399px) {
-
-    /* and not scaling font-size < 12px */
-    body {
-        font-size: 12px;
-    }
-}
-
-/* scale REM font-size on desctop */
-@media (min-width: 1400px) {
-    html {
-        font-size: 14px;
-        /* if CSS-calc are supported */
-        font-size: calc(calc(100vw / 1920) * 16);
-    }
-}
-
-@media (min-width: 1800px) {
-
-    /* Stop scale REM font-size on desctop */
-    html {
-        font-size: 16px;
-    }
-}
-
 body {
     font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
@@ -102,9 +68,8 @@ footer {
     padding-bottom: 1rem;
 }
 
-section {
-    margin-top: 120px;
-    margin-bottom: 120px;
+section ~ section {
+    margin-top: 240px;
 }
 
 .flat-shadow {
