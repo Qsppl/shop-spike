@@ -290,13 +290,9 @@ footer {
     color: rgb(191 194 195);
 }
 
-main {
+section {
     margin-top: 60px;
     margin-bottom: 120px;
-}
-
-section ~ section {
-    margin-top: 120px;
 }
 
 .flat-shadow {

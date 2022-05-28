@@ -1,3 +1,7 @@
+#store-addresses:last-child {
+    margin-bottom: unset;
+}
+
 .store-addresses {
     position: relative;
 }

@@ -1,3 +1,7 @@
+#posleshapki:first-child {
+    margin-top: unset;
+}
+
 #posleshapki {
     position: relative;
 }
