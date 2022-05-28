@@ -5,4 +5,29 @@ header .item {
 header a.item {
     display: inline-flex;
     align-items: center;
+    
+    font-size: 12px;
+    padding: 0 0.6em;
+}
+
+header h5 {
+    margin: unset;
+
+    font-weight: 700;
+    font-family: 'Montserrat';
+    text-transform: lowercase;
+    font-size: 1.4em;
+}
+
+header .header-element {
+    display: flex;
+    align-items: center;
+}
+
+header .logo {
+    justify-content: center;
+}
+
+header .contacts {
+    justify-content: flex-end;
 }
