@@ -1,5 +1,14 @@
+.action-grid h2 {
+    margin-bottom: unset;
+}
+
+.action-grid .content {
+    margin-top: 4rem;
+}
+
 .action-grid .row {
     justify-content: space-around;
+    margin-bottom: -7rem;
 }
 
 .action-card {
@@ -7,10 +16,6 @@
     overflow: hidden;
     margin-bottom: 7rem;
     position: relative;
-}
-
-.action-grid .row {
-    margin-bottom: -7rem;
 }
 
 .action-card .label {
