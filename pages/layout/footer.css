@@ -2,30 +2,22 @@ footer > .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-footer p {
-    margin-bottom: unset;
-}
-
-.footer-links-container {
-    display: flex;
-    flex-grow: 1;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
-@media (max-width: 768px) {
-    .footer-links-container {
-        justify-content: flex-start;
-    }
-    .footer-links-container > * {
-        flex-basis: 50%;
-    }
+footer nav {
+    margin-bottom: 2em;
 }
 
-@media (max-width: 540px) {
-    footer .logo {
-        display: none;
-    }
+footer nav .item + .item {
+    margin-left: 1em;
+}
+
+footer .info {
+    font-size: .8em;
+}
+
+footer .info * {
+    margin: unset;
 }
