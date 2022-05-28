@@ -83,6 +83,10 @@ footer {
     color: rgb(191 194 195);
 }
 
+main {
+    margin-bottom: 120px;
+}
+
 section ~ section {
     margin-top: 120px;
 }
