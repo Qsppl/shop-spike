@@ -1,3 +1,14 @@
+#partners .plan {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#partners .plan p {
+    max-width: 800px;
+}
+
 #partners > *+*,
 #partners > .container > *+* {
     margin-top: 4rem;
