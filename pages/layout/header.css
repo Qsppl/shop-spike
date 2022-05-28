@@ -31,3 +31,9 @@ header .logo {
 header .contacts {
     justify-content: flex-end;
 }
+
+header .icon {
+    max-height: 2rem;
+    object-fit: contain;
+    max-width: 100%;
+}
