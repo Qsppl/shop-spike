@@ -1,0 +1,28 @@
+#partners > *+*,
+#partners > .container > *+* {
+    margin-top: 4rem;
+}
+
+.partner-cards-container {
+    margin-bottom: -4rem;
+}
+
+.partner-card {
+    display: flex;
+    height: 7.5em;
+    font-size: 12px;
+    margin-bottom: 4rem;
+}
+
+.partner-card img {
+    object-fit: contain;
+    height: 100%;
+    min-width: 140px;
+}
+
+.partner-card p {
+    height: 100%;
+    overflow: hidden;
+    margin: unset;
+    margin-left: 2em;
+}
