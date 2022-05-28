@@ -1,29 +1,29 @@
-.action-grid h2 {
+.news-section h2 {
     margin-bottom: unset;
 }
 
-.action-grid .content {
+.news-section .content {
     margin-top: 4rem;
 }
 
-.action-grid .row {
+.news-section .row {
     justify-content: space-around;
     margin-bottom: -7rem;
 }
 
-.action-card {
+.news-section .action-card {
     border-radius: 1%;
     overflow: hidden;
     margin-bottom: 7rem;
     position: relative;
 }
 
-.action-card .label {
+.news-section .action-card .label {
     display: inline-block;
     margin: 1em 0 2em 0.5em;
 }
 
-.action-card .cover+.label {
+.news-section .action-card .cover+.label {
     padding: .2em 1em;
     margin-left: 0;
     position: absolute;
@@ -32,7 +32,7 @@
     background-color: #fff;
 }
 
-.action-card .cover {
+.news-section .action-card .cover {
     margin-bottom: 2rem;
     object-fit: cover;
     object-position: center;
@@ -40,15 +40,15 @@
     max-height: 11.25em;
 }
 
-.action-card .cover+* {
+.news-section .action-card .cover+* {
     margin-top: 1rem;
 }
 
-.action-card .content {
+.news-section .action-card .content {
     display: inline-block;
 }
 
-.action-card .summary {
+.news-section .action-card .summary {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -57,7 +57,7 @@
     -webkit-box-orient: vertical;
 }
 
-.action-card img~.content .summary {
+.news-section .action-card img~.content .summary {
     -webkit-line-clamp: 10;
     line-clamp: 10;
 }
