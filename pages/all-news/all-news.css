@@ -1,48 +1,40 @@
-#novosti .article {
-    height: 12em;
+.news-card {
     display: flex;
-    flex-direction: row;
-    max-width: 950px;
 }
 
-#novosti .article~.article {
-    margin-top: 2em;
-}
+.news-card .cover {
+    position: relative;
 
-#novosti .article img {
-    object-fit: cover;
-    object-position: center;
-    height: 100%;
     flex: 0 0 30%;
-    min-width: 0;
 }
 
-#novosti .article-content {
-    flex: 0 0 70%;
-    padding-top: 1em;
+
+.news-card .cover img {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    left: 0;
+    top: 0;
+
+    object-fit: cover;
 }
 
-#novosti .clamp-container {
-    max-height: 6em;
+.news-card .content {
+    padding: 1em;
+}
+
+.news-card .content h2 {
+    max-height: 2.4em;
     overflow: hidden;
 }
 
-#novosti .line-clamp {
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    line-clamp: 4;
-    -webkit-box-orient: vertical;
+.news-card .content p {
+    max-height: 9em;
     overflow: hidden;
-    margin-right: 3em;
-
 }
 
-@media (min-width: 768px) {
-    #novosti .article {}
-}
-
-@media (max-width: 767px) {
-    #novosti .article img {
-        display: none;
-    }
+.news-card {
+    margin-bottom: 60px;
 }
