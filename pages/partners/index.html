@@ -24,22 +24,25 @@
     <header class="flat-shadow-thin">
         <div class="container">
             <div class="row">
-                <button class="pull-out-menu-toggler col-2 d-block d-md-none"
-                    data-role="pull-out-menu-toggler">Меню</button>
-                <div class="col-5 col-md-3">
-                    <a href="/">
-                        <img src="https://placehold.co/120x40" alt="Логотип компании">
+                <nav class="header-element col-5 d-none d-md-block">
+                    <button class="pull-out-menu-toggler d-block d-md-none"
+                        data-role="pull-out-menu-toggler">Меню</button>
+                    <a class="item" href="../all-news/index.html">Новости</a>
+                    <a class="item" href="../action/index.html">Акции</a>
+                    <a class="item" href="../vacancy/index.html">Вакансии</a>
+                    <a class="item" href="../partners/index.html">Партнерам</a>
+                    <a class="item" href="../contact/index.html">Контакты</a>
+                </nav>
+                <div class="header-element col-2 logo">
+                    <a href="../main/index.html">
+                        <h5>ООО Диметра</h5>
                     </a>
                 </div>
-                <nav class="col-6 d-none d-md-block">
-                    <a class="item" href="">Страница 1</a>
-                    <a class="item" href="">Страница 2</a>
-                    <a class="item" href="">Страница 3</a>
-                    <a class="item" href="">Страница 4</a>
-                    <a class="item" href="">Страница 5</a>
-                </nav>
-                <div class="col-5 col-md-3">
-                    <a class="item" href="">Наши контакты</a>
+                <div class="header-element col-5 contacts">
+                    <a class="item" href="tel:+79229300526">+7 (922) 930-05-26</a>
+                    <a class="item" href="https://vk.com/chepkolos" target="_blank">
+                        <img class="icon" src="../layout/images/vk-icon-28.png" alt="">
+                    </a>
                 </div>
             </div>
         </div>
@@ -47,11 +50,11 @@
     <div class="page-area">
         <div class="screen">
             <nav class="pull-out-menu hidden" data-role="pull-out-menu">
-                <a class="item" href="">Страница 1</a>
-                <a class="item" href="">Страница 2</a>
-                <a class="item" href="">Страница 3</a>
-                <a class="item" href="">Страница 4</a>
-                <a class="item" href="">Страница 5</a>
+                <a class="item" href="../all-news/index.html">Новости</a>
+                <a class="item" href="../action/index.html">Акции</a>
+                <a class="item" href="../vacancy/index.html">Вакансии</a>
+                <a class="item" href="../partners/index.html">Партнерам</a>
+                <a class="item" href="../contact/index.html">Контакты</a>
             </nav>
         </div>
         <div class="screen scrollable">
@@ -272,21 +275,19 @@
                 </section>
             </main>
             <footer>
-                <nav class="container">
-                    <a class="logo" href=""><img src="https://placehold.co/200x65" alt=""></a>
-                    <div class="footer-links-container">
-                        <a href="">
-                            <p>ООО "Диметра"</p>
-                        </a>
-                        <a href="">
-                            <p>ООО "Диметра"</p>
-                        </a>
-                        <a href="">
-                            <p>ООО "Диметра"</p>
-                        </a>
-                        <p>Артём хорош</p>
+                <div class="container">
+                    <nav>
+                        <a class="item" href="../all-news/index.html">Новости</a>
+                        <a class="item" href="../action/index.html">Акции</a>
+                        <a class="item" href="../vacancy/index.html">Вакансии</a>
+                        <a class="item" href="../partners/index.html">Партнерам</a>
+                        <a class="item" href="../contact/index.html">Контакты</a>
+                    </nav>
+                    <div class="info">
+                        <a href="">Политика хранения и обработки персональных данных</a>
+                        <p>OOO "Диметра" - Все права защищены</p>
                     </div>
-                </nav>
+                </div>
             </footer>
         </div>
     </div>

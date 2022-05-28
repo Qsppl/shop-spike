@@ -16,7 +16,12 @@ header h5 {
     font-weight: 700;
     font-family: 'Montserrat';
     text-transform: lowercase;
-    font-size: 1.4em;
+    font-size: 1.5em;
+
+    border-bottom: 1px solid white;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
 }
 
 header .header-element {
@@ -28,6 +33,16 @@ header .logo {
     justify-content: center;
 }
 
+header .logo a {
+    display: contents;
+}
+
 header .contacts {
     justify-content: flex-end;
+}
+
+header .icon {
+    max-height: 2rem;
+    object-fit: contain;
+    max-width: 100%;
 }

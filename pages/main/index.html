@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="../layout/pull-out-menu.css">
     <link rel="stylesheet" href="../layout/footer.css">
 
-    <link rel="stylesheet" href="action-grid.css">
-    <link rel="stylesheet" href="partner.css">
+    <link rel="stylesheet" href="main-page.css">
+    <link rel="stylesheet" href="news-section.css">
+    <link rel="stylesheet" href="partners.css">
     <link rel="stylesheet" href="posleshapki.css">
     <link rel="stylesheet" href="store-addresses/store-addresses.css">
     <title>Document</title>
@@ -26,28 +27,24 @@
     <header class="flat-shadow-thin">
         <div class="container">
             <div class="row">
-
                 <nav class="header-element col-5 d-none d-md-block">
                     <button class="pull-out-menu-toggler d-block d-md-none"
                         data-role="pull-out-menu-toggler">Меню</button>
-                    <a class="item" href="">Новости</a>
-                    <a class="item" href="">Акции</a>
-                    <a class="item" href="">Вакансии</a>
-                    <a class="item" href="">Партнерам</a>
-                    <a class="item" href="">Контакты</a>
+                    <a class="item" href="../all-news/index.html">Новости</a>
+                    <a class="item" href="../action/index.html">Акции</a>
+                    <a class="item" href="../vacancy/index.html">Вакансии</a>
+                    <a class="item" href="../partners/index.html">Партнерам</a>
+                    <a class="item" href="../contact/index.html">Контакты</a>
                 </nav>
-
                 <div class="header-element col-2 logo">
-                    <h5>ООО Диметра</h5>
-                </div>
-
-                <div class="header-element col-5 contacts">
-                    <a href="tel:+89009009090">+7 (900) 900-90-90</a>
-                    <a href="http://">
-                        <img src="" alt="" class="icon">
+                    <a href="../main/index.html">
+                        <h5>ООО Диметра</h5>
                     </a>
-                    <a href="http://">
-                        <img src="" alt="" class="icon">
+                </div>
+                <div class="header-element col-5 contacts">
+                    <a class="item" href="tel:+79229300526">+7 (922) 930-05-26</a>
+                    <a class="item" href="https://vk.com/chepkolos" target="_blank">
+                        <img class="icon" src="../layout/images/vk-icon-28.png" alt="">
                     </a>
                 </div>
             </div>
@@ -56,14 +53,15 @@
     <div class="page-area">
         <div class="screen">
             <nav class="pull-out-menu hidden" data-role="pull-out-menu">
-                <a class="item" href="">Наши Новости</a>
-                <a class="item" href="">Акции</a>
-                <a class="item" href="">Вакансии</a>
-                <a class="item" href="">Партнерам</a>
+                <a class="item" href="../all-news/index.html">Новости</a>
+                <a class="item" href="../action/index.html">Акции</a>
+                <a class="item" href="../vacancy/index.html">Вакансии</a>
+                <a class="item" href="../partners/index.html">Партнерам</a>
+                <a class="item" href="../contact/index.html">Контакты</a>
             </nav>
         </div>
         <div class="screen scrollable">
-            <main>
+            <main id="main-page">
                 <section id="posleshapki">
                     <img class="background-cover" src="images/background-panorama-1-05.jpg" alt="">
                     <div class="container">
@@ -79,202 +77,6 @@
                         </div>
                         <div class="img block">
                             <img src="images/illustration-01-01.png" alt="">
-                        </div>
-                    </div>
-                </section>
-                <section class="action-grid" id="action-grid">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-5">
-                                <div class="action-card flat-shadow">
-                                    <img src="https://placehold.co/400x300" alt="" class="cover">
-                                    <span class="label">Раздел: <a href="https://webref.ru">Новости</a></span>
-                                    <div class="content">
-                                        <h4>Съешь ещё этих мягких французских булок, да выпей чаю</h4>
-                                        <p class="summary">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                            Reprehenderit
-                                            ut sint molestiae
-                                            aperiam labore, libero adipisci distinctio dolore at odit? Placeat illo
-                                            explicabo,
-                                            laborum ab ad itaque pariatur quis commodi debitis eum facilis nam magni
-                                            praesentium
-                                            dicta provident consectetur architecto hic ex corporis optio et suscipit?
-                                            Rerum,
-                                            quis
-                                            sapiente voluptatum illum, sit nostrum illo, inventore accusamus at vel odio
-                                            pariatur
-                                            dolorem. At harum enim delectus doloribus sunt aperiam a ad reiciendis
-                                            itaque
-                                            laboriosam
-                                            reprehenderit ipsum beatae obcaecati, blanditiis quibusdam possimus
-                                            voluptatum rem
-                                            quia!
-                                            Quibusdam possimus tempore explicabo accusantium ratione nisi, dolorum
-                                            corporis iure
-                                            voluptatibus numquam id, quisquam magnam odit non!
-                                        </p>
-                                        <p><a href="">Смотреть полностью</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-md-5">
-                                <div class="action-card flat-shadow">
-                                    <span class="label">Раздел: <a href="https://webref.ru/layout">Акции</a></span>
-                                    <div class="content">
-                                        <h4>Съешь ещё этих мягких французских булок, да выпей чаю</h4>
-                                        <p class="summary">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                            Reprehenderit
-                                            ut sint molestiae
-                                            aperiam labore, libero adipisci distinctio dolore at odit? Placeat illo
-                                            explicabo,
-                                            laborum ab ad itaque pariatur quis commodi debitis eum facilis nam magni
-                                            praesentium
-                                            dicta provident consectetur architecto hic ex corporis optio et suscipit?
-                                            Rerum,
-                                            quis
-                                            sapiente voluptatum illum, sit nostrum illo, inventore accusamus at vel odio
-                                            pariatur
-                                            dolorem. At harum enim delectus doloribus sunt aperiam a ad reiciendis
-                                            itaque
-                                            laboriosam
-                                            reprehenderit ipsum beatae obcaecati, blanditiis quibusdam possimus
-                                            voluptatum
-                                            rem
-                                            quia!
-                                            Quibusdam possimus tempore explicabo accusantium ratione nisi, dolorum
-                                            corporis
-                                            iure
-                                            voluptatibus numquam id, quisquam magnam odit non!Lorem ipsum dolor sit,
-                                            amet
-                                            consectetur
-                                            adipisicing elit. Reprehenderit ut sint molestiae
-                                            aperiam labore, libero adipisci distinctio dolore at odit? Placeat illo
-                                            explicabo,
-                                            laborum ab ad itaque pariatur quis commodi debitis eum facilis nam magni
-                                            praesentium
-                                            dicta provident consectetur architecto hic ex corporis optio et suscipit?
-                                            Rerum,
-                                            quis
-                                            sapiente voluptatum illum, sit nostrum illo, inventore accusamus at vel odio
-                                            pariatur
-                                            dolorem. At harum enim delectus doloribus sunt aperiam a ad reiciendis
-                                            itaque
-                                            laboriosam
-                                            reprehenderit ipsum beatae obcaecati, blanditiis quibusdam possimus
-                                            voluptatum
-                                            rem
-                                            quia!
-                                            Quibusdam possimus tempore explicabo accusantium ratione nisi, dolorum
-                                            corporis
-                                            iure
-                                            voluptatibus numquam id, quisquam magnam odit non!
-                                        </p>
-                                        <p><a href="">Смотреть полностью</a></p>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-5">
-                                <div class="action-card flat-shadow">
-                                    <span class="label">Раздел:
-                                        <a
-                                            href="https://webref.ru/layout/learn-html-css/working-with-typography">Новости</a>
-                                    </span>
-                                    <div class="content">
-                                        <h4>Съешь ещё этих мягких французских булок, да выпей чаю</h4>
-                                        <p class="summary">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                            Reprehenderit
-                                            ut sint molestiae
-                                            aperiam labore, libero adipisci distinctio dolore at odit? Placeat illo
-                                            explicabo,
-                                            laborum ab ad itaque pariatur quis commodi debitis eum facilis nam magni
-                                            praesentium
-                                            dicta provident consectetur architecto hic ex corporis optio et suscipit?
-                                            Rerum,
-                                            quis
-                                            sapiente voluptatum illum, sit nostrum illo, inventore accusamus at vel odio
-                                            pariatur
-                                            dolorem. At harum enim delectus doloribus sunt aperiam a ad reiciendis
-                                            itaque
-                                            laboriosam
-                                            reprehenderit ipsum beatae obcaecati, blanditiis quibusdam possimus
-                                            voluptatum
-                                            rem
-                                            quia!
-                                            Quibusdam possimus tempore explicabo accusantium ratione nisi, dolorum
-                                            corporis
-                                            iure
-                                            voluptatibus numquam id, quisquam magnam odit non!
-                                        </p>
-                                        <p><a href="">Смотреть полностью</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-md-5">
-                                <div class="action-card flat-shadow">
-                                    <img src="https://placehold.co/400x300" alt="" class="cover">
-                                    <span class="label">Раздел:
-                                        <a href="https://webref.ru/layout/learn-html-css">Акции</a>
-                                    </span>
-                                    <div class="content">
-                                        <h4>Съешь ещё этих мягких французских булок, да выпей чаю</h4>
-                                        <p class="summary">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                            Reprehenderit
-                                            ut sint molestiae
-                                            aperiam labore, libero adipisci distinctio dolore at odit? Placeat illo
-                                            explicabo,
-                                            laborum ab ad itaque pariatur quis commodi debitis eum facilis nam magni
-                                            praesentium
-                                            dicta provident consectetur architecto hic ex corporis optio et suscipit?
-                                            Rerum,
-                                            quis
-                                            sapiente voluptatum illum, sit nostrum illo, inventore accusamus at vel odio
-                                            pariatur
-                                            dolorem. At harum enim delectus doloribus sunt aperiam a ad reiciendis
-                                            itaque
-                                            laboriosam
-                                            reprehenderit ipsum beatae obcaecati, blanditiis quibusdam possimus
-                                            voluptatum
-                                            rem
-                                            quia!
-                                            Quibusdam possimus tempore explicabo accusantium ratione nisi, dolorum
-                                            corporis
-                                            iure
-                                            voluptatibus numquam id, quisquam magnam odit non!Lorem ipsum dolor sit,
-                                            amet
-                                            consectetur
-                                            adipisicing elit. Reprehenderit ut sint molestiae
-                                            aperiam labore, libero adipisci distinctio dolore at odit? Placeat illo
-                                            explicabo,
-                                            laborum ab ad itaque pariatur quis commodi debitis eum facilis nam magni
-                                            praesentium
-                                            dicta provident consectetur architecto hic ex corporis optio et suscipit?
-                                            Rerum,
-                                            quis
-                                            sapiente voluptatum illum, sit nostrum illo, inventore accusamus at vel odio
-                                            pariatur
-                                            dolorem. At harum enim delectus doloribus sunt aperiam a ad reiciendis
-                                            itaque
-                                            laboriosam
-                                            reprehenderit ipsum beatae obcaecati, blanditiis quibusdam possimus
-                                            voluptatum
-                                            rem
-                                            quia!
-                                            Quibusdam possimus tempore explicabo accusantium ratione nisi, dolorum
-                                            corporis
-                                            iure
-                                            voluptatibus numquam id, quisquam magnam odit non!
-                                        </p>
-                                        <p><a href="">Смотреть полностью</a></p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -311,7 +113,57 @@
                         </div>
                     </div>
                 </section>
-                <section id="partner">
+                <section class="news-section" id="news-section">
+                    <div class="container">
+                        <h2>Последние новости компании</h2>
+                        <hr>
+                        <div class="row grid">
+                            <div class="col-12 col-sm-6 col-md-5">
+                                <div class="action-card flat-shadow">
+                                    <img src="../../resurses/news/page2/images/news 2-день победы(обложка).jpg" alt="" class="cover">
+                                    <span class="label">Раздел:
+                                        <a
+                                            href="../all-news/index.html">Новости</a>
+                                    </span>
+                                    <div class="content">
+                                        <h4>С Днем Победы!</h4>
+                                        <p class="summary">
+                                            Этот праздник с каждым годом отдаляется от нас. Но мы никогда
+                                            не должны забывать о тех героических поступках, которые совершили наши
+                                            предки во имя свободы, чести и благополучной жизни. В этот праздник хочется
+                                            в первую очередь пожелать мира. Ведь ничто не стоит дороже, чем человеческие
+                                            жизни, слезы матерей, сломанные судьбы огромного количества людей. Пусть эта
+                                            победа вдохновляет только на хорошие поступки, любовь к Родине. Пусть никто
+                                            и никогда не увидит войны.
+                                        </p>
+                                        <p><a href="../new-page/page2.html">Смотреть полностью</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-5">
+                                <div class="action-card flat-shadow">
+                                    <img src="../../resurses/news/page1/images/news 1-международный день защиты детей(обложка).jpg" alt="" class="cover">
+                                    <span class="label">Раздел:
+                                        <a href="../all-news/index.html">Новости</a>
+                                    </span>
+                                    <div class="content">
+                                        <h4>Международный день защиты детей</h4>
+                                        <p class="summary">
+                                            1 июня ежегодно отмечается Международный День защиты детей. Это не только
+                                            веселый праздник для самих детей, это и напоминание обществу о необходимости
+                                            защищать права ребенка, чтобы все дети росли счастливыми, учились,
+                                            занимались любимым делом и в будущем стали замечательными родителями и
+                                            гражданами своей страны.
+                                        </p>
+                                        <p><a href="../new-page/page1.html">Смотреть полностью</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="partners">
                     <div class="container">
                         <div class="plan">
                             <h2>Наши партнёры</h2>
@@ -322,36 +174,77 @@
                                 Агрофирмой Дороничи, Кировский хладокомбинат, БКК, КИО и планирует дальнейшее развитие и
                                 укрепление этих отношений.</p>
                         </div>
-                    </div>
-                    <div class="row logos-container">
-                        <div class="col-4">
-                            <img src="images/logotypes/90/konditerskiye-izdeliya.png" alt="">
-                        </div>
-                        <div class="col-2">
-                            <img src="images/logotypes/90/bkk.png" alt="">
-                        </div>
-                        <div class="col-2">
-                            <img src="images/logotypes/90/chudohleb.png" alt="">
-                        </div>
-                        <div class="col-2">
-                            <img src="images/logotypes/90/doronichy-vertical.png" alt="">
-                        </div>
-                    </div>
-                    <div class="row logos-container">
-                        <div class="col-2">
-                            <img src="images/logotypes/90/kio.png" alt="">
-                        </div>
-                        <div class="col-2">
-                            <img src="images/logotypes/90/kyrov-myasokombinat.png" alt="">
-                        </div>
-                        <div class="col-2">
-                            <img src="images/logotypes/90/k&m.png" alt="">
-                        </div>
-                        <div class="col-2">
-                            <img src="images/logotypes/90/vyatich.png" alt="">
-                        </div>
-                        <div class="col-2">
-                            <img src="images/logotypes/90/vyatskaya-dymka.png" alt="">
+                        <div class="row partner-cards-container">
+                            <div class="col-6 partner-card">
+                                <img src="../../resurses/main-page/logotypes/90/bkk.png" alt="">
+                                <p>АО «Булочно-кондитерский комбинат» — крупнейшее предприятие в Волго-Вятском
+                                    регионе по производству кондитерских и хлебобулочных изделий.
+
+                                    Предприятие производит большой ассортимент продукции – сухари, сушки, вафли,
+                                    пряники, печенье, восточные сладости, мармелад, пастила, зефир, конфеты,
+                                    хлебобулочные изделия.</p>
+                            </div>
+                            <div class="col-6 partner-card">
+                                <img src="../../resurses/main-page/logotypes/90/chudohleb.png" alt="">
+                                <p>
+                                    "Чудохлеб" – Мы не просто продаем хлеб.
+                                    Мы усердно трудимся каждый день на протяжении многих лет, стараясь предложить вам
+                                    полезный ежедневный продукт, помогая растить здоровых детей.
+                                    Многие века богатырскую силу и здоровье наши предки получали из простой пищи -
+                                    чистой родниковой воды и ржаного каравая.
+                                </p>
+                            </div>
+                            <div class="col-6 partner-card">
+                                <img src="../../resurses/main-page/logotypes/90/doronichy-vertical.png" alt="">
+                                <p>
+                                    «Дороничи» – собственная торговая марка агрохолдинга, продукция которой
+                                    позиционируется как «Свое, родное». Бренд подчеркивает статус производства полного
+                                    цикла «от поля до тарелки»: собственная кормовая база, свои свинокомплексы,
+                                    птицефабрики, производственные площадки, оптовая и розничная торговля. В линейке
+                                    продукции колбасы и деликатесы, замороженные и охлаждённые мясные полуфабрикаты,
+                                    субпродукты и консервы.
+                                    Бренд представлен в региональных и федеральных торговых сетях.
+                                </p>
+                            </div>
+                            <div class="col-6 partner-card">
+                                <img src="../../resurses/main-page/logotypes/90/k&m.png" alt="">
+                                <p>
+                                    Акционерное общество "Кировский мясокомбинат" - это традиции вкуса и качества
+                                    с 1930 года.
+                                    Уже 90 лет мы производим мясные продукты под собственной торговой маркой, которые
+                                    поставляются не только в фирменные магазины, но и в крупные федеральные и
+                                    международные сети.
+                                    АО "КМ" является частью агропромышленного холдинга "Дороничи", что в производстве
+                                    продукции позволяет нам использовать, исключительно, свои силы и ресурсы.
+                                    В ассортиментной линейке Кировского мясокомбината: охлажденные и замороженные мясные
+                                    продукты, колбасы, деликатесы, охлажденные натуральные полуфабрикаты из свинины и
+                                    говядины, фарши.
+                                </p>
+                            </div>
+                            <div class="col-6 partner-card">
+                                <img src="../../resurses/main-page/logotypes/90/vyatich.png" alt="">
+                                <p>
+                                    «Вятич» — одна из старейших пивоварен России, основанная в 1903г. легендарным
+                                    баварским пивоваром Карлом Отто Шнейдером, поставщиком Двора Его Императорского
+                                    Величества. Карл Шнейдер создал уникальную технологию, традиции которой передаются
+                                    из поколения в поколение уже более ста лет.
+                                    Постоянная модернизация оборудования, дань традициям основателя, педантичное
+                                    отношение каждого сотрудника к своему делу и ответственность перед потребителем –
+                                    вот залог успеха пивоварни «Вятич». Сегодня на пивоварне выпускается широкая линейка
+                                    непастеризованного пива – 27 сортов, сладкие газированные напитки, природная
+                                    минерализованная вода «Живой дар» и знаменитый «Вятский» квас.
+                                </p>
+                            </div>
+                            <div class="col-6 partner-card">
+                                <img src="../../resurses/main-page/logotypes/90/vyatskaya-dymka.png" alt="">
+                                <p>
+                                    Продукция под маркой "Вятская дымка" производится из свежайшего
+                                    молока, ежедневно поставляемого сельхозпредприятиями из разных уголков Кировской
+                                    области, которые могут похвастаться чистотой своей природы. Мы бережем традиции
+                                    производства с 1964 года и делаем все, чтобы на Вашем столе были качественные,
+                                    натуральные молочные продукты, сохранившие свежесть и пользу молока вятских буренок.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -565,20 +458,19 @@
                 </section>
             </main>
             <footer>
-                <nav class="container">
-                    <div class="footer-links-container">
-                        <a href="">
-                            <p>ООО "Диметра"</p>
-                        </a>
-                        <a href="">
-                            <p>ООО "Диметра"</p>
-                        </a>
-                        <a href="">
-                            <p>ООО "Диметра"</p>
-                        </a>
-                        <p>Артём хорош</p>
+                <div class="container">
+                    <nav>
+                        <a class="item" href="../all-news/index.html">Новости</a>
+                        <a class="item" href="../action/index.html">Акции</a>
+                        <a class="item" href="../vacancy/index.html">Вакансии</a>
+                        <a class="item" href="../partners/index.html">Партнерам</a>
+                        <a class="item" href="../contact/index.html">Контакты</a>
+                    </nav>
+                    <div class="info">
+                        <a href="">Политика хранения и обработки персональных данных</a>
+                        <p>OOO "Диметра" - Все права защищены</p>
                     </div>
-                </nav>
+                </div>
             </footer>
         </div>
     </div>
