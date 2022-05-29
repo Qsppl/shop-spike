@@ -2,25 +2,25 @@
     margin-bottom: 2em;
 }
 
-.cover {
+.action-card .cover {
     height: 150px;
     display: flex;
     justify-content: space-around;
     padding: 1em;
 }
 
-.cover img {
+.action-card .cover img {
     max-width: 100%;
     max-height: 100%;
     position: relative;
     object-fit: contain;
 }
 
-.content {
+.action-card .content {
     padding: 1em;
 }
 
-.content h5 {
+.action-card .content h5 {
     font-weight: 600;
     margin-bottom: 1em;
 }
