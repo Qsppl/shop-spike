@@ -196,7 +196,11 @@ textarea {
     height: 12em;
 }
 
-#ffff {
-    width: 600px;
-    height: 400px;
+#map {
+    width: 100%;
+    height: 70vh;
+}
+
+#map:first-child {
+    margin-top: unset;
 }
