@@ -2,6 +2,10 @@
     margin-bottom: unset;
 }
 
+#store-addresses:first-child {
+    margin-top: unset;
+}
+
 .store-addresses {
     position: relative;
 }
