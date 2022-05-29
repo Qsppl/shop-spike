@@ -1,5 +1,5 @@
 .action-card {
-    margin-bottom: 2em;
+   height: 100%;
 }
 
 .action-card .cover {
@@ -23,4 +23,8 @@
 .action-card .content h5 {
     font-weight: 600;
     margin-bottom: 1em;
+}
+
+.action-card-wrapper {
+    margin-bottom: 2em;
 }
