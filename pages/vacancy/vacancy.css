@@ -1,30 +1,25 @@
-.article-content {
+.vacancy-card {
+  margin-top: 3em;
+  padding: 1em;
+  max-width: 800px;
+}
+
+.tags {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 2em 1em 1rem;
 }
 
-menu {
-  display: flex;
-  list-style: none;
-  width: 70%;
+.tags p {
+  margin: unset;
 }
 
-#vacancy a {
-  flex-grow: 1;
+.tags span {
+  font-size: 12px;
+  font-weight: bold;
+  padding: .5em;
 }
 
-#vacancy button {
-  width: 100%;
-  background-color: gray;
-}
-
-#vacancy .flat-shadow {
-  display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: nowrap;
-  max-width: 90%;
-  margin-top: 2em;
-  margin-right: auto;
-  margin-left: auto;
+.tags *+span {
+  margin-left: .5em;
 }

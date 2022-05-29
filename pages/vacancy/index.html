@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../layout/footer.css">
     <link rel="stylesheet" href="../layout/pull-out-menu.js">
     <link rel="stylesheet" href="../vacancy/vacancy.css">
+    <link rel="stylesheet" href="../../components/store-addresses/store-addresses.css">
     <title>Document</title>
 </head>
 
@@ -59,84 +60,236 @@
             <main>
                 <section id="vacancy">
                     <div class="container">
-                        <h1>Все вакансии</h1>
-                        <div class="flat-shadow">
-                            <div class="article-content">
-                                <h2>Продавец</h2>
-                                <h3>От 30 тыс.руб до 45 тыс.руб</h3>
-                                <div class="clamp-container">
-                                    <p class="line-clamp">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Placeat
-                                        quae totam ad ipsa.
-                                        Consequatur quibusdam ex assumenda blanditiis accusamus ut aliquid numquam quos
-                                        temporibus
-                                        enim, harum neque ullam nostrum voluptate laborum. Ipsum, nesciunt corporis
-                                        exercitationem
-                                        voluptas id autem sint assumenda provident dolores doloribus quo saepe sapiente
-                                        eum
-                                        alias
-                                        quas numquam vitae voluptatem molestias obcaecati necessitatibus. Sapiente vero,
-                                        ratione
-                                        expedita eaque nobis dolorum delectus, libero explicabo possimus blanditiis
-                                        assumenda
-                                        quibusdam illum reprehenderit, dolore quod soluta? Natus ab sapiente reiciendis
-                                        repudiandae
-                                        adipisci nemo, itaque obcaecati at fuga non dignissimos. Nihil voluptates
-                                        eveniet
-                                        corrupti
-                                        doloremque, ab recusandae perferendis corporis tempora, quia necessitatibus
-                                        rerum.
-                                    </p>
-                                    <div class="menu-container">
-                                        <menu class="flat">
-                                            <div class="menu-item">
-                                                <a>
-                                                    <button class="click">Узнать контакты</button>
-                                                </a>
-                                            </div>
-                                        </menu>
-                                    </div>
-                                </div>
+                        <h1>Вакансии магазинов Колосс</h1>
+                        <p>Если Вы желаете откликнутся на вакансию - позвоните по номеру нужного магазина Колосс. <br>Контакты всех магазинов Колосс указаны на карте в конце страницы вакансий.</p>
+                        <p>Мы отвечаем на звонки в будние дни c 9:00 до 17:00</p>
+                        <div class="vacancy-card flat-shadow">
+                            <h3 class="mb-0">Продавец-кассир</h3>
+                            <hr>
+                            <p>
+                                Обслуживание покупателей в торговом зале и на кассе. Выкладка товара. Контроль сроков
+                                годности продуктов. Проверка наличия и соответствия ценников.
+                            </p>
+                            <ul>
+                                <li>Уровень образования: не требуется</li>
+                                <li>Опыт работы: не требуется</li>
+                            </ul>
+                            <div class="tags">
+                                <p>Актуально в магазинах: </p>
+                                <span>Спайк-1</span>
+                                <span>Спайк-2</span>
+                                <span>Спайк-3</span>
+                                <span>Спайк-4</span>
                             </div>
+                            <p><span class="salary"><b>Зарплата от 30 до 45 тысяч рублей</b></span></p>
                         </div>
+                    </div>
+                </section>
+                <section id="store-addresses" class="store-addresses">
+                    <div class="map-wrapper">
+                        <div id="map" class="map"></div>
+                    </div>
+                    <div class="menu-wrapper">
                         <div class="flat-shadow">
-                            <div class="article-content">
-                                <h2>Продавец</h2>
-                                <h3>От 30 тыс.руб до 45 тыс.руб</h3>
-                                <div class="clamp-container">
-                                    <p class="line-clamp">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Placeat
-                                        quae totam ad ipsa.
-                                        Consequatur quibusdam ex assumenda blanditiis accusamus ut aliquid numquam quos
-                                        temporibus
-                                        enim, harum neque ullam nostrum voluptate laborum. Ipsum, nesciunt corporis
-                                        exercitationem
-                                        voluptas id autem sint assumenda provident dolores doloribus quo saepe sapiente
-                                        eum
-                                        alias
-                                        quas numquam vitae voluptatem molestias obcaecati necessitatibus. Sapiente vero,
-                                        ratione
-                                        expedita eaque nobis dolorum delectus, libero explicabo possimus blanditiis
-                                        assumenda
-                                        quibusdam illum reprehenderit, dolore quod soluta? Natus ab sapiente reiciendis
-                                        repudiandae
-                                        adipisci nemo, itaque obcaecati at fuga non dignissimos. Nihil voluptates
-                                        eveniet
-                                        corrupti
-                                        doloremque, ab recusandae perferendis corporis tempora, quia necessitatibus
-                                        rerum.
-                                    </p>
-                                    <div class="menu-container">
-                                        <menu class="flat">
-                                            <div class="menu-item">
-                                                <a>
-                                                    <button class="click">Узнать контакты</button>
-                                                </a>
-                                            </div>
-                                        </menu>
+                            <menu class="menu-container" data-role="map-menu">
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike1"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 1,</b> Проспект&nbsp;Мира,
+                                            д.&nbsp;41</span>
+                                        <span class="phone-number">Телефон: (4-46-26)</span>
+                                        <a href=""></a>
                                     </div>
+                                    <a class="button phone-call icon-container" href="tel:44626">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
                                 </div>
-                            </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike2"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 2,</b> ул.&nbsp;Сосновая 8/2</span>
+                                        <span class="phone-number">Телефон: (3-70-92)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:37092">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike3"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 3,</b> ул.&nbsp;60 лет Октября, 2</span>
+                                        <span class="phone-number">Телефон: (6-24-32)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:62432">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike4"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 4,</b> ул.&nbsp;60 лет Октября, 24</span>
+                                        <span class="phone-number">Телефон: (6-54-20)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:65420">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike5"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 5,</b> пр.&nbsp;Мира, 92</span>
+                                        <span class="phone-number">Телефон: (8-922-968-05-20)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:9680520">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike6"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 6,</b> пр.&nbsp;Мира, 57</span>
+                                        <span class="phone-number">Телефон: (5-22-64)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:52264">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike7"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 7,</b> ул.&nbsp;Ленина, ост.7 МКР</span>
+                                        <span class="phone-number">Телефон: (2-65-73)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:26573">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike8"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 8,</b> пер.&nbsp;Луначарского, 41</span>
+                                        <span class="phone-number">Телефон: (2-40-48)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:24048">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike9"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 9,</b> ул.&nbsp;Сосновая, 7</span>
+                                        <span class="phone-number">Телефон: (2-61-68)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:26168">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike10"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 10,</b> ул.&nbsp;Володарского, 6</span>
+                                        <span class="phone-number">Телефон: (6-17-91)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:61791">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike11"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 11,</b> пр.&nbsp;Мира, 14</span>
+                                        <span class="phone-number">Телефон: (4-29-26)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:42926">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike14"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 14,</b> ул.&nbsp;Кирова, 16</span>
+                                        <span class="phone-number">Телефон: (4-46-13)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:44613">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike15"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 15,</b> ул.&nbsp;Ленина, 2/1</span>
+                                        <span class="phone-number">Телефон: (6-32-45)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:63245">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="menu-item" data-role="button-container" data-is-view="false">
+                                    <button data-role="button" data-shop-id="spike16"
+                                        class="button see-on-map icon-container">
+                                        <img class="icon" src="../../components/store-addresses/images/map-pointer-24.png" alt="">
+                                    </button>
+                                    <div class="content">
+                                        <span class="adress"><b>Колос &ndash; 16,</b> ул.&nbsp;Первомайская, 16</span>
+                                        <span class="phone-number">Телефон: (4-27-50)</span>
+                                        <a href=""></a>
+                                    </div>
+                                    <a class="button phone-call icon-container" href="tel:42750">
+                                        <img class="icon" src="../../components/store-addresses/images/phone-call-24.png" alt="">
+                                    </a>
+                                </div>
+                            </menu>
                         </div>
                     </div>
                 </section>
@@ -158,9 +311,11 @@
             </footer>
         </div>
     </div>
+    <script src="../site/site-lib.js"></script>
     <script src="../layout/pull-out-menu.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=8ed3ea52-aaeb-43f4-b82d-1ac70326de7a&lang=ru_RU"
         type="text/javascript"></script>
+    <script src="../../components/store-addresses/store-addresses.js"></script>
 </body>
 
 </html>
