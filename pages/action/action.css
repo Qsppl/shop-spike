@@ -1,45 +1,26 @@
+.action-card {
+    margin-bottom: 2em;
+}
+
 .cover {
-    width: 100%;
-    height: 220px;
-    position: relative;
+    height: 150px;
     display: flex;
     justify-content: space-around;
-}
-
-.grid-item {
-    height: 450px;
-    --bs-gutter-x: -1.5rem;
-}
-
-.action-action-card {
-    height: 450px;
-    top: -1px;
-    bottom: -1px;
-    left: -0.5px;
-    right: -0.5px;
-    border: 1px solid #ebebeb;
-    font-size: 1.142857143em;
-}
-
-.content h4 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.content {
     padding: 1em;
 }
 
-.summary {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-
-.products {
+.cover img {
     max-width: 100%;
     max-height: 100%;
     position: relative;
     object-fit: contain;
 }
 
+.content {
+    padding: 1em;
+}
+
+.content h5 {
+    font-weight: 600;
+    margin-bottom: 1em;
+}
