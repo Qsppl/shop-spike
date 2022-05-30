@@ -39,6 +39,7 @@ header .logo a {
 
 header .contacts {
     justify-content: flex-end;
+    font-size: .85em;
 }
 
 header .icon {
