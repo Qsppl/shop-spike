@@ -1,3 +1,8 @@
 #store-addresses .map-wrapper {
     height: 100vh;
 }
+
+.info-with-icon {
+    display: flex;
+    align-items: center;
+}
