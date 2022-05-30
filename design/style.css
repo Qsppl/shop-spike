@@ -381,4 +381,9 @@ button.active,
     text-transform: uppercase;
     font-weight: 600;
     margin-left: 1rem;
+    margin-bottom: .7rem;
+}
+
+.info-with-icon p {
+    margin-bottom: .5rem;
 }
