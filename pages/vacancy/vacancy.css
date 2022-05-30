@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   margin: 0 2em 1em 1rem;
+  flex-wrap: wrap;
 }
 
 .tags p {
@@ -22,4 +23,9 @@
 
 .tags *+span {
   margin-left: .5em;
+}
+
+.info-with-icon {
+  display: flex;
+  align-items: center;
 }
