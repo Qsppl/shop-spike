@@ -15,3 +15,47 @@
 .info-container {
     margin-bottom: -2rem;
 }
+
+.tiny-style-form {
+    padding: 2em 1em;
+}
+
+.tiny-style-form h5,
+.tiny-style-form h6 {
+    text-align: center;
+}
+
+.tiny-style-form .row {
+    margin-bottom: -1em;
+}
+
+.tiny-style-form .row>* {
+    margin-bottom: 1em;
+}
+
+.tiny-style-form input:not([type="file"]),
+.tiny-style-form textarea {
+    width: 100%;
+    max-width: 100%;
+    border: unset;
+    border-bottom: 2px solid #625950;
+    outline-style: none;
+    border-color: #625950;
+    transition-duration: .2s;
+    transition-property: border-color;
+    transition-timing-function: ease;
+}
+
+.tiny-style-form input:not([type="file"]):hover,
+.tiny-style-form textarea:hover,
+.tiny-style-form input:not([type="file"]):focus,
+.tiny-style-form textarea:focus {
+    border-bottom: 2px solid #c6b29f;
+}
+
+.tiny-style-form textarea {
+    resize: none;
+    min-height: 9em;
+    max-height: 15em;
+    box-sizing: content-box;
+}

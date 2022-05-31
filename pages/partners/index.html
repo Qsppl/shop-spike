@@ -179,18 +179,26 @@
                                 <div id="map"></div>
                             </div>
                             <div class="col-4 ms-auto">
-                                <form action="" method="post">
-                                    <h3 class="mb-0">Для связи с нами!</h3>
+                                <form class="tiny-style-form flat-shadow" action="" method="post">
+                                    <h5 class="mb-0">Для связи с нами!</h5>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-6"><input type="text" name="" id=""></div>
-                                        <div class="col-6"><input type="text" name="" id=""></div>
-                                        <div class="col-12"><input type="phone" name="" id=""></div>
-                                        <div class="col-12"><input type="text" name="" id=""></div>
-                                        <div class="col-12">
-                                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                                        <div class="col-6">
+                                            <input type="phone" name="phone" placeholder="+7 (900) 000-00-00">
                                         </div>
-                                        <div class="col-12"><input type="file" name="" id=""></div>
+                                        <div class="col-6">
+                                            <input type="text" name="e-mail" placeholder="Ваш e-mail">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" name="name" placeholder="Ваше имя">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" name="kolos-s-message-title" placeholder="Тема сообщения...">
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="demonic-textarea" name="kolos-s-message"  placeholder="Текст сообщения..."></textarea>
+                                        </div>
+                                        <!-- <div class="col-12"><input type="file" name=""></div> -->
                                     </div>
                                 </form>
                             </div>
@@ -273,6 +281,7 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=8ed3ea52-aaeb-43f4-b82d-1ac70326de7a&lang=ru_RU"
         type="text/javascript"></script>
     <script src="map.js"></script>
+    <script src="demonic-textarea.js"></script>
 </body>
 
 </html>
