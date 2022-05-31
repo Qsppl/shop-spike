@@ -3,8 +3,7 @@
     height: 50vh;
 }
 
-#partners-page #contacts>*+*,
-#partners-page #contacts .container>*+* {
+#partners-page #contacts .main-content-container>*+* {
     margin-top: 2rem;
 }
 
@@ -18,6 +17,8 @@
 
 .tiny-style-form {
     padding: 2em 1em;
+    position: sticky;
+    top: 1em;
 }
 
 .tiny-style-form h5,
