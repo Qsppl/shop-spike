@@ -31,10 +31,7 @@ header .header-element {
 
 header .logo {
     justify-content: center;
-}
-
-header .logo a {
-    display: contents;
+    user-select: none;
 }
 
 header .contacts {
@@ -46,4 +43,8 @@ header .icon {
     max-height: 2rem;
     object-fit: contain;
     max-width: 100%;
+}
+
+header .home-button {
+    max-height: 32px;
 }

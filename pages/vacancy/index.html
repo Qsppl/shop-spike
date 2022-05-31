@@ -4,8 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0">
+    <meta content='true' name='HandheldFriendly' />
+    <meta content='width' name='MobileOptimized' />
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
     <meta name="description" content="Доступные вакансии для сети павильонов Колос"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../../resurses/meta-files/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../resurses/meta-files/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../resurses/meta-files/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../resurses/meta-files/favicon-16x16.png">
+    <link rel="manifest" href="../../resurses/meta-files/site.webmanifest">
+    <link rel="mask-icon" href="../../resurses/meta-files/safari-pinned-tab.svg" color="#bc832f">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="../../resurses/meta-files/mstile-144x144">
+    <meta name="theme-color" content="#ffffff">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../../design/style.css">
@@ -23,9 +35,12 @@
     <header class="flat-shadow-thin">
         <div class="container">
             <div class="row">
-                <nav class="header-element col-5 d-none d-md-block">
+                <nav class="header-element col-5 d-none d-md-flex">
                     <button class="pull-out-menu-toggler d-block d-md-none"
                         data-role="pull-out-menu-toggler">Меню</button>
+                    <a class="item" href="../main/index.html">
+                        <img class="icon home-button" src="../layout/images/home-icon-3-white-32w.png" alt="">
+                    </a>
                     <a class="item" href="../all-news/index.html">Новости</a>
                     <a class="item" href="../action/index.html">Акции</a>
                     <a class="item" href="../vacancy/index.html">Вакансии</a>
@@ -33,9 +48,7 @@
                     <a class="item" href="../contact/index.html">Контакты</a>
                 </nav>
                 <div class="header-element col-2 logo">
-                    <a href="../main/index.html">
-                        <h5>ООО Диметра</h5>
-                    </a>
+                    <h5>ООО Диметра</h5>
                 </div>
                 <div class="header-element col-5 contacts">
                     <a href="mailto:liderhleb@mail.ru">liderhleb@mail.ru</a>
@@ -62,7 +75,8 @@
                     <div class="container">
                         <h1>Вакансии магазинов Колос</h1>
                         <p>Если Вы желаете откликнутся на вакансию - позвоните по номеру нужного магазина Колос.
-                            <br>Контакты всех магазинов Колос указаны на карте в конце страницы вакансий.</p>
+                            <br>Контакты всех магазинов Колос указаны на карте в конце страницы вакансий.
+                        </p>
                         <p>Мы отвечаем на звонки в будние дни c 9:00 до 17:00</p>
                         <div class="vacancy-card flat-shadow">
                             <h3 class="mb-0">Продавец-кассир</h3>
