@@ -22,17 +22,22 @@
     <header class="flat-shadow-thin">
         <div class="container">
             <div class="row">
-                <nav class="header-element col-5 d-none d-md-flex">
+                <nav class="header-element col-5">
                     <button class="pull-out-menu-toggler d-block d-md-none"
                         data-role="pull-out-menu-toggler">Меню</button>
                     <a class="item" href="../main/index.html">
-                        <img class="icon home-button" src="../layout/images/home-icon-3-white-32w.png" alt="">
+                        <picture>
+                            <source media="(min-width: 1024px)" srcset="../layout/images/home-icon-3-white-24w.png">
+                            <source media="(max-width: 1023px)" srcset="../layout/images/home-icon-3-white-32w.png">
+                            <img class="icon" src="../layout/images/home-icon-3-white-32w.png"
+                                alt="Перейти на домашнюю страницу">
+                        </picture>
                     </a>
-                    <a class="item" href="../all-news/index.html">Новости</a>
-                    <a class="item" href="../action/index.html">Акции</a>
-                    <a class="item" href="../vacancy/index.html">Вакансии</a>
-                    <a class="item" href="../partners/index.html">Партнерам</a>
-                    <a class="item" href="../contact/index.html">Контакты</a>
+                    <a class="item d-none d-md-inline-flex" href="../all-news/index.html">Новости</a>
+                    <a class="item d-none d-md-inline-flex" href="../action/index.html">Акции</a>
+                    <a class="item d-none d-md-inline-flex" href="../vacancy/index.html">Вакансии</a>
+                    <a class="item d-none d-md-inline-flex" href="../partners/index.html">Партнерам</a>
+                    <a class="item d-none d-md-inline-flex" href="../contact/index.html">Контакты</a>
                 </nav>
                 <div class="header-element col-2 logo">
                     <h5>ООО Диметра</h5>
