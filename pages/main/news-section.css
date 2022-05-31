@@ -58,3 +58,7 @@
     -webkit-line-clamp: 6;
     line-clamp: 6;
 }
+
+#kolos {
+    margin-bottom: 60px;
+}
