@@ -28,3 +28,9 @@
 .action-card-wrapper {
     margin-bottom: 2em;
 }
+
+@media (max-width: 575px) {
+    #action-section .row {
+        justify-content: center;
+    }
+}
