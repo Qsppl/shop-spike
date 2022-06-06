@@ -32,7 +32,7 @@
 .box img {
     margin-right: 15px;
     margin-left: 15px;
-    width: calc(25%-30px);
+    width: calc(25% - 30px);
     max-height: 250px;
     margin-bottom: 2rem;
     object-fit: cover;
@@ -88,4 +88,72 @@
 .ssylka-statya {
     display: flex;
     flex-direction: row-reverse;
+}
+
+@media (max-width: 1400px) {
+    .box img {
+        width: calc(25% - 30px);
+    }
+    .border-text img {
+        float: right;
+        width: 100%;
+        min-width: 150px;
+    }
+    
+    .border-text1 img {
+        float: right;
+        width: 100%;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .box img {
+        width: calc(50% - 30px);
+    }
+    .border-text img {
+        float: right;
+        width: 100%;
+        min-width: 150px;
+    }
+    
+    .border-text1 img {
+        float: right;
+        width: 100%;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 992px) {
+    .box img {
+        width: calc(50% - 30px);
+    }
+    .border-text img {
+        float: right;
+        width: 100%;
+        min-width: 150px;
+    }
+    
+    .border-text1 img {
+        float: right;
+        width: 100%;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 767px) {
+    .box img {
+        width: calc(100% - 30px);
+    }
+    .border-text img {
+        float: right;
+        width: 100%;
+        min-width: 150px;
+    }
+    
+    .border-text1 img {
+        float: right;
+        width: 100%;
+        min-width: 150px;
+    }
 }
