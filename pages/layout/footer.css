@@ -12,11 +12,14 @@ footer > .container {
 }
 
 footer nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: 2em;
 }
 
-footer nav .item + .item {
-    margin-left: 1em;
+footer nav .item {
+    margin: 1em;
 }
 
 footer .info {
