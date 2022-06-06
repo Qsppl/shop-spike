@@ -5,23 +5,10 @@ header .item {
 header a.item {
     display: inline-flex;
     align-items: center;
-    
-    font-size: 12px;
-    padding: 0 0.6em;
 }
 
 header h5 {
     margin: unset;
-
-    font-weight: 700;
-    font-family: 'Montserrat';
-    text-transform: lowercase;
-    font-size: 1.5em;
-
-    border-bottom: 1px solid white;
-    width: 100%;
-    text-align: center;
-    padding: 5px 0;
 }
 
 header .header-element {
@@ -41,10 +28,55 @@ header .contacts {
 
 header .icon {
     max-height: 2rem;
+    min-width: fit-content;
     object-fit: contain;
     max-width: 100%;
 }
 
-header .home-button {
-    max-height: 32px;
+/* design */
+header a.item {
+    padding: 0 0.6em;
+}
+
+header h5 {
+    font-weight: 700;
+    font-family: 'Montserrat';
+    text-transform: lowercase;
+    font-size: 1.5em;
+
+    border-bottom: 1px solid white;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+
+/* Mobile design */
+@media (max-width: 575px) {
+    header h5 {
+        max-width: 9ch;
+        font-size: 1.3em;
+    }
+}
+
+@media (min-width: 576px) {
+    header h5 {
+        max-width: 13ch;
+    }
+}
+
+/* Tablet design */
+
+@media (max-width: 1199px) {
+    header a.item {
+        font-size: 11px;
+    }
+}
+
+/* Desctop design */
+
+@media (min-width: 1199px) {
+    header a.item {
+        font-size: 11px;
+        font-size: 12px;
+    }
 }
