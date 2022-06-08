@@ -369,6 +369,7 @@ button.active,
 .info-with-icon .icon {
     margin-top: 0.5em;
     width: 50px;
+    flex-shrink: 0;
 
     object-fit: none;
     object-position: top center;
