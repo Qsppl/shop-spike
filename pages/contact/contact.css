@@ -6,3 +6,15 @@
     display: flex;
     align-items: center;
 }
+
+@media (max-width: 1199px) {
+    #store-addresses .map-wrapper {
+        height: 80vh;
+    }
+}
+
+@media (max-width: 767px) {
+    #store-addresses .map-wrapper {
+        height: 70vh;
+    }
+}
