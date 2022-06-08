@@ -34,8 +34,8 @@
     <header class="flat-shadow-thin">
         <div class="container">
             <div class="row">
-                <nav class="header-element col-5">
-                    <button class="pull-out-menu-toggler d-block d-md-none"
+                <nav class="header-element col-4 col-xl-5">
+                    <button class="pull-out-menu-toggler d-block d-xl-none"
                         data-role="pull-out-menu-toggler">Меню</button>
                     <a class="item" href="../main/index.html">
                         <picture>
@@ -45,17 +45,17 @@
                                 alt="Перейти на домашнюю страницу">
                         </picture>
                     </a>
-                    <a class="item d-none d-md-inline-flex" href="../all-news/index.html">Новости</a>
-                    <a class="item d-none d-md-inline-flex" href="../action/index.html">Акции</a>
-                    <a class="item d-none d-md-inline-flex" href="../vacancy/index.html">Вакансии</a>
-                    <a class="item d-none d-md-inline-flex" href="../partners/index.html">Партнерам</a>
-                    <a class="item d-none d-md-inline-flex" href="../contact/index.html">Контакты</a>
+                    <a class="item d-none d-xl-inline-flex" href="../all-news/index.html">Новости</a>
+                    <a class="item d-none d-xl-inline-flex" href="../action/index.html">Акции</a>
+                    <a class="item d-none d-xl-inline-flex" href="../vacancy/index.html">Вакансии</a>
+                    <a class="item d-none d-xl-inline-flex" href="../partners/index.html">Партнерам</a>
+                    <a class="item d-none d-xl-inline-flex" href="../contact/index.html">Контакты</a>
                 </nav>
-                <div class="header-element col-2 logo">
-                    <h5>ООО Диметра</h5>
+                <div class="header-element col-4 col-xl-2 logo">
+                    <h5><span class="d-none d-sm-inline">ООО </span>Диметра</h5>
                 </div>
-                <div class="header-element col-5 contacts">
-                    <a href="mailto:liderhleb@mail.ru">liderhleb@mail.ru</a>
+                <div class="header-element col-4 col-xl-5 contacts">
+                    <a class="d-none d-sm-block" href="mailto:liderhleb@mail.ru">liderhleb@mail.ru</a>
                     <a class="item" href="https://vk.com/chepkolos" target="_blank">
                         <img class="icon" src="../layout/images/vk-icon-28.png" alt="">
                     </a>
@@ -64,15 +64,6 @@
         </div>
     </header>
     <div class="page-area">
-        <div class="screen">
-            <nav class="pull-out-menu hidden" data-role="pull-out-menu">
-                <a class="item" href="../all-news/index.html">Новости</a>
-                <a class="item" href="../action/index.html">Акции</a>
-                <a class="item" href="../vacancy/index.html">Вакансии</a>
-                <a class="item" href="../partners/index.html">Партнерам</a>
-                <a class="item" href="../contact/index.html">Контакты</a>
-            </nav>
-        </div>
         <div class="screen scrollable">
             <main>
                 <section id="action-section">
@@ -222,6 +213,19 @@
                     </div>
                 </div>
             </footer>
+        </div>
+        <div class="screen slide-left" state-subscriber="pull-out-menu">
+            <nav class="pull-out-menu">
+                <a class="item" href="../all-news/index.html">Новости</a>
+                <hr>
+                <a class="item" href="../action/index.html">Акции</a>
+                <hr>
+                <a class="item" href="../vacancy/index.html">Вакансии</a>
+                <hr>
+                <a class="item" href="../partners/index.html">Партнерам</a>
+                <hr>
+                <a class="item" href="../contact/index.html">Контакты</a>
+            </nav>
         </div>
     </div>
     <script src="../layout/pull-out-menu.js"></script>
