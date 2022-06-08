@@ -38,3 +38,13 @@
 .news-card {
     margin-bottom: 60px;
 }
+
+@media (max-width: 767px) {
+    .news-card {
+        flex-direction: column;
+    }
+
+    .news-card .cover {
+        min-height: 200px;
+    }
+}
