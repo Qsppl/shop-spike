@@ -1,0 +1,14 @@
+{
+    "questions" : {
+        "s1" : {
+            "type" : "radio",
+            "view" : "cards",
+            "question" : "Чи да?",
+            "answers" : {
+                "ans1" : "да",
+                "ans2" : "нет",
+                "ans3" : "пизда"
+            }
+        }
+    }
+}
