@@ -1,43 +1,45 @@
 {
     "scenarios": {
-        "main" : [ "qst1", "qst2", "qst3", "sn4", "sn5", "sn6", "sn7" ],
-        "@Any.qst1.ans5" : [ "snFoundation", "snWicket", "snFacade", "@Parent.sn5" ],
-        "@Any.qst1.ans2" : [ "qst2","snWicket","snFacade","@Parent.sn5" ]
+        "main" : [ "1", "selectGatesType", "3", "4", "5", "6", "7" ],
+        "#Any.selectGatesType.answer5" : [ "snFoundation", "snWicket", "snFacade", "#Parent.5" ],
+        "#Any.selectGatesType.answer2" : [ "snWicket","snFacade","#Parent.5" ]
     },
     "questions": {
-        "qst1": {
-            "type": "radio",
-            "view": "textGrid",
-            "question": "Чи да?",
-            "answers": {
-                "ans1": "да",
-                "ans2": "нет",
-                "ans3": "пизда"
+        "1": {
+            "component": "textGrid",
+            "mode": "radio",
+            "templateData": {
+                "quest" : "Чи да?",
+                "answers": [
+                    "да",
+                    "нет",
+                    "а"
+                ]
             }
         },
-        "qst2": {
-            "type": "radio",
-            "view": "cardsGrid",
-            "question": "Какие ворота Вас интересуют?",
+        "selectGatesType": {
+            "component": "cardsGrid",
+            "mode": "radio",
+            "templateData": "Какие ворота Вас интересуют?",
             "answers": {
-                "ans1": { "text": "Откатные", "image": "" },
-                "ans2": { "text": "Распашные", "image": "" },
-                "ans3": { "text": "Секционно-подъёмные", "image": "" },
-                "ans4": { "text": "Рулонные", "image": "" },
-                "ans5": { "text": "Рольставни", "image": "" },
-                "ans6": { "text": "Другое", "image": "" }
+                "1": { "text": "Откатные", "image": "" },
+                "answer2": { "text": "Распашные", "image": "" },
+                "3": { "text": "Секционно-подъёмные", "image": "" },
+                "4": { "text": "Рулонные", "image": "" },
+                "answer5": { "text": "Рольставни", "image": "" },
+                "6": { "text": "Другое", "image": "" }
             }
         },
-        "qst3": {
-            "type": "radio",
-            "view": "textGrid",
-            "question": "Куда нужны ворота?",
-            "answers": {
-                "ans1": "Частный дом",
-                "ans2": "Дача",
-                "ans3": "Многоквартирный дом",
-                "ans4": "Промышленный объект"
-            }
+        "3": {
+            "component": "textGrid",
+            "mode": "radio",
+            "templateData": "Куда нужны ворота?",
+            "answers": [
+                "Частный дом",
+                "Дача",
+                "Многоквартирный дом",
+                "Промышленный объект"
+            ]
         }
     }
 }
