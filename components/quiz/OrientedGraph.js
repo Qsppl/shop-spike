@@ -71,7 +71,7 @@ class ChainedOrientedGraph extends OrientedGraph {
     /**
      * @param {string} name 
      */
-    createVertexChain(chainName = new Symbol()) {
+    createChain(chainName = new Symbol()) {
         if (typeof chainName !== 'string' && typeof chainName !== 'symbol') throw new TypeError(`Имя сценария дожно быть строкой, но был передан ${chainName}`);
         this._vertexChains.set(chainName, new OGVertexChain());
         return chainName;
@@ -86,7 +86,7 @@ class ChainedOrientedGraph extends OrientedGraph {
         return true;
     }
 
-    addEdgeInChain(vertex, chainName = this.mainChainName) {
+    addVertexInChain(vertex, chainName = this.mainChainName) {
         let chain = this._vertexChains.get(chainName);
         this.addEdge(chain.last, vertex, chainName)
     }
@@ -104,7 +104,7 @@ class GraphPathFinder {
     constructor(graph) {
         this._chainPointer = graph.mainChain;
         this._vertexPointer = this._chainPointer.first;
-        this._sequence = [this._vertexPointer];
+        this._path = [this._vertexPointer];
     }
 
     next(value) {
