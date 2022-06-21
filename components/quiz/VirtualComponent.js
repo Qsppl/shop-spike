@@ -142,7 +142,7 @@ class VirtualComponent {
      * @param {Object} serializedVirtualComponent
      * @returns {VirtualComponent}
      */
-    deserializeComponent(serializedVirtualComponent) {}
+    deserializeComponent(serializedVirtualComponent) { }
 
     /**
      * Реестр компонентов

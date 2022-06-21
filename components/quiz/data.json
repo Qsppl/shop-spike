@@ -1,8 +1,8 @@
 {
     "scenarios": {
-        "main" : [ "1", "selectGatesType", "3", "4", "5", "6", "7" ],
-        "#Any.selectGatesType.answer5" : [ "snFoundation", "snWicket", "snFacade", "#Parent.5" ],
-        "#Any.selectGatesType.answer2" : [ "snWicket","snFacade","#Parent.5" ]
+        "#main" : [ "1", "selectGatesType", "3", "4", "5", "6", "7" ],
+        "selectGatesType.answer5" : [ "snFoundation", "snWicket", "snFacade", "#Parent.5" ],
+        "selectGatesType.answer2" : [ "snWicket","snFacade","#Parent.5" ]
     },
     "questions": {
         "1": {
