@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * Модель и контроллер приложения-теста.
+ * 
+ * На разных этапах прохождения теста предоставляет следующие представления: QuestionViewer|FinalScene
+ * 
+ * Исполняет роль единственного источника истины для представлений.
+ */
 class Quiz {
     constructor(questions, scenariosGraph = undefined) {
         this._scenes = new Set();
@@ -8,6 +15,9 @@ class Quiz {
             this._scenes.add(constructor.deserializeComponent(questions[questionId]))
         }
     }
+
+    addScene() {}
+
 
 
     /**
