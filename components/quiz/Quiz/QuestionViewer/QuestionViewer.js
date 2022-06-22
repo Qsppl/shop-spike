@@ -1,13 +1,13 @@
 'use strict';
 
-import { VirtualComponent } from '../VirtualComponent/VirtualComponent.js';
-import { QuizIndicatorCounter } from '../QuizIndicatorCounter/QuizIndicatorCounter.js';
+import { VirtualComponent } from '../../VirtualComponent/VirtualComponent.js';
+import { IndicatorCounter } from './IndicatorCounter/IndicatorCounter.js';
 
-export class QuizViewer extends VirtualComponent {
+export class QuestionViewer extends VirtualComponent {
     constructor() {
         super();
 
-        this._quizIndicatorComponent = new QuizIndicatorCounter();
+        this._quizIndicatorComponent = new IndicatorCounter();
         let state = this.mirrorStorage;
         // ComponentStates
         console.log('this._quizIndicatorComponent', this._quizIndicatorComponent);

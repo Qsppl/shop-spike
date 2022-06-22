@@ -1,5 +1,6 @@
 'use strict';
 
+import { QuestionViewer } from "./QuestionViewer/QuestionViewer.js";
 /**
  * Модель и контроллер приложения-теста.
  * 
@@ -8,6 +9,9 @@
  * Исполняет роль единственного источника истины для представлений.
  */
 class Quiz {
+    quizQuestions = new Set();
+    questionViewer = new QuestionViewer();
+
     constructor(questions, scenariosGraph = undefined) {
         this._scenes = new Set();
         for (let questionId in questions) {
@@ -16,7 +20,7 @@ class Quiz {
         }
     }
 
-    addScene() {}
+    addScene() { }
 
 
 
