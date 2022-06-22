@@ -1,6 +1,8 @@
 'use strict';
 
 import { QuestionViewer } from "./QuestionViewer/QuestionViewer.js";
+import { FinalScene } from "./FinalScene/FinalScene.js";
+
 /**
  * Модель и контроллер приложения-теста.
  * 
@@ -9,37 +11,22 @@ import { QuestionViewer } from "./QuestionViewer/QuestionViewer.js";
  * Исполняет роль единственного источника истины для представлений.
  */
 class Quiz {
-    quizQuestions = new Set();
-    questionViewer = new QuestionViewer();
+    constructor()
+    _questionViewer = new QuestionViewer();
+    _finalScene = new FinalScene();
+    _currentView = this._questionViewer;
+    spawnView() {}
+    removeView() {}
 
-    constructor(questions, scenariosGraph = undefined) {
-        this._scenes = new Set();
-        for (let questionId in questions) {
-            let constructor = VirtualComponent.locateSerializedComponent(questions[questionId]);
-            this._scenes.add(constructor.deserializeComponent(questions[questionId]))
-        }
-    }
-
-    addScene() { }
-
-
+    _quizQuestions = new Set();
+    addQuestion() {}
 
     /**
-     * Десериализует карту сцен квиза.
-     * @param {*} questionsData 
-     * @returns {Object} questionsMap {sceneId: QuizQuestionScene, ...} 
+     * Последовательность пройденых вопросов теста.
      */
-    deserealizeQuestionsMap(questionsData) {
-        let questionsMap = {};
-        for (let questionId in questionsData) {
-            let constructor = QuizQuestionScene.locateSerializedComponent(questionsData);
-            let quizQuestionScene = new QuizQuestionScene.deserealize(questionsData);
-        }
-    }
+    _history = new Set();
+    nextQuestion() {}
+    prevQuestion() {}
+    onQuestionsOver() {}
+    resetProgress() {}
 }
-
-class QuizQuestionScene {
-
-}
-
-var quiz = new Quiz(data.questions, data.scenarios)

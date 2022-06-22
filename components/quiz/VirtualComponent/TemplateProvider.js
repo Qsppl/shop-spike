@@ -2,10 +2,10 @@
 
 /**
  * Осуществляет создание разметки из \<template\>
- * 
- * Может быть расширен для вставки в разметку данных при спавне разметки.
+ * Конечный класс. Не может быть расширен! все манипуляции с экземпляром HTML шаблона через MirrorStorage
  */
 export class TemplateProvider {
+    // Это целесообразнее сделать TemplateSpawner'ом
     /**
      * @param {HTMLTemplateElement} template
      * @returns {boolean}
@@ -29,6 +29,8 @@ export class TemplateProvider {
         this._template = template;
         this._beforeSpawnListeners = new Set();
         this._afterSpawnListeners = new Set();
+
+        this.spawnTemplateIn = this.spawnTemplateIn.bind(this);
     }
 
     /**
@@ -40,10 +42,10 @@ export class TemplateProvider {
      * @param {Element} slot
      * @returns {Element} slot
      */
-    spawnTemplateIn(slot) {
+    spawnTemplateIn(slot, rewrite = true) {
         let component = this._createHTML();
         this._activateBeforeSpawn(component);
-        slot.innerHTML = '';
+        if (rewrite) slot.innerHTML = '';
         slot.appendChild(component);
         this._activateAfterSpawn(slot);
         return slot;

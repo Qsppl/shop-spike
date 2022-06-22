@@ -5,7 +5,7 @@ import { QuizViewer } from "./QuizViewer/QuizViewer.js";
 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa');
 let quiz = new QuizViewer();
 window.quiz = quiz
-quiz.templateProvider.spawnTemplateIn(document.getElementById('main-page'))
+quiz.spawnTemplateIn(document.getElementById('main-page'))
 
 
 

@@ -7,18 +7,12 @@ import { TemplateProvider } from './TemplateProvider.js';
 /**
  * Монолит который связывает TemplateProvider c MirrorStorage и реализует модель.
  */
-export class VirtualComponent {
+export class VirtualComponentBase {
     /**
      * @param {TemplateProvider} templateProvider 
      */
     constructor() {
         this.mirrorStorage = new MirrorStorage();
-
-        let htmlTemplate = document.getElementById(kebabize(this.constructor.name));
-        console.log(`search ${this.constructor.name}>${kebabize(this.constructor.name)}: ${htmlTemplate}`);
-        if (TemplateProvider.validateTemplate(htmlTemplate)) {
-            this.templateProvider = new TemplateProvider(htmlTemplate);
-        }
     }
 
     /**
@@ -48,6 +42,8 @@ export class VirtualComponent {
      * @returns {MirrorStorage}
      */
     get mirrorStorage() { return this._mirrorStorage.getSyncProxy() }
+
+    spawnTemplateIn = this.templateProvider.spawnTemplateIn
 
     /**
      * Возвращает десериализованый компонент
@@ -84,5 +80,20 @@ export class VirtualComponent {
         let constructor = this._VCRegister[serializedVirtualComponent.component];
         if (!constructor) throw TypeError(`${serializedVirtualComponent.component} не был зарегестрирован в ${typeof this}`);
         return constructor;
+    }
+}
+
+export class VirtualComponent extends VirtualComponentBase {
+    constructor() {
+        super();
+        this._autoFindTemplate();
+    }
+
+    _autoFindTemplate() {
+        let htmlTemplate = document.getElementById(kebabize(this.constructor.name));
+        console.log(`search ${this.constructor.name}>${kebabize(this.constructor.name)}: ${htmlTemplate}`);
+        if (TemplateProvider.validateTemplate(htmlTemplate)) {
+            this.templateProvider = new TemplateProvider(htmlTemplate);
+        }
     }
 }
