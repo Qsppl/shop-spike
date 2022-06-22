@@ -281,6 +281,54 @@
     </div>
     <script src="pages/site/site-lib.js"></script>
     <script src="pages/layout/pull-out-menu.js"></script>
+    <script type="module" src="../../components/quiz/main.js"></script>
+    <template id="quiz-viewer">
+        <div class="test" id="test">
+            <div class="quiz__close close" data-control="close"><span>Закрыть</span></div>
+            <div class="container-custom test-modal">
+                <div class="test__wrap">
+                    <div class="test__qwiz">
+                        <div class="test__title test__title-1">Расчет стоимости ворот по индивидуальным параметрам</div>
+                        <div class="progress-bar__text">Расчет пройден на <span component-inner="percent-progress">0%</span>
+                        </div>
+                        <div class="progress-bar" component-slot="indicator-counter"></div>
+                        <div class="test__number">Вопрос <span component-inner="beginning-counter">3</span> из <span
+                                component-inner="text-scenes-count">8</span></div>
+    
+                        <div class="test-content" data-role="slot">
+                        </div>
+    
+                        <div class="test__btn-block">
+                            <button class="test-prev test-close" disabled="" data-control="close"
+                                data-type="test-button-close">
+                            </button>
+                            <button class="test-prev inp-hiden" disabled="" data-control="prev">
+                            </button>
+                            <div class="test__btn">
+                                <button class="btn btn-col test__button test-next" disabled="" data-control="next">
+                                    <span class="btn-text">далее</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test__gifts">
+                        <div class="test__gifts-item test__gifts-item-1">
+                            <div class="test__gifts-title">До окончания теста осталось: <span
+                                    component-inner="end-counter">8</span>
+                            </div>
+                            <picture class="test__gifts-img">
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source type="image/webp" component-srcset="pic-webp">
+                                <source type="image/png" component-srcset="pic-png">
+                                <img component-src="pic-png" alt="">
+                                <!--[if IE 9]></video><![endif]-->
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 </body>
 
 </html>

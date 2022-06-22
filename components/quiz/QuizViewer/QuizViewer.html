@@ -7,7 +7,7 @@
                     <div class="test__title test__title-1">Расчет стоимости ворот по индивидуальным параметрам</div>
                     <div class="progress-bar__text">Расчет пройден на <span component-inner="percent-progress">0%</span>
                     </div>
-                    <div class="progress-bar" component-inner="indicator-counter"></div>
+                    <div class="progress-bar" component-slot="indicator-counter"></div>
                     <div class="test__number">Вопрос <span component-inner="beginning-counter">3</span> из <span
                             component-inner="text-scenes-count">8</span></div>
 
@@ -34,9 +34,9 @@
                         </div>
                         <picture class="test__gifts-img">
                             <!--[if IE 9]><video style="display: none;"><![endif]-->
-                            <source type="image/webp" state-pic-webp="/images/quiz-somegift-image.webp">
-                            <source type="image/png" state-srcset-pic-png="/images/quiz-somegift-image.png">
-                            <img state-pic-png="/images/quiz-somegift-image.png" alt="">
+                            <source type="image/webp" component-srcset="pic-webp">
+                            <source type="image/png" component-srcset="pic-png">
+                            <img component-src="pic-png" alt="">
                             <!--[if IE 9]></video><![endif]-->
                         </picture>
                     </div>

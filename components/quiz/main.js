@@ -1,40 +1,23 @@
-'use strict'
+'use strict';
 
-let config = require('./data.json');
+import { QuizViewer } from "./QuizViewer/QuizViewer.js";
+
+console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa');
+let quiz = new QuizViewer();
+window.quiz = quiz
+quiz.templateProvider.spawnTemplateIn(document.getElementById('main-page'))
 
 
-function readQuestionScenes(serializedVirtualComponents) {
-    let quizQuestionScenes = [];
-    for (let componentId in serializedVirtualComponents) {}
-}
 
-function readScenarios(scenariosData) {
-    let scenarios;
-    for (let scenario of scenariosData) {
 
-    }
-}
 
-let quiz = new Quiz(readConfig(config))
 
-// class QuizIndicatorCounter extends VirtualComponent {
-//     constructor(quizViewerTemplate) {
-//         super(quizViewerTemplate);
-//     }
 
-//     maxValue = 1;
-//     /**
-//      * @param {Number} number
-//      */
-//     set maxValue(number) { this.maxValue = number; this.render(); }
 
-//     currentValue = 1;
-//     /**
-//      * @param {Number} number
-//      */
-//     set currentValue(number) { this.currentValue = number; this.render(); }
-// }
 
+
+
+// let config = require('./data.json');
 // let data = {
 //     "scenarios": {
 //         "main": ["qst1", "qst2", "qst3", "sn4", "sn5", "sn6", "sn7"],
@@ -78,3 +61,18 @@ let quiz = new Quiz(readConfig(config))
 //         }
 //     }
 // }
+
+
+// function readQuestionScenes(serializedVirtualComponents) {
+//     let quizQuestionScenes = [];
+//     for (let componentId in serializedVirtualComponents) {}
+// }
+
+// function readScenarios(scenariosData) {
+//     let scenarios;
+//     for (let scenario of scenariosData) {
+
+//     }
+// }
+
+// let quiz = new Quiz(readConfig(config))

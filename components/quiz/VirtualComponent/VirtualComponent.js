@@ -1,13 +1,13 @@
 'use strict';
 
-require('../lib');
-require('./MirrorStorage');
-require('./TemplateProvider');
+import { kebabize } from '../lib.js';
+import { MirrorStorage } from './MirrorStorage.js';
+import { TemplateProvider } from './TemplateProvider.js';
 
 /**
  * Монолит который связывает TemplateProvider c MirrorStorage и реализует модель.
  */
- class VirtualComponent {
+export class VirtualComponent {
     /**
      * @param {TemplateProvider} templateProvider 
      */
@@ -15,6 +15,7 @@ require('./TemplateProvider');
         this.mirrorStorage = new MirrorStorage();
 
         let htmlTemplate = document.getElementById(kebabize(this.constructor.name));
+        console.log(`search ${this.constructor.name}>${kebabize(this.constructor.name)}: ${htmlTemplate}`);
         if (TemplateProvider.validateTemplate(htmlTemplate)) {
             this.templateProvider = new TemplateProvider(htmlTemplate);
         }

@@ -1,8 +1,6 @@
-class QuizIndicatorCounter extends VirtualComponent {
-    constructor() {
-        super();
+'use strict';
 
-        this._templateProvider = new TemplateProvider(document.getElementById('quiz-indicator-counter'))
-        this.mirrorStorage = new MirrorStorage()
-    }
+import { VirtualComponent } from '../VirtualComponent/VirtualComponent.js';
+export class QuizIndicatorCounter extends VirtualComponent {
+
 }

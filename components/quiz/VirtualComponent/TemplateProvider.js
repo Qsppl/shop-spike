@@ -1,20 +1,22 @@
 'use strict';
 
-require('../lib');
-
 /**
  * Осуществляет создание разметки из \<template\>
  * 
  * Может быть расширен для вставки в разметку данных при спавне разметки.
  */
-class TemplateProvider {
+export class TemplateProvider {
     /**
-     * @param {HTMLTemplateElement} template 
+     * @param {HTMLTemplateElement} template
      * @returns {boolean}
      */
     static validateTemplate(template) {
         if (!('content' in document.createElement('template'))) {
             console.log("Браузер не поддерживает <template>");
+            return false;
+        }
+        if (!(template instanceof HTMLTemplateElement)) {
+            console.warn(`validateTemplate(template) был передан неверный аргумент: ${template}`);
             return false;
         }
         if (!('content' in template)) return false;
@@ -41,6 +43,7 @@ class TemplateProvider {
     spawnTemplateIn(slot) {
         let component = this._createHTML();
         this._activateBeforeSpawn(component);
+        slot.innerHTML = '';
         slot.appendChild(component);
         this._activateAfterSpawn(slot);
         return slot;

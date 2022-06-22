@@ -1,12 +1,13 @@
 'use strict';
 
-require('../lib');
+import { camelize } from '../lib.js';
+import { TemplateProvider } from './TemplateProvider.js';
 
 /**
  * Играет роль единственного источника истины для активных элементов в компонента. 
  * Синхронизирует внутреннее содержимое элементов компонента со своими свойствами.
  */
- class MirrorStorage {
+export class MirrorStorage {
     constructor() {
         this.render = this.render.bind(this);
         this.attach = this.attach.bind(this);
@@ -34,10 +35,22 @@ require('../lib');
      */
     render(rootNode = this._rootElement) {
         if (rootNode === undefined) return false;
-        for (let element of rootNode.querySelectorAll("[component-state]")) {
-            let prop = element.dataset.mirror;
+        for (let element of rootNode.querySelectorAll("[component-inner]")) {
+            let prop = camelize(element.getAttribute('component-inner'));
             if (prop in this) this._insert(element, this[prop]);
-            else if (camelize(prop) in this) this._insert(element, camelize(prop));
+            else if (camelize(prop) in this) element.innerHTML = this[prop];
+        }
+        for (let element of rootNode.querySelectorAll("[component-srcset]")) {
+            let prop = camelize(element.getAttribute('component-srcset'));
+            if (prop in this) element.srcset = this[prop];
+        }
+        for (let element of rootNode.querySelectorAll("[component-src]")) {
+            let prop = camelize(element.getAttribute('component-src'));
+            if (prop in this) element.src = this[prop];
+        }
+        for (let element of rootNode.querySelectorAll("[component-slot]")) {
+            let prop = camelize(element.getAttribute('component-slot'));
+            if (this[prop] instanceof TemplateProvider) this[prop].spawnTemplateIn(element);
         }
         return true;
     }

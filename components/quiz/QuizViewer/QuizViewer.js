@@ -1,19 +1,22 @@
 'use strict';
 
-require('../VirtualComponent/VirtualComponent.js');
+import { VirtualComponent } from '../VirtualComponent/VirtualComponent.js';
+import { QuizIndicatorCounter } from '../QuizIndicatorCounter/QuizIndicatorCounter.js';
 
-class QuizViewer extends VirtualComponent {
+export class QuizViewer extends VirtualComponent {
     constructor() {
         super();
 
+        this._quizIndicatorComponent = new QuizIndicatorCounter();
         let state = this.mirrorStorage;
         // ComponentStates
-        state.indicatorCounter = new QuizIndicatorCounter(0, 0);
-        state.percentProgress = 0;
+        console.log('this._quizIndicatorComponent', this._quizIndicatorComponent);
+        state.indicatorCounter = this._quizIndicatorComponent.templateProvider;
+        state.percentProgress = '0%';
         state.beginningCounter = 0;
         state.endCounter = 0;
         state.scenesCount = 0;
-        state.responsePicWebp = "";
-        state.responsePicPng = "";
+        state.picPng = "";
+        state.picWebp = "";
     }
 }
