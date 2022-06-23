@@ -1,6 +1,6 @@
 'use strict';
 
-import { VirtualComponentBase } from "../../VirtualComponent/VirtualComponent";
+import { VirtualComponentBase } from "../VirtualComponent/VirtualComponent.js";
 
 export class InputGroupSpawner extends VirtualComponentBase {
     constructor() {
@@ -11,11 +11,11 @@ export class InputGroupSpawner extends VirtualComponentBase {
 
 
     spawnTemplateIn(slot, rewrite = true) {
-        this.spawnInputs(slot);
+        this._spawnInputs(slot);
         return slot;
     }
     
-    spawnInputs(slot) {
+    _spawnInputs(slot) {
         for (let inputComponent of this.inputs) inputComponent.spawnTemplateIn(slot, false);
     }
 }

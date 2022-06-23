@@ -8,19 +8,17 @@
         "1": {
             "component": "textGrid",
             "mode": "radio",
-            "templateData": {
-                "quest" : "Чи да?",
-                "answers": [
-                    "да",
-                    "нет",
-                    "а"
-                ]
-            }
+            "quest" : "Чи да?",
+            "answers": [
+                "да",
+                "нет",
+                "а"
+            ]
         },
         "selectGatesType": {
             "component": "cardsGrid",
             "mode": "radio",
-            "templateData": "Какие ворота Вас интересуют?",
+            "quest": "Какие ворота Вас интересуют?",
             "answers": {
                 "1": { "text": "Откатные", "image": "" },
                 "answer2": { "text": "Распашные", "image": "" },
@@ -33,7 +31,7 @@
         "3": {
             "component": "textGrid",
             "mode": "radio",
-            "templateData": "Куда нужны ворота?",
+            "quest": "Куда нужны ворота?",
             "answers": [
                 "Частный дом",
                 "Дача",
