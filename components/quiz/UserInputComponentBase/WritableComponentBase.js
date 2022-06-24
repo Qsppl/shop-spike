@@ -6,7 +6,7 @@ import { WritableInputMirrorStorage } from "../VirtualComponent/InputMirrorStora
 /**
  * Реализует поддержание состояния Input'а в виртуальном компоненте. только одного.
  */
-export class WritableComponent extends VirtualComponentBase {
+export class WritableComponentBase extends VirtualComponentBase {
     /** @param {TemplateProvider} templateProvider */
     constructor(templateProvider) {
         super();

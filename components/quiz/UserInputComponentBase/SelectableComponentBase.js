@@ -6,7 +6,7 @@ import { SelectableInputMirrorStorage } from "../VirtualComponent/InputMirrorSto
 /**
  * Реализует поддержание состояния Input'а в виртуальном компоненте. только одного.
  */
-export class SelectableComponent extends VirtualComponentBase {
+export class SelectableComponentBase extends VirtualComponentBase {
     /** @param {TemplateProvider} templateProvider */
     constructor(templateProvider) {
         super();

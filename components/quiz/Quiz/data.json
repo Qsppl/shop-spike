@@ -6,9 +6,9 @@
     },
     "questions": {
         "1": {
-            "component": "textGrid",
-            "mode": "radio",
+            "scene": "BadgeWithIndicator",
             "quest" : "Чи да?",
+            "mode": "radio",
             "answers": [
                 "да",
                 "нет",
@@ -16,9 +16,9 @@
             ]
         },
         "selectGatesType": {
-            "component": "cardsGrid",
-            "mode": "radio",
+            "scene": "CardWithPicture",
             "quest": "Какие ворота Вас интересуют?",
+            "mode": "radio",
             "answers": {
                 "1": { "text": "Откатные", "image": "" },
                 "answer2": { "text": "Распашные", "image": "" },
@@ -29,9 +29,9 @@
             }
         },
         "3": {
-            "component": "textGrid",
-            "mode": "radio",
+            "scene": "BadgeWithIndicator",
             "quest": "Куда нужны ворота?",
+            "mode": "radio",
             "answers": [
                 "Частный дом",
                 "Дача",
