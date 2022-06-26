@@ -1,46 +1,58 @@
 'use strict';
 
-export class QuizScene extends InputGroupInContainer {
-    constructor(title, subtitle = "") {
-        super();
-        this.mirrorStorage.title = title;
-        if (subtitle) this.mirrorStorage.subtitle = subtitle;
+import { VirtualComponent } from "../../VirtualComponent/VirtualComponent.js";
+import { SelectableInputGroup } from "../../VirtualComponent/InteractiveHtmlOvner/GroupController/SelectableInputGroup.js";
+import { TemplateProvider } from "../../VirtualComponent/TemplateProvider.js";
+
+export class QuizScene extends VirtualComponent {
+    /**
+     * @param {Number|false} maxSelectedCards Максимальное количество одновременно выбранных карточек на сцене. Если false то неограниченно.
+     * @param {string} title Заголовок сцены.
+     * @param {string} subtitle Подзаголовок сцены.
+     * @param {HTMLTemplateElement} htmlTemplate по умолчанию равен 'auto'
+     */
+    constructor(title, subtitle = "", maxSelectedCards = false, htmlTemplate = 'auto') {
+        super(TemplateProvider.findTemplateByName('quiz-scene'));
+
+        this._interactiveGroupController = new SelectableInputGroup();
+        this.maxSelectedCards = maxSelectedCards;
+        this.state.title = title;
+        this.state.subtitle = subtitle;
     }
 
-    add
+    get childComponentTemplate() { }
+    get childComponentConstructor() { }
 
-    createHTML() {
-        let html = super.createHTML();
-        return html;
+    /**
+     * @param {string} idintefer 
+     * @param {CardWithPicture} component
+     */
+    addChildComponent(idintefer, component) {
+        this.appendInSlot(component, "inputs");
+
+        this._interactiveGroupController.addComponent(idintefer, component);
+        if (this._getComponentsInSlot("inputs").length === 1) component.checked = true;
+    }
+
+    /**
+     * Метод получения введенных пользователем данных с интерактивных компонентов и групп интерактивных компонентов пренадлежащим компоненту
+     * @returns 
+     */
+    getValue() { return this._interactiveGroupController.getValueOfGroup(); }
+
+    /**
+     * @param {Object} data 
+     * @param {HTMLTemplateElement} htmlTemplate по умолчанию равен 'auto'
+     */
+    static deserializeData(data, htmlTemplate = 'auto') {
+        let subtitle = data.subtitle ? data.subtitle : "";
+        let scene = new this(data.quest, subtitle, data.maxSelectItems, htmlTemplate);
+
+        // десериализация дочерних компонентов
+        for (let answerIdintefer in data.answers) {
+            childComponentData = data.answers[answerIdintefer];
+            scene.addChildComponent(answerIdintefer, scene.childComponentConstructor.deserializeData(childComponentData, scene.childComponentTemplate));
+        }
+        return scene;
     }
 }
-
-import { VirtualComponent } from "../VirtualComponent/VirtualComponent.js";
-
-export class InputGroupInContainer extends VirtualComponent {
-    /** @param {} inputs */
-    constructor(inputs) {
-        super();
-        this._inputs = new Set();
-        for (inputComponent of inputs) this.addInput(inputComponent);
-    }
-
-    /** @param {VirtualComponent} inputComponent  */
-    addInput(inputComponent) { this._inputs.add(inputComponent); return true; }
-
-    createHTML() {
-        let html = super.createHTML();
-        let slot = html.querySelector(`[component-slot="inputs"]`);
-        for (let inputComponent of this._inputs) slot.appendChild(inputComponent.createHTML());
-        return html;
-    }
-}
-
-CardsGrid
-ButtonsGrid
-BadgesGrid
-
-TextInput
-
-WriteRoomDescribe
-WritePhoneNumber

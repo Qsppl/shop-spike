@@ -15,13 +15,13 @@ export class TemplateProvider {
     /**
      * @returns {Element} component
      */
-     createHTML() {
+    createHTML() {
         if (this._template.content.childElementCount !== 1) {
             return document.createElement("div").innerHTML = this._template.content.cloneNode(true);
         }
         return this._template.content.firstElementChild.cloneNode(true);
     }
-    
+
     /**
      * @param {HTMLTemplateElement} template
      * @returns {boolean}
@@ -38,4 +38,10 @@ export class TemplateProvider {
         if (!('content' in template)) return false;
         return true;
     }
+
+    /**
+     * @param {string} templateName id of <template> element 
+     * @returns {HTMLTemplateElement|null}
+     */
+    static findTemplateByName(templateName) { return TemplateProvider.validateTemplate(htmlTemplate) ? htmlTemplate : null; }
 }

@@ -13,6 +13,7 @@ class WritableInputMirrorStorage extends MirrorStorage {
     constructor(value = "") {
         this.value = value;
         this._handleInputEvent = this._handleInputEvent.bind(this);
+        this._inputListeners = new Set();
     }
 
     set value(string) { if (typeof string !== "string") throw new TypeError(); this.value = string; }
@@ -21,11 +22,12 @@ class WritableInputMirrorStorage extends MirrorStorage {
 
     _handleInputEvent(e) {
         this.storage.value = this._input.value;
-        this.onInput(this._input);
+        this._activateInputListeners(e);
     }
 
-    /** @param {HTMLInputElement} element */
-    onInput(element) { };
+    /** @param {Function} callback Колбэк вызываемый после пользовательского ввода. */
+    addInputListener(callback) { this._inputListeners.add(callback); }
+    _activateInputListeners(e) { for (let callback of this._inputListeners) callback(e); }
 
     attach(rootElement) {
         let rootOfComponent = super.attach(rootElement);
@@ -50,9 +52,32 @@ class WritableInputMirrorStorage extends MirrorStorage {
  * Реализует поддержание состояния Input'а в виртуальном компоненте. только одного.
  */
 export class WritableInputComponent extends VirtualComponent {
-    /** @returns {WritableInputMirrorStorage} */
-    get state() { if (!this._mirrorStorage) this._mirrorStorage = new WritableInputMirrorStorage(); return this._mirrorStorage.storage; }
+    constructor() {
+        super();
+        this._onInput = this._onInput.bind(this);
+        this._inputListeners = new Set();
+    }
+
+    _onInput(e) { this._activateInputListeners(this); }
+
+    /** @param {Function} callback Колбэк вызываемый после пользовательского ввода. */
+    addInputListener(callback) { this._inputListeners.add(callback); }
+    _activateInputListeners(component) { for (let callback of this._inputListeners) callback(component); }
+
+    /** @returns {SelectableInputMirrorStorage} */
+    get state() {
+        if (!this._mirrorStorage) {
+            this._mirrorStorage = new WritableInputMirrorStorage();
+            this._mirrorStorage.addInputListener(this._onInput)
+        }
+        return this._mirrorStorage.storage;
+    }
+    
+    set value(string) { this.state.value = string; }
+    /** @returns {string} value */
+    get value() { return this.state.value; }
 
     set onInput(callback) { this._mirrorStorage.onInput = callback; }
-    get onInput() { return this.mirrorStorage.onInput; }
+    /** @returns {Function} callback */
+    get onInput() { return this._mirrorStorage.onInput; }
 }

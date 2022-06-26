@@ -12,22 +12,24 @@ import { TemplateProvider } from "./TemplateProvider.js";
 export class VirtualComponent {
     /** @param {HTMLTemplateElement} htmlTemplate по умолчанию равен 'auto' */
     constructor(htmlTemplate = 'auto') {
-        if (TemplateProvider.validateTemplate(htmlTemplate)) this._templateProvider = new TemplateProvider(htmlTemplate);
-        else if (template === 'auto') this._templateProvider = new TemplateProvider(this._findSelfTemplate());
-        else throw new TypeError();
-
+        if (htmlTemplate !== 'auto') {
+            if (!TemplateProvider.validateTemplate(htmlTemplate)) throw new TypeError('Был передан неверный аргумент htmlTemplate');
+            this._templateProvider = new TemplateProvider(htmlTemplate);
+        } else {
+            let template = this._findSelfTemplate();
+            if (!template) throw new Error('Для компонента не был передан <template> и автопоиск не нашел <template>.');
+            this._templateProvider = new TemplateProvider(template);
+        }
         this._slotMap = new Map();
     }
 
-    /** @returns {HTMLTemplateElement} htmlTemplate */
+    /** @returns {HTMLTemplateElement|null} htmlTemplate */
     _findSelfTemplate() {
-        let htmlTemplate = document.getElementById(this.constructor.name);
-        if (TemplateProvider.validateTemplate(htmlTemplate)) return htmlTemplate;
-
-        htmlTemplate = document.getElementById(kebabize(this.constructor.name));
-        if (TemplateProvider.validateTemplate(htmlTemplate)) return htmlTemplate;
-
-        throw new Error('При создании компонента ему не был передан <template> элемент. После не удалось найти аналогичный элемент по мени компонента. Нельзя создать компонент без шаблона.');
+        let htmlTemplate = TemplateProvider.findTemplateByName(this.constructor.name);
+        if (htmlTemplate) return htmlTemplate;
+        htmlTemplate = TemplateProvider.findTemplateByName(kebabize(this.constructor.name));
+        if (htmlTemplate) return htmlTemplate;
+        return null;
     }
 
     /**  @returns {TemplateProvider} */

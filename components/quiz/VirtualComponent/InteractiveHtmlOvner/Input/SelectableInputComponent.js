@@ -12,11 +12,12 @@ class SelectableInputMirrorStorage extends MirrorStorage {
      * @param {string} value Начальное значение input.value; После может быть изменено через js.
      * @param {boolean} checked Начальное значение input.checked; После может быть изменено как через input так и через js.
      */
-    constructor(value = "", checked = undefined) {
-        this.value = value;
-        if (this.checked !== undefined) this.checked = checked;
+    constructor() {
+        this.value = "";
+        if (this.checked !== undefined) this.checked = false;
         this._handleInputEvent = this._handleInputEvent.bind(this);
         this._allowedTypes = new Set(['checkbox', 'radio']);
+        this._inputListeners = new Set();
     }
 
     /** @returns {SelectableInputMirrorStorage} Прокси для доступа к свойствам хранилища. При записи через прокси свойства будут зеркально отображены в разметку. */
@@ -33,11 +34,12 @@ class SelectableInputMirrorStorage extends MirrorStorage {
     _handleInputEvent(e) {
         this.storage.value = this._input.value;
         this.storage.checked = this._input.checked;
-        this.onInput(this._input);
+        this._activateInputListeners(e);
     }
 
-    /** @param {HTMLInputElement} element */
-    onInput(element) { };
+    /** @param {Function} callback Колбэк вызываемый после пользовательского ввода. */
+    addInputListener(callback) { this._inputListeners.add(callback); }
+    _activateInputListeners(e) { for (let callback of this._inputListeners) callback(e); }
 
     attach(rootElement) {
         let rootOfComponent = super.attach(rootElement);
@@ -67,10 +69,33 @@ class SelectableInputMirrorStorage extends MirrorStorage {
 /**
  * Реализует поддержание состояния Input'а в виртуальном компоненте. только одного.
  */
-export class SelectableComponentBase extends VirtualComponent {
-    /** @returns {SelectableInputMirrorStorage} */
-    get state() { if (!this._mirrorStorage) this._mirrorStorage = new SelectableInputMirrorStorage(); return this._mirrorStorage.storage; }
+export class SelectableInputComponent extends VirtualComponent {
+    constructor() {
+        super();
+        this._onInput = this._onInput.bind(this);
+        this._inputListeners = new Set();
+    }
 
-    set onInput(callback) { this._mirrorStorage.onInput = callback; }
-    get onInput() { return this.mirrorStorage.onInput; }
+    _onInput(e) { this._activateInputListeners(this); }
+
+    /** @param {Function} callback Колбэк вызываемый после пользовательского ввода. */
+    addInputListener(callback) { this._inputListeners.add(callback); }
+    _activateInputListeners(component) { for (let callback of this._inputListeners) callback(component); }
+
+    /** @returns {SelectableInputMirrorStorage} */
+    get state() {
+        if (!this._mirrorStorage) {
+            this._mirrorStorage = new SelectableInputMirrorStorage();
+            this._mirrorStorage.addInputListener(this._onInput)
+        }
+        return this._mirrorStorage.storage;
+    }
+
+    set value(string) { this.state.value = string; }
+    /** @returns {string} value */
+    get value() { return this.state.value; }
+
+    set checked(state) { this.state.checked = state; }
+    /** @returns {boolean} value */
+    get checked() { return this.state.checked; }
 }

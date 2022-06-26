@@ -5,6 +5,7 @@ import { FinalScene } from "./FinalScene/FinalScene.js";
 import { VirtualComponent } from "../VirtualComponent/VirtualComponent.js";
 import { SelectableComponent } from "../UserInputListener/SelectableComponent.js";
 import { WritableComponent } from "../UserInputListener/WritableComponent.js";
+import { BadgeWithIndicatorGrid } from "./QuizScene/BadgeWithIndicatorGrid.js";
 
 /**
  * Модель и контроллер приложения-теста.
@@ -53,8 +54,15 @@ class Quiz {
         for (let questionId in data.questions) {
             let questionData = data.questions[questionId];
 
-            // Создаем компонент-сцену
-            let scene = new QuizScene();
+            let scene;
+            switch (data.scene) {
+                case "BadgeWithIndicatorGrid":
+                    scene = BadgeWithIndicatorGrid.deserializeData(data);
+                    break;
+            
+                default:
+                    break;
+            }
             if (questionData.mode === "checkbox") scene.singleSelectMode();
 
             // Заполняем

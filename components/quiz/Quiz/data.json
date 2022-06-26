@@ -8,17 +8,17 @@
         "1": {
             "scene": "BadgeWithIndicator",
             "quest" : "Чи да?",
-            "mode": "radio",
-            "answers": [
-                "да",
-                "нет",
-                "а"
-            ]
+            "maxSelectItems": 1,
+            "answers": {
+                "1": "да",
+                "2": "нет",
+                "3": "а"
+            }
         },
         "selectGatesType": {
-            "scene": "CardWithPicture",
+            "scene": "CardsWithPicture",
             "quest": "Какие ворота Вас интересуют?",
-            "mode": "radio",
+            "maxSelectItems": 1,
             "answers": {
                 "1": { "text": "Откатные", "image": "" },
                 "answer2": { "text": "Распашные", "image": "" },
@@ -31,13 +31,13 @@
         "3": {
             "scene": "BadgeWithIndicator",
             "quest": "Куда нужны ворота?",
-            "mode": "radio",
-            "answers": [
-                "Частный дом",
-                "Дача",
-                "Многоквартирный дом",
-                "Промышленный объект"
-            ]
+            "maxSelectItems": 1,
+            "answers": {
+                "1": "Частный дом",
+                "2": "Дача",
+                "3": "Многоквартирный дом",
+                "4": "Промышленный объект"
+            }
         }
     }
 }
