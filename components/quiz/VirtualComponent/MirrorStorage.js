@@ -4,10 +4,9 @@ import { camelize, kebabize } from '../lib.js';
 
 /**
  * Играет роль единственного источника истины для активных элементов в компонента. 
- * Синхронизирует внутреннее содержимое элементов компонента со своими свойствами.
+ * Синхронизирует состояние элементов компонента со своими свойствами.
  */
 export class MirrorStorage {
-    // Это целесообразнее сделать TemplateMutator'ом
     constructor() {
         this.render = this.render.bind(this);
         this.attach = this.attach.bind(this);
@@ -31,7 +30,8 @@ export class MirrorStorage {
     }
 
     /**
-     * @returns {MirrorStorage} Прокси для записи свойств в хранилище.
+     * Прокси для доступа к свойствам хранилища. 
+     * При записи через прокси свойства будут зеркально отображены в разметку.
      */
     // критическая неоптимизированность. Можно переделать в транзакции или окраничить частоту обновления таймером.
     get storage() {
@@ -84,7 +84,7 @@ export class MirrorStorage {
         }
     }
 
-    /** Синхронизировать состояние прикрепленной разметки с хранилищем */
+    /** обновить состояние разметки в соответствии с состоянием хранилища */
     render() {
         if (!this._rootElement) return false;
         this.selfInnerRender();
@@ -93,21 +93,11 @@ export class MirrorStorage {
     }
 
     /**
-     * Обертка для подцепления render() у дочерних классов
-     * @param {HTMLElement} rootElement - корневой элеемнт HTML разметки компонента.
-     */
-    _attach(rootElement) {
-        this.attach(rootElement);
-        this.render();
-    }
-
-    /**
-     * Синхронизировать HTML разметку компонента с этим хранилищем
-     * @param {HTMLElement} rootElement - корневой элеемнт HTML разметки компонента.
+     * Применить состояние хранилища к разметке
+     * @param {HTMLElement} rootElement - корневой элемент HTML разметки компонента.
      */
     attach(rootElement) {
         if (!(rootElement instanceof HTMLElement)) throw new TypeError();
         this._rootElement = rootElement;
-        this.render();
     }
 }
