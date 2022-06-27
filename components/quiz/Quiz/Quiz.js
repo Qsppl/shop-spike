@@ -1,11 +1,13 @@
 'use strict';
 
-import { QuestionViewer } from "./QuestionViewer/QuestionViewer.js";
-import { FinalScene } from "./FinalScene/FinalScene.js";
 import { VirtualComponent } from "../VirtualComponent/VirtualComponent.js";
-import { SelectableComponent } from "../UserInputListener/SelectableComponent.js";
-import { WritableComponent } from "../UserInputListener/WritableComponent.js";
+// Представления
+import { QuestionViewer } from "./QuizView/QuestionViewer/QuestionViewer.js";
+import { FinalScene } from "./QuizView/FinalScene/FinalScene.js"
+// Сцены
 import { BadgeWithIndicatorGrid } from "./QuizScene/BadgeWithIndicatorGrid.js";
+import { CardsWithPictureGrid } from "./QuizScene/CardsWithPictureGrid.js";
+import { QuizScene } from "./QuizScene/QuizScene.js";
 
 /**
  * Модель и контроллер приложения-теста.
@@ -14,76 +16,131 @@ import { BadgeWithIndicatorGrid } from "./QuizScene/BadgeWithIndicatorGrid.js";
  * 
  * Исполняет роль единственного источника истины для представлений.
  */
-class Quiz {
+export class Quiz {
     constructor() {
         this._questionViewer = new QuestionViewer();
-        this._finalScene = new FinalScene();
+        // this._finalScene = new FinalScene();
+        this._view = undefined;
+        this._slot = document.querySelector('[component-slot="quiz"]');
+        this._isOpened = false;
 
-        this._quizQuestionsMap = new Map();
-        this._history = new Set();
-
-        this._startQuestionReaderMode()
+        this._scenesMap = new Map();
+        this._scenarioTravesabler = new ScenarioTravesabler();
+        this._startQuestionReaderMode();
     }
 
-    /**
-     * @param {VirtualComponent} view
-     */
-    set currentView(view) { this.currentView = view }
-    get currentView() { return this.currentView }
+    open() {
+        this._slot.innerHTML = this._view._html;
+        this._isOpened = true;
+    }
 
-    spawnViewIn(slot) { this.currentView.templateProvider.spawnTemplateIn(slot) }
-    removeView() { this.currentView.remove }
+    close() {
+        this._slot.innerHTML = "";
+        this._isOpened = false;
+    }
 
-    addQuestionScene(title, innerComponents, subtitle = '') { }
+    set _view(view) {
+        this.__view = view;
+        if (this._isOpened) this._slot.innerHTML = this._view._html;
+    }
+    /** @returns {VirtualComponent} _view */
+    get _view() { return this.__view }
 
     _startQuestionReaderMode() {
-        let questionViewer = this._questionViewer;
-        this.currentView = this._questionViewer;
-
-        questionViewer.setScene()
+        this._view = this._questionViewer;
+        this._questionViewer.setScene(this._scenesMap.get(this._scenarioTravesabler.currentScene));
     }
 
     /** Последовательность пройденых вопросов теста. */
-    nextQuestion() { }
-    prevQuestion() { }
-    onQuestionsOver() { }
+    nextQuestion() {
+        let currentSceneId = this._scenarioTravesabler.currentScene;
+        let correntScene = this._scenesMap.get(currentSceneId);
+        if (!correntScene.value) return false;
+        let nextSceneId = this._scenarioTravesabler.next(correntScene.value);
+        if (sceneId === false) {
+            this.onQuestionsOver();
+            return false;
+        }
+        let nextScene = this._scenesMap.get(nextSceneId);
+        this._questionViewer.setScene(nextScene);
+    }
+    prevQuestion() {
+        let sceneId = this._scenarioTravesabler.prev();
+        if (sceneId === false) return false;
+        let scene = this._scenesMap.get(sceneId);
+        this._questionViewer.setScene(scene);
+    }
+    onQuestionsOver() {
+        // this._view = this._finalScene;
+    }
     resetProgress() { }
 
     deserializeQuizData(data) {
-        let scenesList = [];
         for (let questionId in data.questions) {
             let questionData = data.questions[questionId];
-
             let scene;
             switch (data.scene) {
                 case "BadgeWithIndicatorGrid":
-                    scene = BadgeWithIndicatorGrid.deserializeData(data);
+                    scene = BadgeWithIndicatorGrid.deserializeData(questionData);
                     break;
-            
+                case "CardsWithPictureGrid":
+                    scene = CardsWithPictureGrid.deserializeData(questionData);
+                    break;
                 default:
+                    throw TypeError();
                     break;
             }
-            if (questionData.mode === "checkbox") scene.singleSelectMode();
-
-            // Заполняем
-            scene.state.title = questionData.quest;
-
-            
-            // Создаем дочерние интерактивные элементы
-            // Ищем шаблон интерактивных элементов
-            let htmlTemplate = document.getElementById(questionData.component);
-            if (TemplateProvider.validateTemplate(htmlTemplate)) {
-                templateProvider = new TemplateProvider(htmlTemplate);
-            }
-
-            let component;
-            if (htmlTemplate.querySelector('[type="radio"], [type="checkbox"]')) component = SelectableComponent;
-            else component = WritableComponent;
-
-            let list = questionData.answers;
-            for (let answerId in list) scene.addInputComponent(answerId, new component(templateProvider, list[answerId]));
-
-            scenesList.push(scene);
+            this._scenesMap.set(questionId, scene);
         }
+    }
+}
+
+class ScenarioTravesabler {
+    constructor() {
+        this._scenariosMap = new Map([
+            ["main", ["1", "selectGatesType", "3", "4", "5", "6", "7"]],
+            ["two", ["snFoundation", "snWicket", "snFacade", "#Parent.5"]],
+            ["three", ["snWicket", "snFacade", "#Parent.5"]]
+        ]);
+        this._path = [];
+        this.toScenario("main");
+    }
+
+    toScenario(scenarioId) {
+        let firstOfScenario = this._scenariosMap.get(scenarioId)[0];
+        this._path.push([scenarioId, [firstOfScenario]]);
+        this._currentScenarioId = scenarioId;
+    }
+
+    get currentScene() {
+        for (let val of this._path) console.log(--this._path.length)
+        let lastSegment = this._path[--this._path.length][1];
+        return lastSegment[--lastSegment.length];
+    }
+
+    next(value) {
+        let currentScenario = this._scenariosMap.get(this._currentScenarioId);
+        let nextInScenario = currentScenario[++currentScenario.indexOf(this.currentScene)];
+
+        // сценарий закончился. запрещаем выходить из сценария потому что некуда)
+        if (nextInScenario == undefined) return false;
+
+        let lastSegment = this._path[--this._path.length][1];
+        lastSegment.push(nextInScenario);
+        return this.currentScene;
+    }
+    prev() {
+        let lastSegment = this._path[--this._path.length][1];
+
+        // запрещаем выходить из первой сцены первого отрезка потому что некуда)
+        if ((this._path.length = 1) && (lastSegment.length == 1)) return false;
+
+        lastSegment.pop();
+        if (lastSegment.length == 0) {
+            // если в последнем отрезке закончились сцены, надо вернуться к предыдущему сценарию
+            this._path.pop();
+            this._currentScenarioId = this._path[--this._path.length][0];
+        }
+        return this.currentScene;
     }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-import { VirtualComponent } from '../../VirtualComponent/VirtualComponent.js';
+import { VirtualComponent } from '../../../VirtualComponent/VirtualComponent.js';
 import { IndicatorCounter } from './IndicatorCounter/IndicatorCounter.js';
 
 export class QuestionViewer extends VirtualComponent {
@@ -8,7 +8,7 @@ export class QuestionViewer extends VirtualComponent {
         super();
 
         this._quizIndicatorComponent = new IndicatorCounter();
-        let state = this.mirrorStorage;
+        let state = this.state;
         state.percentProgress = '0%';
         state.beginningCounter = 0;
         state.endCounter = 0;

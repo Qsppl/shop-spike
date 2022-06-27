@@ -24,18 +24,12 @@ export class VirtualComponent {
     }
 
     /** @returns {HTMLTemplateElement|null} htmlTemplate */
-    _findSelfTemplate() {
-        let htmlTemplate = TemplateProvider.findTemplateByName(this.constructor.name);
-        if (htmlTemplate) return htmlTemplate;
-        htmlTemplate = TemplateProvider.findTemplateByName(kebabize(this.constructor.name));
-        if (htmlTemplate) return htmlTemplate;
-        return null;
-    }
+    _findSelfTemplate() { return TemplateProvider.findTemplateByName(this.constructor.name); }
 
     /**  @returns {TemplateProvider} */
-    get _templateProvider() { return this._templateProvider; }
+    get _templateProvider() { return this.__templateProvider; }
     /**  @param {TemplateProvider} value */
-    set _templateProvider(value) { if (!(value instanceof TemplateProvider)) throw new TypeError(); this._templateProvider = value; }
+    set _templateProvider(value) { if (!(value instanceof TemplateProvider)) throw new TypeError(); this.__templateProvider = value; }
 
     /** state определен как виртуальное свойство для возможности переопределения дочерними классами вне конструктора. */
     get state() { if (!this._mirrorStorage) this._mirrorStorage = new MirrorStorage(); return this._mirrorStorage.storage; }

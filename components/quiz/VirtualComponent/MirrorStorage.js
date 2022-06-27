@@ -16,7 +16,7 @@ export class MirrorStorage {
         this.declareAttrToRenderAttr('component-srcset');
         this.declareAttrToRenderAttr('component-src');
 
-        this.attach = _postRenderProxy(this.attach)
+        this.attach = this._postRenderProxy(this.attach)
     }
 
     _postRenderProxy(f) {

@@ -1,6 +1,6 @@
 'use strict';
 
-import { SelectableInputComponent } from "../../VirtualComponent/InteractiveHtmlOvner/Input/SelectableInputComponent";
+import { SelectableInputComponent } from "../../VirtualComponent/InteractiveHtmlOvner/Input/SelectableInputComponent.js";
 
 /**
  * Компонент "Плашка с индикатором и текстом" квиза.

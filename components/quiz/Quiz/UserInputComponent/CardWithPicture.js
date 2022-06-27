@@ -1,6 +1,6 @@
 'use strict';
 
-import { SelectableInputComponent } from "../../VirtualComponent/InteractiveHtmlOvner/Input/SelectableInputComponent";
+import { SelectableInputComponent } from "../../VirtualComponent/InteractiveHtmlOvner/Input/SelectableInputComponent.js";
 
 /**
  * Компонент "Карточка с изображением" квиза.

@@ -1,5 +1,7 @@
 'use strict';
 
+import { kebabize } from "../lib.js";
+
 /**
  * Осуществляет создание разметки из \<template\>
  * Конечный класс. Не может быть расширен! все манипуляции с экземпляром HTML шаблона через MirrorStorage
@@ -43,5 +45,7 @@ export class TemplateProvider {
      * @param {string} templateName id of <template> element 
      * @returns {HTMLTemplateElement|null}
      */
-    static findTemplateByName(templateName) { return TemplateProvider.validateTemplate(htmlTemplate) ? htmlTemplate : null; }
+    static findTemplateByName(templateName) { 
+        return document.getElementById(kebabize(templateName));
+     }
 }
