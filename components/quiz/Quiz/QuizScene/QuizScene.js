@@ -25,7 +25,7 @@ export class QuizScene extends VirtualComponent {
 
     /**
      * @param {string} idintefer 
-     * @param {CardWithPicture} component
+     * @param {VirtualComponent} component
      */
     addChildComponent(idintefer, component) {
         this.appendInSlot(component, "inputs");
@@ -50,7 +50,8 @@ export class QuizScene extends VirtualComponent {
 
         // десериализация дочерних компонентов
         for (let answerIdintefer in data.answers) {
-            childComponentData = data.answers[answerIdintefer];
+            let childComponentData = data.answers[answerIdintefer];
+            if (!(scene.childComponentTemplate instanceof HTMLTemplateElement)) throw new TypeError(scene.childComponentTemplate)
             scene.addChildComponent(answerIdintefer, scene.childComponentConstructor.deserializeData(childComponentData, scene.childComponentTemplate));
         }
         return scene;

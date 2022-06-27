@@ -18,9 +18,7 @@ export class TemplateProvider {
      * @returns {Element} component
      */
     createHTML() {
-        if (this._template.content.childElementCount !== 1) {
-            return document.createElement("div").innerHTML = this._template.content.cloneNode(true);
-        }
+        if (this._template.content.childElementCount !== 1) { return document.createElement("div").innerHTML = this._template.content.cloneNode(true); }
         return this._template.content.firstElementChild.cloneNode(true);
     }
 
@@ -45,7 +43,7 @@ export class TemplateProvider {
      * @param {string} templateName id of <template> element 
      * @returns {HTMLTemplateElement|null}
      */
-    static findTemplateByName(templateName) { 
+    static findTemplateByName(templateName) {
         return document.getElementById(kebabize(templateName));
-     }
+    }
 }

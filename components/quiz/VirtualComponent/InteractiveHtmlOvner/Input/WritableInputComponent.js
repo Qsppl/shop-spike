@@ -52,8 +52,9 @@ class WritableInputMirrorStorage extends MirrorStorage {
  * Реализует поддержание состояния Input'а в виртуальном компоненте. только одного.
  */
 export class WritableInputComponent extends VirtualComponent {
-    constructor() {
-        super();
+    /** @param {HTMLTemplateElement} template */
+    constructor(template) {
+        super(template);
         this._onInput = this._onInput.bind(this);
         this._inputListeners = new Set();
     }

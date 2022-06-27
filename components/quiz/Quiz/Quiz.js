@@ -26,10 +26,11 @@ export class Quiz {
 
         this._scenesMap = new Map();
         this._scenarioTravesabler = new ScenarioTravesabler();
-        this._startQuestionReaderMode();
+        this._mode = null;
     }
 
     open() {
+        if (this._mode === null) this._startQuestionReaderMode();
         this._slot.innerHTML = this._view._html;
         this._isOpened = true;
     }
@@ -47,6 +48,7 @@ export class Quiz {
     get _view() { return this.__view }
 
     _startQuestionReaderMode() {
+        this._mode = "questionRead";
         this._view = this._questionViewer;
         this._questionViewer.setScene(this._scenesMap.get(this._scenarioTravesabler.currentScene));
     }
@@ -76,10 +78,12 @@ export class Quiz {
     resetProgress() { }
 
     deserializeQuizData(data) {
+        console.log('data.questions is ', data.questions);
         for (let questionId in data.questions) {
             let questionData = data.questions[questionId];
             let scene;
-            switch (data.scene) {
+            console.log(data.scene);
+            switch (questionData.scene) {
                 case "BadgeWithIndicatorGrid":
                     scene = BadgeWithIndicatorGrid.deserializeData(questionData);
                     break;
@@ -113,9 +117,9 @@ class ScenarioTravesabler {
     }
 
     get currentScene() {
-        for (let val of this._path) console.log(--this._path.length)
-        let lastSegment = this._path[--this._path.length][1];
-        return lastSegment[--lastSegment.length];
+        window.temp11 = this._path;
+        let lastSegment = this._path[this._path.length - 1][1];
+        return lastSegment[lastSegment.length - 1];
     }
 
     next(value) {
@@ -125,12 +129,12 @@ class ScenarioTravesabler {
         // сценарий закончился. запрещаем выходить из сценария потому что некуда)
         if (nextInScenario == undefined) return false;
 
-        let lastSegment = this._path[--this._path.length][1];
+        let lastSegment = this._path[this._path.length - 1][1];
         lastSegment.push(nextInScenario);
         return this.currentScene;
     }
     prev() {
-        let lastSegment = this._path[--this._path.length][1];
+        let lastSegment = this._path[this._path.length - 1][1];
 
         // запрещаем выходить из первой сцены первого отрезка потому что некуда)
         if ((this._path.length = 1) && (lastSegment.length == 1)) return false;
@@ -139,7 +143,7 @@ class ScenarioTravesabler {
         if (lastSegment.length == 0) {
             // если в последнем отрезке закончились сцены, надо вернуться к предыдущему сценарию
             this._path.pop();
-            this._currentScenarioId = this._path[--this._path.length][0];
+            this._currentScenarioId = this._path[this._path.length - 1][0];
         }
         return this.currentScene;
     }

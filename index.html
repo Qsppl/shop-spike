@@ -381,6 +381,69 @@
     <template id="indicator-counter">
         <p>quiz-indicator-counter</p>
     </template>
+    <template id="quiz-scene">
+        <div class="test-item">
+            <div class="test__number">Вопрос <span component-inner=""></span component-inner="beginning-counter"> из <span
+                    component-inner="end-counter"></span></div>
+            <div class="test-item-title" component-inner="title"></div>
+            <div class="test-item-block q-3" component-slot="inputs"></div>
+        </div>
+    </template>
+    <template id="card-radio-with-picture">
+        <div class="test_elem test-elem-q-1">
+            <label class="img-label img-label-qw-1">
+                <img class="scale-1" data-src="/images/sliding-gates.jpg" src="/images/sliding-gates.jpg">
+            </label>
+            <div class="checkbox-wrap test-question__checkbox check-height">
+                <input class="radio-btn checkbox-inp" name="selectGateType" type="radio">
+                <label class="radio-label">
+                    <span class="radio-psevdo">
+                        <span class="radio-psevdo-active"></span>
+                    </span>
+                    Откатные
+                </label>
+            </div>
+        </div>
+    </template>
+    <template id="card-check-with-picture">
+        <div class="test_elem test-elem-q-1">
+            <label class="img-label img-label-qw-1">
+                <img class="scale-1" data-src="https://statics.суперкухни.рф/images/item-7-26.jpg" alt=""
+                    src="https://statics.суперкухни.рф/images/item-7-26.jpg">
+            </label>
+            <div class="checkbox-wrap test-question__checkbox check-height">
+                <input class="radio-btn checkbox-inp" type="checkbox">
+                <label class="radio-label">
+                    <span class="checkbox-psevdo">
+                        <span class="checkbox-psevdo-active"> </span>
+                    </span>
+                    Встроенная техника
+                </label>
+            </div>
+        </div>
+    </template>
+    <template id="badge-with-check-indicator">
+        <div class="checkbox-wrap test-question__checkbox size-block__item-checks-item">
+            <input class="radio-btn checkbox-inp" type="checkbox" value="">
+            <label class="radio-label">
+                <span class="checkbox-psevdo">
+                    <span class="checkbox-psevdo-active"> </span>
+                </span>
+                Своё производство (чтобы было без переплат)
+            </label>
+        </div>
+    </template>
+    <template id="badge-with-radio-indicator">
+        <div class="checkbox-wrap test-question__checkbox size-block__item-checks-item">
+            <input class="radio-btn checkbox-inp" type="radio">
+            <label class="radio-label">
+                <span class="radio-psevdo">
+                    <span class="radio-psevdo-active"> </span>
+                </span>
+                Частный дом
+            </label>
+        </div>
+    </template>
 </body>
 
 </html>

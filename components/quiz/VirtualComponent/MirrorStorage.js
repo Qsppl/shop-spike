@@ -64,7 +64,7 @@ export class MirrorStorage {
 
     selfInnerRender() {
         for (let targetAttr of this._AttrToRenderInner) {
-            for (let element of rootNode.querySelectorAll(`[${targetAttr}]`)) {
+            for (let element of this._rootElement.querySelectorAll(`[${targetAttr}]`)) {
                 let storagePropName = camelize(element.getAttribute(targetAttr));
                 if (storagePropName in this) element.innerHTML = this[storagePropName];
             }
@@ -73,12 +73,12 @@ export class MirrorStorage {
 
     selfAttrRender() {
         for (let targetAttr of this._AttrToRenderAttr) {
-            for (let element of rootNode.querySelectorAll(`[${targetAttr}]`)) {
+            for (let element of this._rootElement.querySelectorAll(`[${targetAttr}]`)) {
                 let storagePropName = camelize(element.getAttribute(targetAttr));
                 if (storagePropName in this) {
                     // из, например, "component-srcset" убираем "component-" (from storagePropName.search('-')+1 to storagePropName.length)
-                    $attr = storagePropName.substring(storagePropName.search('-') + 1, storagePropName.length);
-                    element[$attr] = this[storagePropName];
+                    let attribute = storagePropName.substring(storagePropName.search('-') + 1, storagePropName.length);
+                    element[attribute] = this[storagePropName];
                 }
             }
         }

@@ -1,4 +1,6 @@
-{
+'use strict';
+
+export default {
     "scenarios": {
         "#main" : [ "1", "selectGatesType", "3", "4", "5", "6", "7" ],
         "selectGatesType.answer5" : [ "snFoundation", "snWicket", "snFacade", "#Parent.5" ],
@@ -6,7 +8,7 @@
     },
     "questions": {
         "1": {
-            "scene": "BadgeWithIndicator",
+            "scene": "BadgeWithIndicatorGrid",
             "quest" : "Чи да?",
             "maxSelectItems": 1,
             "answers": {
@@ -16,7 +18,7 @@
             }
         },
         "selectGatesType": {
-            "scene": "CardsWithPicture",
+            "scene": "CardsWithPictureGrid",
             "quest": "Какие ворота Вас интересуют?",
             "maxSelectItems": 1,
             "answers": {
@@ -29,7 +31,7 @@
             }
         },
         "3": {
-            "scene": "BadgeWithIndicator",
+            "scene": "BadgeWithIndicatorGrid",
             "quest": "Куда нужны ворота?",
             "maxSelectItems": 1,
             "answers": {

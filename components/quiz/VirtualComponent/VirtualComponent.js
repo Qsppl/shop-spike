@@ -17,9 +17,10 @@ export class VirtualComponent {
             this._templateProvider = new TemplateProvider(htmlTemplate);
         } else {
             let template = this._findSelfTemplate();
-            if (!template) throw new Error('Для компонента не был передан <template> и автопоиск не нашел <template>.');
+            if (!template) throw new Error(`Для компонента не был передан <template> и автопоиск не нашел <template>. Аргумент: ${htmlTemplate}`);
             this._templateProvider = new TemplateProvider(template);
         }
+        this._onCreateHtml = this._onCreateHtml.bind(this);
         this._slotMap = new Map();
     }
 
@@ -36,14 +37,16 @@ export class VirtualComponent {
 
     /** @returns {HTMLElement} */
     get html() {
-        if (!this._html) this._html = this._templateProvider.createHTML();
-        this._onCreateHtml(this.html);
-        return html;
+        if (!this._html) {
+            this._html = this._templateProvider.createHTML();
+            this._onCreateHtml();
+        }
+        return this._html;
     }
 
-    _onCreateHtml(html) {
+    _onCreateHtml() {
         this.state.attach(this.html);
-        for (let slotName of this._slotMap.keys) this._updateSlotState(slotName);
+        for (let slotName in this._slotMap.keys) this._updateSlotState(slotName);
     }
 
 
@@ -56,6 +59,8 @@ export class VirtualComponent {
      * @param { string } slotName
      */
     appendInSlot(component, slotName) {
+        if (!(component instanceof VirtualComponent)) throw TypeError(component);
+        if (typeof slotName !== "string") throw TypeError(slotName);
         if (!this._slotMap.has(slotName)) this._slotMap.set(slotName, new Set());
         if (this._slotMap.get(slotName).has(component)) return true;
 
@@ -87,9 +92,13 @@ export class VirtualComponent {
 
     /**
      * @param {string} slotName
-     * @returns {Element} slot
+     * @returns {Element|null} slot
      */
-    _findSlotElement(slotName) { return this.html.querySelector(`[component-slot="${slotName}"]`); }
+    _findSlotElement(slotName) {
+        let slotElement = this.html.querySelector(`[component-slot="${slotName}"]`);
+        if (!slotElement) throw new Error(`В компоненте ${this.constructor.name} ожидался слот ${slotName}`);
+        return slotElement;
+    }
 
     /**
      * @param {string} slotName 

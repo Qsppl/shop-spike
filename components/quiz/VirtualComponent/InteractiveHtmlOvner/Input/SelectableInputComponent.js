@@ -8,11 +8,9 @@ import { VirtualComponent } from "../../VirtualComponent.js";
  * Перехват пользовательского "выбора" интерактивного элемента
  */
 class SelectableInputMirrorStorage extends MirrorStorage {
-    /**
-     * @param {string} value Начальное значение input.value; После может быть изменено через js.
-     * @param {boolean} checked Начальное значение input.checked; После может быть изменено как через input так и через js.
-     */
-    constructor() {
+    /** @param {HTMLTemplateElement} template */
+    constructor(template) {
+        super(template);
         this.value = "";
         if (this.checked !== undefined) this.checked = false;
         this._handleInputEvent = this._handleInputEvent.bind(this);
@@ -21,15 +19,7 @@ class SelectableInputMirrorStorage extends MirrorStorage {
     }
 
     /** @returns {SelectableInputMirrorStorage} Прокси для доступа к свойствам хранилища. При записи через прокси свойства будут зеркально отображены в разметку. */
-    get storage() { return super.storage(); }
-
-    set value(string) { if (typeof string !== "string") throw new TypeError(); this.value = string; }
-    /** @returns {string} value */
-    get value() { return this.value; }
-
-    set checked(state) { if (typeof state !== "boolean") throw new TypeError(); this.checked = state; }
-    /** @returns {boolean} value */
-    get checked() { return this.checked; }
+    get storage() { return super.storage; }
 
     _handleInputEvent(e) {
         this.storage.value = this._input.value;
@@ -70,8 +60,9 @@ class SelectableInputMirrorStorage extends MirrorStorage {
  * Реализует поддержание состояния Input'а в виртуальном компоненте. только одного.
  */
 export class SelectableInputComponent extends VirtualComponent {
-    constructor() {
-        super();
+    /** @param {HTMLTemplateElement} template */
+    constructor(template) {
+        super(template);
         this._onInput = this._onInput.bind(this);
         this._inputListeners = new Set();
     }
