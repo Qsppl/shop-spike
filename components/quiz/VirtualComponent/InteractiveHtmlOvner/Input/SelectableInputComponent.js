@@ -31,8 +31,12 @@ class SelectableInputMirrorStorage extends MirrorStorage {
     addInputListener(callback) { this._inputListeners.add(callback); }
     _activateInputListeners(e) { for (let callback of this._inputListeners) callback(e); }
 
+    /**
+     * Применить состояние хранилища к разметке
+     * @param {HTMLElement} rootElement - корневой элемент HTML разметки компонента.
+     */
     attach(rootElement) {
-        let rootOfComponent = super.attach(rootElement);
+        super.attach(rootElement);
 
         this._input = rootElement.querySelector('input');
         if (!(this._input instanceof HTMLInputElement)) throw new Error();
@@ -44,7 +48,6 @@ class SelectableInputMirrorStorage extends MirrorStorage {
 
         if (this.value) this._input.value = this.value;
         else if (this._input.value) this.value = this._input.value;
-        return rootOfComponent;
     }
 
     render(rootElement = this._rootElement) {

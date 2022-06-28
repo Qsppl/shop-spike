@@ -18,7 +18,7 @@ export class TemplateProvider {
      * @returns {Element} component
      */
     createHTML() {
-        if (this._template.content.childElementCount !== 1) { return document.createElement("div").innerHTML = this._template.content.cloneNode(true); }
+        if (this._template.content.childElementCount !== 1) { return document.createElement("div").appendChild(this._template.content.cloneNode(true)); }
         return this._template.content.firstElementChild.cloneNode(true);
     }
 

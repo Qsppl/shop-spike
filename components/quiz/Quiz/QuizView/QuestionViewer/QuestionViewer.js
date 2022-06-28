@@ -19,7 +19,7 @@ export class QuestionViewer extends VirtualComponent {
 
     /** @param {VirtualComponent} questionScene */
     setScene(questionScene) {
-        if (!(questionScene instanceof VirtualComponent)) throw new TypeError(questionScene);
+        if (!(questionScene instanceof VirtualComponent)) throw new TypeError(`${questionScene}`);
         this.clearSlot('question-scene');
         this.appendInSlot(questionScene, "question-scene");
     }

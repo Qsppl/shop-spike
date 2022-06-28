@@ -21,7 +21,7 @@ export class CardWithPicture extends SelectableInputComponent {
     /** @returns {string} */
     get name() { return this.state.name; }
 
-    set url(url) { if (typeof text !== 'string') throw new TypeError(); this.state.url = url; }
+    set url(url) { if (typeof url !== 'string') throw new TypeError(); this.state.url = url; }
     /** @returns {string} */
     get url() { return this.state.url; }
 

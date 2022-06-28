@@ -59,8 +59,8 @@ export class VirtualComponent {
      * @param { string } slotName
      */
     appendInSlot(component, slotName) {
-        if (!(component instanceof VirtualComponent)) throw TypeError(component);
-        if (typeof slotName !== "string") throw TypeError(slotName);
+        if (typeof slotName !== "string") throw new TypeError(`Ожидалась строка, был передан ${slotName}`);
+        if (!(component instanceof VirtualComponent)) throw new TypeError(`Ожидался компонент, был передан ${slotName}`);
         if (!this._slotMap.has(slotName)) this._slotMap.set(slotName, new Set());
         if (this._slotMap.get(slotName).has(component)) return true;
 
@@ -73,6 +73,7 @@ export class VirtualComponent {
      * @param {string} slotName 
      */
     clearSlot(slotName) {
+        if (typeof slotName !== "string") throw new TypeError(`Ожидалась строка, был передан ${slotName}`);
         if (!this._slotMap.has(slotName)) return false;
         if (!this._slotMap.get(slotName).size) return true;
 
@@ -86,6 +87,7 @@ export class VirtualComponent {
      * @returns {Array} components
      */
     _getComponentsInSlot(slotName) {
+        if (typeof slotName !== "string") throw new TypeError(`Ожидалась строка, был передан ${slotName}`);
         if (!this._slotMap.has(slotName)) return [];
         return Array.from(this._slotMap.get(slotName));
     }
@@ -95,6 +97,7 @@ export class VirtualComponent {
      * @returns {Element|null} slot
      */
     _findSlotElement(slotName) {
+        if (typeof slotName !== "string") throw new TypeError(`Ожидалась строка, был передан ${slotName}`);
         let slotElement = this.html.querySelector(`[component-slot="${slotName}"]`);
         if (!slotElement) throw new Error(`В компоненте ${this.constructor.name} ожидался слот ${slotName}`);
         return slotElement;
@@ -104,15 +107,19 @@ export class VirtualComponent {
      * @param {string} slotName 
      * @param {VirtualComponent} component 
      */
-    _spawnComponentInSlotElement(slotName, component) { this._findSlotElement(slotName).appendChild(component.createHTML()); }
+    _spawnComponentInSlotElement(slotName, component) {
+        if (typeof slotName !== "string") throw new TypeError(`Ожидалась строка, был передан ${slotName}`);
+        if (!(component instanceof VirtualComponent)) throw new TypeError(`Ожидался компонент, был передан ${slotName}`);
+        this._findSlotElement(slotName).appendChild(component.html); }
 
     /** @param {string} slotName */
-    _clearSlotElement(slotName) { this._findSlotElement(slotName).innerHTML = ""; }
+    _clearSlotElement(slotName) { if (typeof slotName !== "string") throw new TypeError(`Ожидалась строка, был передан ${slotName}`); this._findSlotElement(slotName).innerHTML = ""; }
 
     _updateSlotState(slotName) {
+        if (typeof slotName !== "string") throw new TypeError(`Ожидалась строка, был передан ${slotName}`);
         let slot = this._findSlotElement(slotName);
         slot.innerHTML = "";
-        for (let component of this._getComponentsInSlot(slotName)) this._spawnComponentInSlotElement(slot, component);
+        for (let component of this._getComponentsInSlot(slotName)) this._spawnComponentInSlotElement(slotName, component);
     }
 
     // /**

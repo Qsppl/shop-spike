@@ -22,6 +22,7 @@ export class Quiz {
         // this._finalScene = new FinalScene();
         this._view = undefined;
         this._slot = document.querySelector('[component-slot="quiz"]');
+        if (this._slot === null) throw new TypeError();
         this._isOpened = false;
 
         this._scenesMap = new Map();
@@ -31,7 +32,8 @@ export class Quiz {
 
     open() {
         if (this._mode === null) this._startQuestionReaderMode();
-        this._slot.innerHTML = this._view._html;
+        this._slot.innerHTML = "";
+        this._slot.appendChild(this._view._html);
         this._isOpened = true;
     }
 
@@ -42,7 +44,10 @@ export class Quiz {
 
     set _view(view) {
         this.__view = view;
-        if (this._isOpened) this._slot.innerHTML = this._view._html;
+        if (this._isOpened) {
+            this._slot.innerHTML = "";
+            this._slot.appendChild(this._view._html);
+        }
     }
     /** @returns {VirtualComponent} _view */
     get _view() { return this.__view }
