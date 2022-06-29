@@ -10,7 +10,7 @@ export default {
         "1": {
             "scene": "BadgeWithIndicatorGrid",
             "quest" : "Чи да?",
-            "maxSelectItems": 1,
+            "amountOfSelect": [1, 2],
             "answers": {
                 "1": "да",
                 "2": "нет",
@@ -20,7 +20,7 @@ export default {
         "selectGatesType": {
             "scene": "CardsWithPictureGrid",
             "quest": "Какие ворота Вас интересуют?",
-            "maxSelectItems": 1,
+            "amountOfSelect": 1,
             "answers": {
                 "1": { "text": "Откатные", "image": "" },
                 "answer2": { "text": "Распашные", "image": "" },
@@ -33,7 +33,7 @@ export default {
         "3": {
             "scene": "BadgeWithIndicatorGrid",
             "quest": "Куда нужны ворота?",
-            "maxSelectItems": 1,
+            "amountOfSelect": 1,
             "answers": {
                 "1": "Частный дом",
                 "2": "Дача",

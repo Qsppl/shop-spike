@@ -6,16 +6,17 @@ import { TemplateProvider } from "../../VirtualComponent/TemplateProvider.js";
 
 export class QuizScene extends VirtualComponent {
     /**
-     * @param {Number|false} maxSelectedCards Максимальное количество одновременно выбранных карточек на сцене. Если false то неограниченно.
+     * @param {Number|Array<Number>} amountOfSelect Отрезок на числовой прямой или число - задают необходимое количество ответов.
      * @param {string} title Заголовок сцены.
      * @param {string} subtitle Подзаголовок сцены.
      * @param {HTMLTemplateElement} htmlTemplate по умолчанию равен 'auto'
      */
-    constructor(title, subtitle = "", maxSelectedCards = false, htmlTemplate = 'auto') {
+    constructor(title, subtitle = "", amountOfSelect = 1, htmlTemplate = 'auto') {
         super(TemplateProvider.findTemplateByName('quiz-scene'));
 
-        this._interactiveGroupController = new SelectableInputGroup();
-        this.maxSelectedCards = maxSelectedCards;
+        console.log(`New QuizScene: ${this.constructor.name}!`);
+        this._interactiveGroupController = new SelectableInputGroup(amountOfSelect);
+        this.maxSelectedCards = this._interactiveGroupController.maxAmountOfSelect;
         this.state.title = title;
         this.state.subtitle = subtitle;
     }
@@ -46,7 +47,7 @@ export class QuizScene extends VirtualComponent {
      */
     static deserializeData(data, htmlTemplate = 'auto') {
         let subtitle = data.subtitle ? data.subtitle : "";
-        let scene = new this(data.quest, subtitle, data.maxSelectItems, htmlTemplate);
+        let scene = new this(data.quest, subtitle, data.amountOfSelect, htmlTemplate);
 
         // десериализация дочерних компонентов
         for (let answerIdintefer in data.answers) {

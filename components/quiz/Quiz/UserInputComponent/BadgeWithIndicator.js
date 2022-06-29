@@ -13,6 +13,7 @@ export class BadgeWithIndicator extends SelectableInputComponent {
     constructor(name, templateProvider) {
         super(templateProvider);
         this.name = name;
+        console.log(`   New SelectableInputComponent: ${this.constructor.name}!`);
     }
 
     set name(text) { if (typeof text !== 'string') throw new TypeError(); this.state.name = text; }

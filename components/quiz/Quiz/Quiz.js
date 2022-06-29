@@ -85,9 +85,9 @@ export class Quiz {
     deserializeQuizData(data) {
         console.log('data.questions is ', data.questions);
         for (let questionId in data.questions) {
+            console.log(`########### ${questionId} witch ${data.questions[questionId]} is:`);
             let questionData = data.questions[questionId];
             let scene;
-            console.log(data.scene);
             switch (questionData.scene) {
                 case "BadgeWithIndicatorGrid":
                     scene = BadgeWithIndicatorGrid.deserializeData(questionData);
@@ -99,6 +99,7 @@ export class Quiz {
                     throw TypeError();
                     break;
             }
+            console.log('\n');
             this._scenesMap.set(questionId, scene);
         }
     }

@@ -339,14 +339,15 @@
                 <div class="test__wrap">
                     <div class="test__qwiz">
                         <div class="test__title test__title-1">Расчет стоимости ворот по индивидуальным параметрам</div>
-                        <div class="progress-bar__text">Расчет пройден на <span component-inner="percent-progress">0%</span>
+                        <div class="progress-bar__text">Расчет пройден на <span
+                                component-inner="percent-progress">0%</span>
                         </div>
                         <div class="progress-bar" component-slot="indicator-counter"></div>
                         <div class="test__number">Вопрос <span component-inner="beginning-counter">3</span> из <span
                                 component-inner="text-scenes-count">8</span></div>
-    
+
                         <div class="test-content" component-slot="question-scene"></div>
-    
+
                         <div class="test__btn-block">
                             <button class="test-prev test-close" disabled="" data-control="close"
                                 data-type="test-button-close">
@@ -383,8 +384,8 @@
     </template>
     <template id="quiz-scene">
         <div class="test-item">
-            <div class="test__number">Вопрос <span component-inner=""></span component-inner="beginning-counter"> из <span
-                    component-inner="end-counter"></span></div>
+            <div class="test__number">Вопрос <span component-inner=""></span component-inner="beginning-counter"> из
+                <span component-inner="end-counter"></span></div>
             <div class="test-item-title" component-inner="title"></div>
             <div class="test-item-block q-3" component-slot="inputs"></div>
         </div>
@@ -435,12 +436,12 @@
     </template>
     <template id="badge-with-radio-indicator">
         <div class="checkbox-wrap test-question__checkbox size-block__item-checks-item">
-            <input class="radio-btn checkbox-inp" type="radio">
             <label class="radio-label">
+                <input class="radio-btn checkbox-inp" type="radio">
                 <span class="radio-psevdo">
                     <span class="radio-psevdo-active"> </span>
                 </span>
-                Частный дом
+                <span component-inner="name">Частный дом</span>
             </label>
         </div>
     </template>

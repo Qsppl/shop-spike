@@ -15,6 +15,7 @@ export class CardWithPicture extends SelectableInputComponent {
         super(templateProvider);
         this.name = name;
         this.url = url;
+        console.log(`   New SelectableInputComponent: ${this.constructor.name}!`);
     }
 
     set name(text) { if (typeof text !== 'string') throw new TypeError(); this.state.name = text; }

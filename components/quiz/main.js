@@ -7,3 +7,4 @@ console.log(data);
 let quiz = new Quiz();
 window.quiz = quiz
 quiz.deserializeQuizData(data);
+quiz.open()

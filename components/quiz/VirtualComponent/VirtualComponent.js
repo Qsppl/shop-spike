@@ -108,6 +108,7 @@ export class VirtualComponent {
      * @param {VirtualComponent} component 
      */
     _spawnComponentInSlotElement(slotName, component) {
+        console.log(`<<< spawn component ${component.constructor.name} in ${slotName}`);
         if (typeof slotName !== "string") throw new TypeError(`Ожидалась строка, был передан ${slotName}`);
         if (!(component instanceof VirtualComponent)) throw new TypeError(`Ожидался компонент, был передан ${slotName}`);
         this._findSlotElement(slotName).appendChild(component.html); }

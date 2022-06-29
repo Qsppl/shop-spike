@@ -65,7 +65,6 @@ export class MirrorStorage {
     selfInnerRender() {
         for (let targetAttr of this._AttrToRenderInner) {
             for (let element of this._rootElement.querySelectorAll(`[${targetAttr}]`)) {
-                console.log(element);
                 let storagePropName = camelize(element.getAttribute(targetAttr));
                 if (storagePropName in this) {
                     element.innerHTML = this[storagePropName];

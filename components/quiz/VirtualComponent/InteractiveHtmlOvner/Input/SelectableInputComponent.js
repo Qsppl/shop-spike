@@ -12,24 +12,30 @@ class SelectableInputMirrorStorage extends MirrorStorage {
     constructor(template) {
         super(template);
         this.value = "";
-        if (this.checked !== undefined) this.checked = false;
-        this._handleInputEvent = this._handleInputEvent.bind(this);
+        this._checked = false;
+        this._handleClickEvent = this._handleClickEvent.bind(this);
         this._allowedTypes = new Set(['checkbox', 'radio']);
         this._inputListeners = new Set();
     }
 
     /** @returns {SelectableInputMirrorStorage} Прокси для доступа к свойствам хранилища. При записи через прокси свойства будут зеркально отображены в разметку. */
+    // это не storage. объект MirrorStorage это storage - а прокси осуществляет доступ к storage с автоматической синхронизацией разметки.
     get storage() { return super.storage; }
 
-    _handleInputEvent(e) {
-        this.storage.value = this._input.value;
-        this.storage.checked = this._input.checked;
-        this._activateInputListeners(e);
+    _handleClickEvent(e) { this.storage.checked = !(this.storage.checked); }
+
+    // этот костыль блокирует доступ из js - надо перенести в state все эвент-таргеты
+    set checked(state) {
+        this._checked = state;
+        this._activateInputListeners();
     }
+
+    /** @returns {boolean} */
+    get checked() { return this._checked; }
 
     /** @param {Function} callback Колбэк вызываемый после пользовательского ввода. */
     addInputListener(callback) { this._inputListeners.add(callback); }
-    _activateInputListeners(e) { for (let callback of this._inputListeners) callback(e); }
+    _activateInputListeners() { for (let callback of this._inputListeners) callback(this); }
 
     /**
      * Применить состояние хранилища к разметке
@@ -41,7 +47,7 @@ class SelectableInputMirrorStorage extends MirrorStorage {
         this._input = rootElement.querySelector('input');
         if (!(this._input instanceof HTMLInputElement)) throw new Error();
         if (!(this._allowedTypes.has(this._input.type))) throw new Error();
-        this._input.addEventListener('input', this._handleInputEvent);
+        this._input.addEventListener('click', this._handleClickEvent);
 
         if (this.checked !== undefined) this._input.checked = this.checked;
         else this.checked = this._input.checked;
@@ -51,6 +57,7 @@ class SelectableInputMirrorStorage extends MirrorStorage {
     }
 
     render(rootElement = this._rootElement) {
+        console.log('render');
         if (!super.render(rootElement)) return false;
 
         this._input.value = this.value;
@@ -70,7 +77,7 @@ export class SelectableInputComponent extends VirtualComponent {
         this._inputListeners = new Set();
     }
 
-    _onInput(e) { this._activateInputListeners(this); }
+    _onInput() { this._activateInputListeners(this); }
 
     /** @param {Function} callback Колбэк вызываемый после пользовательского ввода. */
     addInputListener(callback) { this._inputListeners.add(callback); }
