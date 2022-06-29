@@ -9,14 +9,21 @@ import { VirtualComponent } from "../../VirtualComponent.js";
  */
 class SelectableInputMirrorStorage extends MirrorStorage {
     /** @param {HTMLTemplateElement} template */
-    constructor(template) {
-        super(template);
-        this.value = "";
+    constructor(name, value) {
+        super();
+        this.name = name;
+        this.value = value;
         this._checked = false;
         this._handleClickEvent = this._handleClickEvent.bind(this);
         this._allowedTypes = new Set(['checkbox', 'radio']);
-        this._inputListeners = new Set();
     }
+
+    /**
+     * Сюда присваивается callback - вызовется когда интерактивный компонент посчитает что пользователь передал какую-то часть конечных данных. Сам не определяет подходят ли эти данные;
+     * @param {IUserInputSource}
+     * @returns {boolean} результат вылидации данных коллбэком
+     */
+    onUserFilledField(inputSource) { }
 
     /** @returns {SelectableInputMirrorStorage} Прокси для доступа к свойствам хранилища. При записи через прокси свойства будут зеркально отображены в разметку. */
     // это не storage. объект MirrorStorage это storage - а прокси осуществляет доступ к storage с автоматической синхронизацией разметки.
@@ -25,17 +32,10 @@ class SelectableInputMirrorStorage extends MirrorStorage {
     _handleClickEvent(e) { this.storage.checked = !(this.storage.checked); }
 
     // этот костыль блокирует доступ из js - надо перенести в state все эвент-таргеты
-    set checked(state) {
-        this._checked = state;
-        this._activateInputListeners();
-    }
+    set checked(state) { this._checked = state; if (this._checked) this.onUserFilledField(this); }
 
     /** @returns {boolean} */
     get checked() { return this._checked; }
-
-    /** @param {Function} callback Колбэк вызываемый после пользовательского ввода. */
-    addInputListener(callback) { this._inputListeners.add(callback); }
-    _activateInputListeners() { for (let callback of this._inputListeners) callback(this); }
 
     /**
      * Применить состояние хранилища к разметке
@@ -57,7 +57,6 @@ class SelectableInputMirrorStorage extends MirrorStorage {
     }
 
     render(rootElement = this._rootElement) {
-        console.log('render');
         if (!super.render(rootElement)) return false;
 
         this._input.value = this.value;
@@ -71,32 +70,44 @@ class SelectableInputMirrorStorage extends MirrorStorage {
  */
 export class SelectableInputComponent extends VirtualComponent {
     /** @param {HTMLTemplateElement} template */
-    constructor(template) {
+    constructor(template, name, value) {
         super(template);
-        this._onInput = this._onInput.bind(this);
-        this._inputListeners = new Set();
+        this._onSelect = this._onSelect.bind(this);
+        this._mirrorStorage = new SelectableInputMirrorStorage(name, value);
+        this._mirrorStorage.addInputListener(this._onSelect);
     }
 
-    _onInput() { this._activateInputListeners(this); }
-
-    /** @param {Function} callback Колбэк вызываемый после пользовательского ввода. */
-    addInputListener(callback) { this._inputListeners.add(callback); }
-    _activateInputListeners(component) { for (let callback of this._inputListeners) callback(component); }
+    _onSelect() { this.onUserFilledField(this); }
 
     /** @returns {SelectableInputMirrorStorage} */
-    get state() {
-        if (!this._mirrorStorage) {
-            this._mirrorStorage = new SelectableInputMirrorStorage();
-            this._mirrorStorage.addInputListener(this._onInput)
-        }
-        return this._mirrorStorage.storage;
-    }
+    get state() { return this._mirrorStorage.storage; }
+
+    set checked(state) { this.state.checked = state; }
+    /** @returns {boolean} value */
+    get checked() { return this.state.checked; }
+
+    // ### IUserInputSource ###
+
+    /**
+     * callback - вызовется когда интерактивный компонент посчитает что пользователь передал какую-то часть конечных данных. Сам не определяет подходят ли эти данные;
+     * @param {IUserInputSource}
+     */
+    onUserFilledField(inputSource) { }
+
+    set name(string) { this.state.name = string; }
+    /** @returns {string} value */
+    get name() { return this.state.name; }
 
     set value(string) { this.state.value = string; }
     /** @returns {string} value */
     get value() { return this.state.value; }
 
-    set checked(state) { this.state.checked = state; }
-    /** @returns {boolean} value */
-    get checked() { return this.state.checked; }
+    /** @returns {Set<String, String>|Set<null, null>} Set<key, value>|Set<null, null> */
+    getResponse() {
+        if (typeof this.name !== 'string' || typeof this.value !== 'string') return new Set([null, null]);
+        if (!this.checked) return new Set([null, null]);
+        return new Set([this.name, this.value]);
+    }
+
+    // ### /IUserInputSource ###
 }

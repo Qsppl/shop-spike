@@ -13,16 +13,17 @@ export class QuizScene extends VirtualComponent {
      */
     constructor(title, subtitle = "", amountOfSelect = 1, htmlTemplate = 'auto') {
         super(TemplateProvider.findTemplateByName('quiz-scene'));
+        console.log(`New QuizScene: ${this.constructor.name}! amountOfSelect is ${amountOfSelect}`);
 
-        console.log(`New QuizScene: ${this.constructor.name}!`);
         this._interactiveGroupController = new SelectableInputGroup(amountOfSelect);
-        this.maxSelectedCards = this._interactiveGroupController.maxAmountOfSelect;
         this.state.title = title;
         this.state.subtitle = subtitle;
     }
 
-    get childComponentTemplate() { }
-    get childComponentConstructor() { }
+    get maxSelectedCards() { return this._interactiveGroupController.maxAmountOfSelect; }
+
+    get childComponentTemplate() { throw new Error(`Интерфейс не был определен в дочернем классе ${this.constructor.name} класса QuizScene`); }
+    get childComponentConstructor() { throw new Error(`Интерфейс не был определен в дочернем классе ${this.constructor.name} класса QuizScene`); }
 
     /**
      * @param {string} idintefer 

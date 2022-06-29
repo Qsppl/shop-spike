@@ -10,7 +10,7 @@ export default {
         "1": {
             "scene": "BadgeWithIndicatorGrid",
             "quest" : "Чи да?",
-            "amountOfSelect": [1, 2],
+            "amountOfSelect": [1, Infinity],
             "answers": {
                 "1": "да",
                 "2": "нет",
