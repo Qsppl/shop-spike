@@ -7,14 +7,14 @@ import { SelectableInputComponent } from "../../VirtualComponent/InteractiveHtml
  */
 export class CardWithPicture extends SelectableInputComponent {
     /**
-     * @param {string} name
-     * @param {string} url
      * @param {HTMLTemplateElement} htmlTemplate
+     * @param {string} idintefer
+     * @param {string} text
+     * @param {string} imageUrl
      */
-    constructor(name, url, templateProvider) {
-        super(templateProvider);
-        this.name = name;
-        this.url = url;
+    constructor(htmlTemplate, idintefer, text, imageUrl) {
+        super(htmlTemplate, idintefer, text);
+        this.url = imageUrl;
         console.log(`   New SelectableInputComponent: ${this.constructor.name}!`);
     }
 
@@ -27,12 +27,11 @@ export class CardWithPicture extends SelectableInputComponent {
     get url() { return this.state.url; }
 
     /**
+     * @param {String} idintefer 
      * @param {Object} data 
      * @param {HTMLTemplateElement} htmlTemplate
      */
-    static deserializeData(data, htmlTemplate) {
-        let card = new this(data.text, data.image, htmlTemplate);
-        card.value = data.text;
-        return card;
+    static deserializeData(idintefer, data, htmlTemplate) {
+        return new this(htmlTemplate, idintefer, data.text, data.image);
     }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-import { VirtualComponent } from "../../../VirtualComponent/VirtualComponent.js"
+import { IUserInputSource } from "../IUserInputSource.js";
 import { SelectableInputComponent } from "../Input/SelectableInputComponent.js";
 
 export class SelectableInputGroup {
@@ -16,30 +16,41 @@ export class SelectableInputGroup {
             this._maxAmountOfSelect = amountOfSelect[1];
         } else throw new TypeError();
 
-        this.__componentsMap = new Map();
-        this._onComponentInput = this._onComponentInput.bind(this);
+        this._attachedInputs = new Set();
+        this._handleInputChange = this._handleInputChange.bind(this);
     }
 
     /** @returns {Set<SelectableInputComponent>} */
-    get _selectedComponents() { return new Set([...this._componentsMap.values()].filter((component) => { return component._mirrorStorage._checked; })); }
+    get _selectedComponents() {
+        return new Set([...this.attachedInputs].filter((component) => { return component._mirrorStorage._checked; }));
+    }
     /** @returns {Map<SelectableInputComponent>} */
-    get _componentsMap() { return this.__componentsMap; }
+    get attachedInputs() { return this._attachedInputs; }
 
     /** @returns {Number} */
     get minAmountOfSelect() { return this._minAmountOfSelect; }
     /** @returns {Number} */
-    get maxAmountOfSelect() { if (isFinite(this._maxAmountOfSelect)) return this._maxAmountOfSelect; else { return this._componentsMap.size > 2 ? this._componentsMap.size : this._maxAmountOfSelect; } }
+    get maxAmountOfSelect() {
+        if (isFinite(this._maxAmountOfSelect)) return this._maxAmountOfSelect;
+        else { return this.attachedInputs.size > 2 ? this.attachedInputs.size : this._maxAmountOfSelect; }
+    }
+
+    /** @param {SelectableInputComponent} component */
+    _handleInputChange(component) {
+        this._normalizeGroup(component);
+        if (this._selectedComponents.size === this.maxAmountOfSelect) this.onUserFilledField(this);
+    }
 
     /**
      * @param {string} idintefer 
      * @param {SelectableInputComponent} component 
      */
-    addComponent(idintefer, component) {
-        if (!(component instanceof SelectableInputComponent)) throw new TypeError();
-        this._componentsMap.set(idintefer, component);
-        component.onUserFilledField = this._onComponentInput;
-        console.log(`   addComponent ${component}`);
-        if (component.checked) this._addToGroupOfSelected(component);
+    addComponent(component) {
+        if (!(component instanceof SelectableInputComponent)) throw new TypeError(component);
+        if (this.attachedInputs.has(component)) return;
+        
+        this.attachedInputs.add(component);
+        component.onInputChanged = this._handleInputChange;
     }
 
     /**  @param {SelectableInputComponent} component  */
@@ -66,31 +77,27 @@ export class SelectableInputGroup {
             while (selected.length > this.maxAmountOfSelect) selected.pop()._mirrorStorage._checked = false;
         }
 
-        Array.from(this._componentsMap.values()).map((component) => { component.state.render(); })
+        Array.from(this.attachedInputs.values()).map((component) => { component.state.render(); })
     }
 
     // ### IUserInputSource ###
 
-    // getValueOfGroup() {
-    //     value = new Map();
-    //     for (let [key, component] of this._componentsMap) { if (component._mirrorStorage._checked) value.set(key, component.value); }
-    //     if (value.size < this.maxAmountOfSelect) return false;
-    //     return value;
-    // }
-
     /**
      * Сюда присваивается callback - вызовется когда интерактивный компонент посчитает что пользователь передал какую-то часть конечных данных. Сам не определяет подходят ли эти данные;
-     * @param {IUserInputSource}
+     * @param {IUserInputSource} inputSource
      */
-    onUserFilledField(inputSource) { }
+    onUserFilledField(inputSource) {
+        console.log('go, ', inputSource.getResponse());
+    }
 
-    /** @returns {Set<String, String>|Set<null, null>} Set<key, value>|Set<null, null> */
+    /** @returns {Map<String, String|null>} Map<key, value|null> */
     getResponse() {
-        if (this._selectedComponents.size < this._maxAmountOfSelect) return new Set([null, null]);
-        
-        for (let component of this._selectedComponents.values)
-        if (typeof this.name !== 'string' || typeof this.value !== 'string') return new Set([null, null]);
-        return new Set([this.name, this.value]);
+        let response = new Map("", null);
+        if (this._selectedComponents.size < this._minAmountOfSelect) return response;
+
+        for (let component of this._selectedComponents)
+            for (let [name, value] of component.getResponse().entries()) response.set(name, value);
+        return response;
     }
 
     // ### /IUserInputSource ###

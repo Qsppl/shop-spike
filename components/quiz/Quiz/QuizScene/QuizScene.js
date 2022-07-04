@@ -16,6 +16,8 @@ export class QuizScene extends VirtualComponent {
         console.log(`New QuizScene: ${this.constructor.name}! amountOfSelect is ${amountOfSelect}`);
 
         this._interactiveGroupController = new SelectableInputGroup(amountOfSelect);
+        this._nandleInputGroupFill = this._nandleInputGroupFill.bind(this);
+        this._interactiveGroupController.onUserFilledField = this._nandleInputGroupFill;
         this.state.title = title;
         this.state.subtitle = subtitle;
     }
@@ -29,18 +31,20 @@ export class QuizScene extends VirtualComponent {
      * @param {string} idintefer 
      * @param {VirtualComponent} component
      */
-    addChildComponent(idintefer, component) {
+    addChildComponent(component) {
         this.appendInSlot(component, "inputs");
 
-        this._interactiveGroupController.addComponent(idintefer, component);
-        if (this._getComponentsInSlot("inputs").length === 1) component.checked = true;
+        this._interactiveGroupController.addComponent(component);
+        if (this._getComponentsInSlot("inputs").length === 1) component.quietlySelect();
     }
 
-    /**
-     * Метод получения введенных пользователем данных с интерактивных компонентов и групп интерактивных компонентов пренадлежащим компоненту
-     * @returns 
-     */
-    getValue() { return this._interactiveGroupController.getValueOfGroup(); }
+    /** @param {IUserInputSource} inputSource  */
+    _nandleInputGroupFill(inputSource) { this.onReady(this); }
+
+    /** @returns {Map<String, String|null>} responsData Map<key, value|null> */
+    getResponse() { return this._interactiveGroupController.getResponse() }
+
+    onReady() { }
 
     /**
      * @param {Object} data 
@@ -54,7 +58,7 @@ export class QuizScene extends VirtualComponent {
         for (let answerIdintefer in data.answers) {
             let childComponentData = data.answers[answerIdintefer];
             if (!(scene.childComponentTemplate instanceof HTMLTemplateElement)) throw new TypeError(scene.childComponentTemplate)
-            scene.addChildComponent(answerIdintefer, scene.childComponentConstructor.deserializeData(childComponentData, scene.childComponentTemplate));
+            scene.addChildComponent(scene.childComponentConstructor.deserializeData(answerIdintefer, childComponentData, scene.childComponentTemplate));
         }
         return scene;
     }

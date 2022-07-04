@@ -19,7 +19,7 @@ import { QuizScene } from "./QuizScene/QuizScene.js";
 export class Quiz {
     constructor() {
         this._questionViewer = new QuestionViewer();
-        // this._finalScene = new FinalScene();
+        this._finalScene = new FinalScene();
         this._view = undefined;
         this._slot = document.querySelector('[component-slot="quiz"]');
         if (this._slot === null) throw new TypeError();
@@ -33,7 +33,7 @@ export class Quiz {
     open() {
         if (this._mode === null) this._startQuestionReaderMode();
         this._slot.innerHTML = "";
-        this._slot.appendChild(this._view._html);
+        this._slot.appendChild(this._view.html);
         this._isOpened = true;
     }
 
@@ -46,40 +46,52 @@ export class Quiz {
         this.__view = view;
         if (this._isOpened) {
             this._slot.innerHTML = "";
-            this._slot.appendChild(this._view._html);
+            this._slot.appendChild(this._view.html);
         }
     }
+
     /** @returns {VirtualComponent} _view */
     get _view() { return this.__view }
 
     _startQuestionReaderMode() {
         this._mode = "questionRead";
         this._view = this._questionViewer;
-        this._questionViewer.setScene(this._scenesMap.get(this._scenarioTravesabler.currentScene));
+        this._viewScene(this._scenesMap.get(this._scenarioTravesabler.currentScene));
+    }
+
+    /** @param { QuizScene } scene  */
+    _viewScene(scene) {
+        this._questionViewer.setScene(scene);
+        scene.onReady = this.nextQuestion.bind(this);
     }
 
     /** Последовательность пройденых вопросов теста. */
     nextQuestion() {
-        let currentSceneId = this._scenarioTravesabler.currentScene;
-        let correntScene = this._scenesMap.get(currentSceneId);
-        if (!correntScene.value) return false;
-        let nextSceneId = this._scenarioTravesabler.next(correntScene.value);
-        if (sceneId === false) {
-            this.onQuestionsOver();
-            return false;
-        }
+        let currentScene = this._scenesMap.get(this._scenarioTravesabler.currentScene);
+
+        let responseMap = currentScene.getResponse();
+        for (let [idintefer, value] of responseMap.entries()) if (value === null) responseMap.delete(idintefer);
+        if (responseMap.size < 1) return false;
+
+        let nextSceneId = this._scenarioTravesabler.next([...responseMap.values()]);
+        if (nextSceneId === false) { this.onQuestionsOver(); return false; }
+
         let nextScene = this._scenesMap.get(nextSceneId);
-        this._questionViewer.setScene(nextScene);
+        if (nextScene === undefined) throw new Error(`Сценарий указывает на несуществующую сцену: ${nextSceneId}`)
+        this._viewScene(nextScene);
     }
+
     prevQuestion() {
         let sceneId = this._scenarioTravesabler.prev();
         if (sceneId === false) return false;
         let scene = this._scenesMap.get(sceneId);
         this._questionViewer.setScene(scene);
     }
+
     onQuestionsOver() {
-        // this._view = this._finalScene;
+        this._view = this._finalScene;
     }
+
     resetProgress() { }
 
     deserializeQuizData(data) {
@@ -96,7 +108,8 @@ export class Quiz {
                     scene = CardsWithPictureGrid.deserializeData(questionData);
                     break;
                 default:
-                    throw TypeError();
+                    console.log('questionData.scene is not been searched');
+                    throw new TypeError();
                     break;
             }
             console.log('\n');
@@ -108,7 +121,7 @@ export class Quiz {
 class ScenarioTravesabler {
     constructor() {
         this._scenariosMap = new Map([
-            ["main", ["1", "selectGatesType", "3", "4", "5", "6", "7"]],
+            ["main", ["1", "selectGatesType", "3"]],
             ["two", ["snFoundation", "snWicket", "snFacade", "#Parent.5"]],
             ["three", ["snWicket", "snFacade", "#Parent.5"]]
         ]);
@@ -130,10 +143,10 @@ class ScenarioTravesabler {
 
     next(value) {
         let currentScenario = this._scenariosMap.get(this._currentScenarioId);
-        let nextInScenario = currentScenario[++currentScenario.indexOf(this.currentScene)];
+        let nextInScenario = currentScenario[currentScenario.indexOf(this.currentScene) + 1];
 
         // сценарий закончился. запрещаем выходить из сценария потому что некуда)
-        if (nextInScenario == undefined) return false;
+        if (nextInScenario === undefined) return false;
 
         let lastSegment = this._path[this._path.length - 1][1];
         lastSegment.push(nextInScenario);
