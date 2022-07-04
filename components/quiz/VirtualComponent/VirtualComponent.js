@@ -13,7 +13,7 @@ export class VirtualComponent {
     /** @param {HTMLTemplateElement} htmlTemplate по умолчанию равен 'auto' */
     constructor(htmlTemplate = 'auto') {
         if (htmlTemplate !== 'auto') {
-            if (!TemplateProvider.validateTemplate(htmlTemplate)) throw new TypeError('Был передан неверный аргумент htmlTemplate');
+            if (!TemplateProvider.validateTemplate(htmlTemplate)) throw new TypeError(`Был передан неверный аргумент htmlTemplate: ${htmlTemplate}`);
             this._templateProvider = new TemplateProvider(htmlTemplate);
         } else {
             let template = this._findSelfTemplate();

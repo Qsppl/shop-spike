@@ -18,21 +18,16 @@ class SelectableInputMirrorStorage extends MirrorStorage {
         this._allowedTypes = new Set(['checkbox', 'radio']);
     }
 
-    /**
-     * Сюда присваивается callback - вызовется когда интерактивный компонент посчитает что пользователь передал какую-то часть конечных данных. Сам не определяет подходят ли эти данные;
-     * @param {IUserInputSource}
-     * @returns {boolean} результат вылидации данных коллбэком
-     */
-    onUserFilledField(inputSource) { }
+    onInputChanged() { }
 
     /** @returns {SelectableInputMirrorStorage} Прокси для доступа к свойствам хранилища. При записи через прокси свойства будут зеркально отображены в разметку. */
     // это не storage. объект MirrorStorage это storage - а прокси осуществляет доступ к storage с автоматической синхронизацией разметки.
     get storage() { return super.storage; }
 
-    _handleClickEvent(e) { this.storage.checked = !(this.storage.checked); }
+    _handleClickEvent(e) { this.storage.checked = !(this.storage.checked); this.onInputChanged(); }
 
     // этот костыль блокирует доступ из js - надо перенести в state все эвент-таргеты
-    set checked(state) { this._checked = state; if (this._checked) this.onUserFilledField(this); }
+    set checked(state) { this._checked = state; }
 
     /** @returns {boolean} */
     get checked() { return this._checked; }
@@ -72,12 +67,18 @@ export class SelectableInputComponent extends VirtualComponent {
     /** @param {HTMLTemplateElement} template */
     constructor(template, name, value) {
         super(template);
-        this._onSelect = this._onSelect.bind(this);
+        this._inputSelectHandler = this._inputSelectHandler.bind(this);
         this._mirrorStorage = new SelectableInputMirrorStorage(name, value);
-        this._mirrorStorage.addInputListener(this._onSelect);
+        this._mirrorStorage.onInputChanged = this._inputSelectHandler;
     }
 
-    _onSelect() { this.onUserFilledField(this); }
+    _inputSelectHandler() {
+        this.onInputChanged(this);
+        if (this.checked) this.onUserFilledField(this);
+    }
+
+    /** @param {SelectableInputComponent} component */
+    onInputChanged(component) { }
 
     /** @returns {SelectableInputMirrorStorage} */
     get state() { return this._mirrorStorage.storage; }
@@ -85,6 +86,10 @@ export class SelectableInputComponent extends VirtualComponent {
     set checked(state) { this.state.checked = state; }
     /** @returns {boolean} value */
     get checked() { return this.state.checked; }
+
+    quietlySelect() {
+        this.checked = true;
+    }
 
     // ### IUserInputSource ###
 
@@ -102,11 +107,11 @@ export class SelectableInputComponent extends VirtualComponent {
     /** @returns {string} value */
     get value() { return this.state.value; }
 
-    /** @returns {Set<String, String>|Set<null, null>} Set<key, value>|Set<null, null> */
+    /** @returns {Map<String, String|null>} Map<name, value|null> */
     getResponse() {
-        if (typeof this.name !== 'string' || typeof this.value !== 'string') return new Set([null, null]);
-        if (!this.checked) return new Set([null, null]);
-        return new Set([this.name, this.value]);
+        if (typeof this.name !== 'string' || typeof this.value !== 'string') return new Map([[this.name, null]]);
+        if (!this.checked) return new Map([[this.name, null]]);
+        return new Map([[this.name, this.value]]);
     }
 
     // ### /IUserInputSource ###

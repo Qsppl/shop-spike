@@ -10,7 +10,7 @@ export default {
         "1": {
             "scene": "BadgeWithIndicatorGrid",
             "quest" : "Чи да?",
-            "amountOfSelect": [1, Infinity],
+            "amountOfSelect": 1,
             "answers": {
                 "1": "да",
                 "2": "нет",
@@ -20,7 +20,7 @@ export default {
         "selectGatesType": {
             "scene": "CardsWithPictureGrid",
             "quest": "Какие ворота Вас интересуют?",
-            "amountOfSelect": 1,
+            "amountOfSelect": 2,
             "answers": {
                 "1": { "text": "Откатные", "image": "" },
                 "answer2": { "text": "Распашные", "image": "" },

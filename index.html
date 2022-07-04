@@ -385,7 +385,8 @@
     <template id="quiz-scene">
         <div class="test-item">
             <div class="test__number">Вопрос <span component-inner=""></span component-inner="beginning-counter"> из
-                <span component-inner="end-counter"></span></div>
+                <span component-inner="end-counter"></span>
+            </div>
             <div class="test-item-title" component-inner="title"></div>
             <div class="test-item-block q-3" component-slot="inputs"></div>
         </div>
@@ -443,6 +444,96 @@
                 </span>
                 <span component-inner="name">Частный дом</span>
             </label>
+        </div>
+    </template>
+    <template id="final-scene">
+        <div class="test" id="test" style="">
+            <div class="quiz__close close" data-role="close-modal"><span>Закрыть</span></div>
+            <div class="container-custom test-modal">
+                <div class="test__wrap">
+                    <div class="test__qwiz">
+                        <div class="test__title test__title-1">Расчет стоимости ворот по индивидуальным параметрам</div>
+                        <div id="top"></div>
+                        <div class="progress-bar__text" data-text="">Расчет пройден на <span>100 %</span></div>
+                        <div class="progress-bar"></div>
+                        <form class="form-tel-validate" id="testStart" action="send.php" enctype="multipart/form-data"
+                            method="POST" data-measure-new="true" novalidate="novalidate"><input name="formname"
+                                type="hidden" value="test">
+                            <div class="test-content">
+                                <div class="test-item test-final" style="">
+                                    <div class="test-final__cont">
+                                        <div class="test-item-title test-final__title">Наш специалист рассчитает
+                                            стоимость
+                                            Ваших
+                                            будущих ворот</div>
+                                        <div class="test-final__descr">Напишите свой номер телефона. Мы перезвоним вам,
+                                            расскажем о дальнейших действиях и ответим на все ваши вопросы.</div>
+                                        <div class="form-final"><img class="img-list" data-src="/images/list.png" alt=""
+                                                src="/images/list.png"><input class="input" data-role="quiz-phone"
+                                                name="phone" type="tel" autocomplete="off" required="true"
+                                                placeholder="+7 (_ _ _) _ _ _ - _ _ - _ _" im-insert="true"><input
+                                                class="kuhnicheck" type="hidden" value="kuhnichek"
+                                                name="kuhnicheck"><button class="btn" data-role="quiz-submit"><span
+                                                    class="btn-text">Узнать стоимость
+                                                    ворот</span></button>
+                                            <div class="btn-reset" data-role="quiz-reset">Пройти тест заново</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="test__gifts">
+                        <div class="test__gifts-item test__gifts-item-1" style="display: none;">
+                            <div class="test__gifts-title">До окончания теста осталось:</div>
+                            <div class="test__gifts-quest"
+                                data-text="Ваш подарок: <br><br>Запасной пульт и управление со смартфона."
+                                data-gift="false">Ваш
+                                подарок: <br><br>Запасной пульт и управление со смартфона.</div>
+                            <picture class="test__gifts-img">
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source type="image/webp" srcset="/images/quiz-somegift-image.webp">
+                                <source type="image/png" srcset="/images/quiz-somegift-image.png"><img
+                                    src="/images/quiz-somegift-image.png" alt="">
+                                <!--[if IE 9]></video><![endif]-->
+                            </picture>
+                        </div>
+                        <div class="test__gifts-item test__gifts-item-2" style="">
+                            <div class="test__gifts-quest">Ваш подарок: <br><br>Запасной пульт и управление со
+                                смартфона.
+                            </div>
+                            <div class="present-block">
+                                <div class="test-item-block-elem-desc present-final-text"></div>
+                                <picture class="present-final-img">
+                                    <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                    <source type="image/webp" srcset="/images/quiz-final-image.webp">
+                                    <source type="image/png" srcset="/images/quiz-final-image.jpg"><img
+                                        src="/images/quiz-final-image.jpg" alt="">
+                                    <!--[if IE 9]></video><![endif]-->
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="test__gifts-item test__gifts-item-3" style="display: none;">
+                            <picture class="zamer-img">
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source type="image/webp" srcset="/images/img-measurer.webp">
+                                <source type="image/png" srcset="/images/img-measurer.png"><img
+                                    src="/images/img-measurer.png" alt="">
+                                <!--[if IE 9]></video><![endif]-->
+                            </picture>
+                        </div>
+                        <div class="test__gifts-item test__gifts-item-4" style="display: none;">
+                            <picture class="quiz__measure-man">
+                                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                <source type="image/webp" srcset="/images/quiz__measure-new.webp">
+                                <source type="image/png" srcset="/images/quiz__measure-new.png"><img
+                                    src="/images/quiz__measure-new.png" alt="">
+                                <!--[if IE 9]></video><![endif]-->
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </template>
 </body>

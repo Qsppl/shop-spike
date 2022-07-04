@@ -7,13 +7,12 @@ import { SelectableInputComponent } from "../../VirtualComponent/InteractiveHtml
  */
 export class BadgeWithIndicator extends SelectableInputComponent {
     /**
-     * @param {string} name
      * @param {HTMLTemplateElement} htmlTemplate
+     * @param {string} idintefer
+     * @param {string} text
      */
-    constructor(name, templateProvider) {
-        super(templateProvider);
-        this.name = name;
-        console.log(`   New SelectableInputComponent: ${this.constructor.name}!`);
+    constructor(htmlTemplate, idintefer, text) {
+        super(htmlTemplate, idintefer, text);
     }
 
     set name(text) { if (typeof text !== 'string') throw new TypeError(); this.state.name = text; }
@@ -21,12 +20,11 @@ export class BadgeWithIndicator extends SelectableInputComponent {
     get name() { return this.state.name; }
 
     /**
-     * @param {string} data
+     * @param {String} idintefer 
+     * @param {Object} data 
      * @param {HTMLTemplateElement} htmlTemplate
      */
-    static deserializeData(data, htmlTemplate) {
-        let card = new this(data, htmlTemplate);
-        card.value = data;
-        return card;
+    static deserializeData(idintefer, data, htmlTemplate) {
+        return new this(htmlTemplate, idintefer, data);
     }
 }
